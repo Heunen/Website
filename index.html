@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            My web RPG
+            RPG-Online
         </title>
         <link rel="stylesheet" href="">
-        <script src=""></script>
+        <script src="rpg.js"></script>
     </head>
     <body>
         <header>
@@ -23,11 +23,11 @@
                     Mon RPG en ligne
                 </h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vehicula mauris nec augue viverra vestibulum. Donec a pellentesque felis. Donec a diam auctor mauris efficitur condimentum. Etiam et dictum arcu. Cras bibendum egestas odio id dapibus. Mauris bibendum erat vel est fermentum ullamcorper quis sit amet ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam erat volutpat.
-Proin pulvinar ut urna dictum pharetra. Proin cursus, enim et lobortis consectetur, quam diam faucibus massa, eu malesuada dui ex id nibh. Nulla diam velit, vehicula non consectetur at, semper et lacus. Proin est neque, consectetur vel vestibulum vel, aliquet vel elit. Aliquam porttitor bibendum erat, eget dapibus leo interdum blandit. In ex lacus, mollis vitae laoreet ac, eleifend ut mauris. In consectetur commodo risus et semper. Suspendisse potenti. Duis ut purus nec lorem lacinia tincidunt.
-Aliquam orci dolor, condimentum ac augue nec, molestie tristique risus. Fusce mattis quis lacus a mollis. Sed laoreet tincidunt odio, a elementum ipsum. Pellentesque quis finibus dolor, nec tincidunt eros. Phasellus eget sagittis arcu, ut ultricies nibh. Quisque sit amet efficitur felis. Praesent vestibulum risus sed tincidunt varius. Donec quis tellus vel magna bibendum viverra. Pellentesque luctus velit orci, aliquam scelerisque elit scelerisque quis. Donec ac odio non erat feugiat euismod. Nulla eu nisl a lorem egestas sodales.
-Phasellus pulvinar pulvinar maximus. Aenean vulputate vel velit gravida vehicula. Etiam mollis, purus facilisis malesuada molestie, mi ipsum efficitur arcu, eu gravida mi risus ut massa. Donec mauris dolor, congue ac feugiat vitae, tincidunt id purus. Donec ipsum ipsum, fermentum nec tempus quis, sodales congue leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse nec velit eget enim aliquet mattis iaculis eu lorem. Aenean tempus dui magna, ut cursus justo tincidunt a. Vestibulum molestie velit eu ante dictum fringilla. Proin pharetra nisl mauris, ac fringilla magna placerat non.
-                    <form method="GET" action="">
+								Bienvenue sur notre site RPG-Online. Veuillez créer votre personnage pour lancer l'aventure !
+                </p>
+						</section>
+						<section id=jeu>
+                    <form id="formulairePersonnage" action=# onSubmit='return ajouterPersonnage(this);'>
                         <div>
                             <label for="name">Nom :</label>
                             <input type="text" id="name" name="pseudo" maxlength="30" required="required">
@@ -37,8 +37,8 @@ Phasellus pulvinar pulvinar maximus. Aenean vulputate vel velit gravida vehicula
                             <input type="number" id="age" name="age" min="16" max="99" required="required">
                         </div>
                         <div>
-                            <label for="class">Classe :</label>
-                            <select name="class" size="1" required="required">
+                            <label for="classe">Classe :</label>
+                            <select name="classe" size="1" required="required">
                                 <option>Archer</option>
                                 <option>Guerrier</option>
                                 <option>Mage</option>
@@ -46,17 +46,17 @@ Phasellus pulvinar pulvinar maximus. Aenean vulputate vel velit gravida vehicula
                             </select>
                         </div>
                         <div>
-                            <label for="sex">Sexe :</label><br>
+                            <label for="sexe">Sexe :</label><br>
                             Masculin :<input type="radio" name="sexe" value="M" required="required"><br>
                             Feminin :<input type="radio" name="sexe" value="F" required="required"><br>
                         </div>
                         <input type="submit" value="Créer votre personnage">
-                        <input type="reset" value="Reinitialiser votre personnage">
-                    </form>
-                </p>
+                     </form>
+								
             </section>
         </main>
         <footer>
+						<br>
             <b>Page réalisée par Heunen Henri, Misson Oscar et Nicolas Thienpont</b>
         </footer>
     </body>
