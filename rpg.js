@@ -4,6 +4,13 @@
 // un personnage est un tableau de cette forme [ nom, age, classe, sexe, niveau]
 var personnage = [];
 
+/* Tableau d'ennemis
+var ennemis = [
+	{ race : "Orque", arme : "Epée", degats : 6},
+	{ race : "Humain", arme : "Arc", degats : 12}
+	];
+*/
+
 //paramètre : les données du formulaire
 //rempli le tableau personnage de ses données.
 function ajouterPersonnage(formulaire) {  
@@ -53,3 +60,33 @@ function articleHtml(nomDeInstance,texte){
                + "</article>";
 	document.getElementById("jeu").innerHTML = mHtml;
 }
+
+
+/*
+// Fonction pour créer un nouvel objet ennemi
+
+function nouveauEnnemi(classeEnnemi, nomArmeEnnemi, degatArmeEnnemi){
+	this.race = classeEnnemi;
+	this.arme = nomArmeEnnemi;
+	this.degats = degatArmeEnnemi;
+}
+
+// Fonction qui ajoute le nouvel ennemi dans l'array
+
+function ajouterEnnemi(formulaire){
+	var ennemiIntermediaire = new nouveauEnnemi(formulaire.classeEnnemi.value, formulaire.nomArmeEnnemi.value, formulaire.degatArmeEnnemi.value);
+	ennemis.push(ennemiIntermediaire);
+	afficherEnnemi();
+	return false;
+}
+
+// Affiche les ennemis
+
+function afficherEnnemi(){
+	let liste = "";
+	for(let i=0;i<ennemis.length;i++){
+		liste += "<b>" + ennemis[i]["race"] + "</b> avec une " + ennemis[i]["arme"] + " qui fait " + ennemis[i]["degats"]+ " de dégats <br>";
+	}
+	document.getElementById("listeEnnemi").innerHTML = liste;
+}
+*/
