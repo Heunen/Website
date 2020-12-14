@@ -62,7 +62,7 @@ function articleHtml(nomDeInstance,texte){
 }
 
 
-/*
+
 // Fonction pour créer un nouvel objet ennemi
 
 function nouveauEnnemi(classeEnnemi, nomArmeEnnemi, degatArmeEnnemi){
@@ -89,4 +89,4 @@ function afficherEnnemi(){
 	}
 	document.getElementById("listeEnnemi").innerHTML = liste;
 }
-*/
+
