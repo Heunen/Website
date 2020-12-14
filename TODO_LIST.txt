@@ -1,0 +1,30 @@
+-Fonctions aventure:
+      Instances : 
+            Introduction ==> Explication
+            Début (auberge) ==> Dialogue
+            Village ==> Dialogue
+            Forêt ==> Combat / Fouille
+            (Arène) ==> Combat + Création perso (utiliser création de persos)
+            Magasin ==> Dialogue + Gestion inv / PO (achat)
+            Pont ==> Dialogue / Combat
+            Camp ==> Combat à la chaine
+            Générique de fin avec gif
+      
+     Utilitaires :
+            Combat
+            Dialogue
+            Achat
+            Loot (gestion inventaire)
+            Phase 2 instance (gestion de la répetition des instances)
+            Carte
+            (Casino)
+                    
+-Styles :
+      Style par instance :
+            Voir instances plus tôt
+      Style général.
+      HTML
+      
+-Scénario et dialogues
+
+-Fonction permettant de changer l'html pour la création d'ennemis
