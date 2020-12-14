@@ -1,30 +1,32 @@
 -Fonctions aventure:
       Instances : 
-            Introduction ==> Explication
-            Début (auberge) ==> Dialogue
-            Village ==> Dialogue
-            Forêt ==> Combat / Fouille
-            (Arène) ==> Combat + Création perso (utiliser création de persos)
-            Magasin ==> Dialogue + Gestion inv / PO (achat)
-            Pont ==> Dialogue / Combat
-            Camp ==> Combat à la chaine
-            Générique de fin avec gif
-      
-     Utilitaires :
-            Combat
+            Introduction ==> Explication (Nicolas)
+            Auberge (début) ==> Dialogue (Nicolas)
+            Village ==> Dialogue (Henri)
+            Forêt ==> Combat / Fouille (Audrey)
+            Arène ==> Combat + (utiliser création de persos) (Oscar)
+            Magasin ==> Dialogue + Gestion inv / PO (achat) (Audrey)
+            Pont ==> Dialogue / Combat (Henri)
+            Camp ==> Combat à la chaine (Oscar)
+            Générique de fin avec gif (Nicolas)
+     
+     Fonctions à faire dans chaque instance (quasi) :
             Dialogue (les fonctions dialogues sont propres à chaque fonction)
-            Achat
-            Loot (gestion inventaire)
             Phase 2 instance (gestion de la répetition des instances)
-            Carte
-            (Casino)
+            
+     Utilitaires :
+            Combat  (Oscar)
+            Achat (Audrey)
+            Loot (gestion inventaire) (Henri)           
+            Carte (Nicolas)
+            (Casino) (Personne pr l'instant)
                     
--Styles :
+-Styles : (Nicolas)
       Style par instance :
             Voir instances plus tôt
       Style général.
       HTML
       
--Scénario et dialogues
+-Scénario et dialogues (Tout le monde)
 
--Fonction permettant de changer l'html pour la création d'ennemis
+-Fonction permettant de changer l'html pour la création d'ennemis (OSCAR)
