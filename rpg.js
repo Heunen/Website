@@ -4,12 +4,12 @@
 // un personnage est un tableau de cette forme [ nom, age, classe, sexe, niveau]
 var personnage = [];
 
-/* Tableau d'ennemis
+//Tableau d'ennemis
 var ennemis = [
 	{ race : "Orque", arme : "Epée", degats : 6},
 	{ race : "Humain", arme : "Arc", degats : 12}
 	];
-*/
+
 
 //paramètre : les données du formulaire
 //rempli le tableau personnage de ses données.
