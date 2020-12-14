@@ -12,7 +12,7 @@
         <header>
             <nav>
                 <a href="">Hello</a>
-                <a href="">I</a>
+                <a href="#" onCLick="ouvrirFormEnnemi();">Ennemis</a>
                 <a href="">Am</a>
                 <a href="">Nav</a>  
             </nav>
@@ -23,10 +23,10 @@
                     Mon RPG en ligne
                 </h1>
                 <p>
-								Bienvenue sur notre site RPG-Online. Veuillez créer votre personnage pour lancer l'aventure !
+			Bienvenue sur notre site RPG-Online. Veuillez créer votre personnage pour lancer l'aventure !
                 </p>
-						</section>
-						<section id=jeu>
+	    </section>
+	    <section id=jeu>
                     <form id="formulairePersonnage" action=# onSubmit='return ajouterPersonnage(this);'>
                         <div>
                             <label for="name">Nom :</label>
@@ -51,41 +51,11 @@
                             Feminin :<input type="radio" name="sexe" value="F" required="required"><br>
                         </div>
                         <input type="submit" value="Créer votre personnage">
-                     </form>
-								
+                     </form>						
             </section>
-<!---Création des ennemis-->
-						
-		<section>
-			<form id="formulaireEnnemi" action=# onSubmit="return ajouterEnnemi(this);">
-				<fieldset>
-					<legend>Création d'un ennemi</legend>
-					<div>
-						<label for="classeEnnemi">Nom:</label>
-						<select id="classeEnnemi" required="required">
-							<option>Orque</option>
-							<option>Pillard</option>
-							<option>Troll</option>
-							<option>Géant</option>
-						</select>
-					</div>
-					<div>
-						<dl>
-							<dt>Arme:</dt>
-							<dd>Nom : <input type="text" id="nomArmeEnnemi" required="required"></dd>
-							<dd>Dégats (1 à 20): <input type="number" id="degatArmeEnnemi" min="1" max="20" required="required"></dd>
-						</dl>
-					</div>
-					<input type="submit" value="Ajouter un ennemi">
-					<h3>Liste ennemis :</h3>
-					<section id="listeEnnemi">
-					</section>
-				</fieldset>
-			</form>
-		</section>
         </main>
         <footer>
-						<br>
+	    <br>
             <b>Page réalisée par Heunen Henri, Misson Oscar, Francx Audrey et Thienpont Nicolas</b>
         </footer>
     </body>
