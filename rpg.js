@@ -192,12 +192,13 @@ function ouvrirFormEnnemi(){
 						"</dl>"+
 					"</div>"+
 					"<input type='submit' value='Ajouter un ennemi'>"+
-					"<h3>Liste ennemis :</h3>"+
-					"<section id='listeEnnemi'>"+
-					"</section>"+
 				"</fieldset>"+
 			"</form>"+
+		"</section>"+
+		"<h3>Liste ennemis :</h3>"+
+		"<section id='listeEnnemi'>"+
 		"</section>";
+
 		articleHtml("formulaireEnnemi",texte);
 		afficherEnnemi();
 }
@@ -223,8 +224,12 @@ function ajouterEnnemi(formulaire){
 function afficherEnnemi(){
 	let liste = "";
 	for(let i=0;i<ennemis.length;i++){
-		liste += "<b>" + ennemis[i]["race"] + "</b> avec une " + ennemis[i]["arme"] + " qui fait " + ennemis[i]["degats"]+ " de dégats <br>";
+		liste += "<button onClick='supprimer("+i+");'>Supprimer</button> <b>" + ennemis[i]["race"] + "</b> avec une " + ennemis[i]["arme"] + " qui fait " + ennemis[i]["degats"]+ " de dégats<br>";
 	}
 	document.getElementById("listeEnnemi").innerHTML = liste;
 }
 
+function supprimer(aSupprimer){
+	ennemis.splice(aSupprimer,1);
+	afficherEnnemi();
+}
