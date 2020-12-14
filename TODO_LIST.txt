@@ -12,7 +12,7 @@
       
      Utilitaires :
             Combat
-            Dialogue
+            Dialogue (les fonctions dialogues sont propres à chaque fonction)
             Achat
             Loot (gestion inventaire)
             Phase 2 instance (gestion de la répetition des instances)
