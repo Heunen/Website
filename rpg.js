@@ -119,11 +119,10 @@ function nombreAleatoire(){
 function choixEnnemi(){
 	let choix = 9999;
 	do{
-		choix = nombreAleatoire()-1;
-	}while(choix >= ennemis.length)
-	return (choix-1);
+		choix = nombreAleatoire();
+	}while(choix > (ennemis.length-1))
+		return choix;
 }
-
 //Attaque la cible en lui infligeant des dégats entre 1 et 10 (nombreAleatoire()) et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaquer(cible){
 	let degats = nombreAleatoire();
