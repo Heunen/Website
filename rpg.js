@@ -10,10 +10,16 @@ var ennemis = [
 	{ race : "Pillard", arme : "Arc", degats : 12, vie : 100},
 	{ race : "Troll", arme : "Massue", degats : 8, vie : 100}
 	];
-
+//Sauvegarde l'ennemi apparu dans le combat
 let ennemiApparu;
+//Fonctionne comme une 'horloge' pour laisser un temps avant de réutiliser le pouvoir
 let rechargePouvoir = 0;
+//Sauvegarde l'endroit ou l'aventurier est avant un combat
 let sauvegardeEndroit = "";
+//Permet de vérifier si un aventurier a déjà fait l'arene
+let entreeArene = -1;
+//argent gagné dans l'arene
+let argentGagne = 0;
 
 
 //paramètre : les données du formulaire
@@ -97,6 +103,7 @@ function combat(premiereFois,endroit){
 	}
 	else if(ennemiApparu.vie == 0 && personnage[5] != 0){
 		texte = "<h3>Vous avez battu votre adversaire !</h3><br> Vous pouvez acceder à la suite.<button onClick='"+sauvegardeEndroit+"()'>Suite</button>";
+		ennemiApparu.vie = 100;
 	}
 	else{
 		texte = "Vous êtes mort !";
@@ -167,6 +174,27 @@ function tourEnnemi(){
 			alert("L'adversaire vous a infligé un coup critique !\n Vous perdez " + (ennemiApparu.degats + 10) +" points de vie.");
 	}
 }
+
+//Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
+function arene(){
+	let texte = "";
+	entreeArene++;
+	if(entreeArene == 0){
+		texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent"+
+								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,arene);'>Entrer tournoi</button>";
+	}
+	else if(entreeArene == 1){
+		argentGagne += 2;
+		texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + "pièces d'or"+
+								"Voulez vous continuer ? <button onCLick='combat(0,arene);'>Continuer</button><br>"+
+								"Ou bien quitter ? (vous ne pourrez plus revenir)<button onclick=''>Quitter</button>";
+	}
+	else{
+		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
+	}
+	articleHtml("Arene", texte);
+}
+
 
 //Change l'html pour avoir le formulaire d'ajout d'ennemis
 function ouvrirFormEnnemi(){
