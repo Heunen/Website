@@ -9,7 +9,6 @@
             Pont ==> Dialogue / Combat (Henri)
             Camp ==> Combat à la chaine (Oscar)
             Générique de fin avec gif (Nicolas)
-  (NB chaque instance doit avoir un boutton qui appele la fonction deplacer() )
      
      Fonctions à faire dans chaque instance (quasi) :
             Dialogue (les fonctions dialogues sont propres à chaque fonction)
@@ -36,3 +35,5 @@
 
 
 <<<<<<<<<<<<<<<<<<<<<               STYLES                >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- couleur liens : 
