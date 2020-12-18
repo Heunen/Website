@@ -30,3 +30,8 @@
 -Scénario et dialogues (Tout le monde)
 
 -Fonction permettant de changer l'html pour la création d'ennemis (OSCAR)
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<               STYLES                  >>>>>>>>>>>>>>>>>>>>>>>>>>>>
