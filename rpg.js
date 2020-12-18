@@ -62,7 +62,7 @@ function instanceIntro(){
 function instanceAventure(){     
   let texte="Bienvenue à toi "+ personnage[0] +'!'; // première ligne
   texte+="<br>AVENTURE "
-  texte+="<br> <button onClick='introHist'>Introduction de l'aventure</button>";
+  texte+="<br> <button onClick='introHist()'>Introduction de l'aventure</button>";
   articleHtml("intro",texte);
   
 }
