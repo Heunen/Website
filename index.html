@@ -6,7 +6,7 @@
             RPG-Online
         </title>
         <link rel="stylesheet" href="css/styles.css">
-        <script src="rpg.js"></script>
+        <script src="js/rpg.js"></script>
     </head>
     <body onload="afficherEnnemi();">
         <header>
@@ -14,47 +14,48 @@
                 My Web RPG
             </h1>
             <nav>
-                <a href="">Hello</a>
-                <a href="#" onCLick="ouvrirFormEnnemi();">Ennemis</a>
-                <a href="">Am</a>
-                <a href="">Nav</a>  
+                <a id="liens" href="">Accueil</a>
+                <a id="liens" href="#" onCLick="ouvrirFormEnnemi();">Création d'ennemis</a>
             </nav>
         </header>
         <main>
-            <section>
+            <section id="bienvenue">
                 <h1>
                     Mon RPG en ligne
                 </h1>
                 <p>
 			Bienvenue sur notre site RPG-Online. Veuillez créer votre personnage pour lancer l'aventure !
                 </p>
-	    </section>
-	    <section id=jeu>
-                    <form id="formulairePersonnage" action=# onSubmit='return ajouterPersonnage(this);'>
-                        <div>
-                            <label for="name">Nom :</label>
-                            <input type="text" id="name" name="pseudo" maxlength="30" required="required">
-                        </div>
-                        <div>
-                            <label for="age">Age :</label>
-                            <input type="number" id="age" name="age" min="16" max="99" required="required">
-                        </div>
-                        <div>
-                            <label for="classe">Classe :</label>
-                            <select name="classe" size="1" required="required">
-                                <option>Archer</option>
-                                <option>Guerrier</option>
-                                <option>Mage</option>
-                                <option>Voleur</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="sexe">Sexe :</label><br>
-                            Masculin :<input type="radio" name="sexe" value="M" required="required"><br>
-                            Feminin :<input type="radio" name="sexe" value="F" required="required"><br>
-                        </div>
-                        <input type="submit" value="Créer votre personnage">
-                     </form>						
+	        </section>
+	        <section id=jeu>      
+                <form id="formulairePersonnage" action=# onSubmit='return ajouterPersonnage(this);'>
+                    <fieldset>
+                        <legend>Création du personnage</legend>
+                            <div>
+                                <label for="name">Nom :</label>
+                                <input type="text" id="name" name="pseudo" maxlength="30" required="required">
+                                </div>
+                            <div>
+                                <label for="age">Age :</label>
+                                <input type="number" id="age" name="age" min="16" max="99" required="required">
+                            </div>
+                            <div>
+                                <label for="classe">Classe :</label>
+                                <select name="classe" size="1" required="required">
+                                    <option>Archer</option>
+                                    <option>Guerrier</option>
+                                    <option>Mage</option>
+                                    <option>Voleur</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="sexe">Sexe :</label><br>
+                                    Masculin :<input type="radio" name="sexe" value="M" required="required"><br>
+                                    Feminin :<input type="radio" name="sexe" value="F" required="required"><br>
+                            </div>
+                            <input type="submit" value="Créer votre personnage">
+                    </fieldset>
+                </form>						
             </section>
         </main>
         <footer>
