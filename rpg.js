@@ -54,7 +54,15 @@ function ajouterPersonnage(formulaire) {
 //Instance intro : gènere qu'un seul bouton commencer l'aventure qui lance l'instance : Aventure 
 // Introduction et dialogues d'introduction ! //
 // Les dialogues peuvent être changés ! //
-
+function instanceIntro(){
+  let nomDeInstance="intro";	
+  let texte="Bienvenue à toi "+ personnage[0] +'!'; // première ligne
+  texte+="<br> Pour lancer l'aventure appuis sur le bouton 'lancer l'aventure. ";
+  texte+="<br> <button onClick='introHist()'>Lancer l'aventure</button>";
+  texte+="<button onClick='alert("lol ya r bouffon")'>modifier votre personnage</button>";
+  articleHtml(nomDeInstance,texte);
+  
+}
 function introHist(){
     let texte="<!--Introduction à l'histoire-->"+
         "<section>"+
