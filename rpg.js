@@ -403,7 +403,7 @@ function introDia4(){
         "<section>"+
             "<b>Vous : </b> Et qu'en est-il de la récompense? Puis-je avoir plus d'informations là-dessus, mon brave aubergiste?"+
             "<hr>"+
-            "<button onclick='IntroDia5'>Continuer</button>"+
+            "<button onclick='IntroDia5()'>Continuer</button>"+
         "</section>"
     articleHtml("intro",texte);
 }
@@ -413,7 +413,7 @@ function introDia5(){
         "<section>"+
             "<b>L'aubergiste : </b> Je vous propose donc déjà mon hospitalité gratuitement pendant la durée de votre quête, et j'accompagnerait cela d'un sac bien rempli d'or. Je ne sais pas ce que le maire compte vous offrir mais je pense que cette récompense devrait déjà être suffisante pour vous rendre enthousiaste."+
             "<hr>"+
-            "<button onclick='introDia6'>Continuer</button>"+
+            "<button onclick='introDia6()'>Continuer</button>"+
         "</section>"
     articleHtml("intro",texte);
 }
@@ -423,7 +423,7 @@ function introDia6(){
         "<section>"+
             "<b>Vous : </b> Cela me semble être un bonne offre. J'accepte. Il me faut me préparer pour cette nouvelle aventure donc je m'en vais me reposer, si vous pouviez me montrer mon logis temporaire ce ne serait pas de refus."+
             "<hr>"+
-            "<button onclick='introDia7'>Continuer</button>"+
+            "<button onclick='introDia7()'>Continuer</button>"+
         "</section>"
     articleHtml("intro",texte);
 }
@@ -435,7 +435,7 @@ function introDia7(){
             "<hr>"+
             "Vous décidez après la visite de cette auberge vide de monde, d'aller vous reposer afin de pouvoir commencer vos opérations le lendemain. Vous vous endormez assez rapidement."+
             "<hr>"+
-            "<button onclick='introDiaFin'>Continuer</button>"+
+            "<button onclick='introDiaFin()'>Continuer</button>"+
         "</section>"
     articleHtml("intro",texte);
 }
