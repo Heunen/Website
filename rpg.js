@@ -403,7 +403,7 @@ function introDia4(){
         "<section>"+
             "<b>Vous : </b> Et qu'en est-il de la récompense? Puis-je avoir plus d'informations là-dessus, mon brave aubergiste?"+
             "<hr>"+
-            "<button onclick='IntroDia5()'>Continuer</button>"+
+            "<button onclick='introDia5()'>Continuer</button>"+
         "</section>"
     articleHtml("intro",texte);
 }
