@@ -1,0 +1,64 @@
+html{
+    background-color:lightblue;
+    background-image:url("../images/nuageRepete.jpg");
+}
+body{
+    margin:5% 15% 5% 15%;
+    background-color:brown;
+    padding:5% 5% 5% 5%;
+    border:black solid;
+    border-radius:3%;
+    height:85%;
+    
+}
+header{
+    padding:5px;
+    background-color:rgb(116, 15, 35);
+    border:black solid;
+}
+nav{
+    border:black solid;
+}
+#liens{
+    color:cyan;
+}
+link{
+    color:azure;
+}
+
+footer{
+    font-style:italic;
+    font-size:small;
+
+}
+#titre{
+    font-weight:bolder;
+    font-style:italic;
+    text-decoration: underline;
+    height:1em
+}
+#formulairePersonnage{
+    background-color:rgb(116, 15, 35);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+#formulaireEnnemi{
+    background-color:rgb(116, 15, 35);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+/* Zones de jeu ! */
+
+#jeu{
+    background-image:url(../images/auberge.jpg);
+    width:100%;
+    height: 700px;
+    font-weight: bold;
+    color:white;
+    border: black solid;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
