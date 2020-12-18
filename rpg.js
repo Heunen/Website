@@ -59,7 +59,7 @@ function instanceIntro(){
   let texte="Bienvenue à toi "+ personnage[0] +'!'; // première ligne
   texte+="<br> Pour lancer l'aventure appuis sur le bouton 'lancer l'aventure. ";
   texte+="<br> <button onClick='introHist()'>Lancer l'aventure</button>";
-  texte+="<button onClick='alert("Il suffit de recharger la page.")'>modifier votre personnage</button>";
+  texte+="<button onClick='alert('Il suffit de recharger la page.')'>modifier votre personnage</button>";
   articleHtml(nomDeInstance,texte);
   
 }
