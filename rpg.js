@@ -59,9 +59,9 @@ function instanceIntro(){
   let texte="Bienvenue à toi "+ personnage[0] +'!'; // première ligne
   texte+="<br> Pour lancer l'aventure appuis sur le bouton 'lancer l'aventure. ";
   texte+="<br> <button onClick='introHist()'>Lancer l'aventure</button>";
-  texte+="<button onClick='alert('Il suffit de recharger la page.')'>modifier votre personnage</button>";
-  texte+="<button onClick='instanceArene()'>Arene</button>";
-  texte+="<button onClick='instanceVillage()'>Village</button>";
+  texte+="<button onClick='alert(\'Il suffit de recharger la page.\')'>modifier votre personnage</button>";
+  texte+="<button onClick='instanceArene()'>Arene</button>;
+  texte+="<button onClick='instanceVillage()'>Village</button>;
   articleHtml(nomDeInstance,texte);
 }
 function introHist(){
@@ -289,7 +289,7 @@ function dialogueVillageois(){
 		dialogue+="Vous avez le tablard du village ? Pourtant je vois que vous venez pas d'ici. Vous avez l'air plutôt fort.";
 		dialogue+="pouriez m'aider en allant chercher du bois dans la forêt ? Plus personne n'ose s'aventurer dans la forêt, elle est envahie";
 		dialogue+="de monstre et de bandits."
-		texte+=dialogue + "<br><button onClick='alert('fonction à créer')'>Confirmer la quête</button>";
+		texte+=dialogue + "<br><button onClick='alert(\'fonction à créer\')'>Confirmer la quête</button>";
 		
 		}
 	else {
