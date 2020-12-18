@@ -321,7 +321,7 @@ function dialogueVillageois(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Fin du Jeu		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 
 
@@ -339,7 +339,7 @@ function dialogueVillageois(){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-	                                                     //INSTANCE Carte
+	                                                     //function Carte
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 														//function ajouter des monstres personnalisés
@@ -458,17 +458,17 @@ function tourEnnemi(){
 }
 
 //Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
-function arene(){
+function instanceArene(){
 	let texte = "";
 	entreeArene++;
 	if(entreeArene == 0){
 		texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent"+
-								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,arene);'>Entrer tournoi</button>";
+								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,instanceArene);'>Entrer tournoi</button>";
 	}
 	else if(entreeArene == 1){
 		argentGagne += 2;
 		texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + "pièces d'or"+
-								"Voulez vous continuer ? <button onCLick='combat(0,arene);'>Continuer</button><br>"+
+								"Voulez vous continuer ? <button onCLick='combat(0,instanceArene);'>Continuer</button><br>"+
 								"Ou bien quitter ? (vous ne pourrez plus revenir)<button onclick=''>Quitter</button>";
 	}
 	else{
