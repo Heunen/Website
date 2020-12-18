@@ -60,8 +60,8 @@ function instanceIntro(){
   texte+="<br> Pour lancer l'aventure appuis sur le bouton 'lancer l'aventure. ";
   texte+="<br> <button onClick='introHist()'>Lancer l'aventure</button>";
   texte+="<button onClick='alert(\'Il suffit de recharger la page.\')'>modifier votre personnage</button>";
-  texte+="<button onClick='instanceArene()'>Arene</button>;
-  texte+="<button onClick='instanceVillage()'>Village</button>;
+  texte+="<button onClick='instanceArene()'>Arene</button>";
+  texte+="<button onClick='instanceVillage()'>Village</button>";
   articleHtml(nomDeInstance,texte);
 }
 function introHist(){
