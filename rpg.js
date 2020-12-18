@@ -243,7 +243,7 @@ function introDiaFin(){
         "<section>"+
             "Vous vous réveillez le lendemain dans votre lit de l'auberge, vous préparer, et vous mettez en route vers le centre du village, dans lequel vous espérez pouvoir obtenir plus d'informations sur les bandits."+
             "<hr>"+
-            "<button onclick='...'>Se déplacer</button>"+
+            "<button onclick='instanceArene'>Se déplacer</button>"+
         "</section>"
     articleHtml("intro",texte);
 }
