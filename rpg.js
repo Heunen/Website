@@ -260,3 +260,193 @@ function supprimer(aSupprimer){
 	ennemis.splice(aSupprimer,1);
 	afficherEnnemi();
 }
+
+// Introduction et dialogues d'introduction ! //
+// Les dialogues peuvent être changés ! //
+
+function introHist(){
+    let texte="<!--Introduction à l'histoire-->"+
+        "<section>"+
+            "Alors que la nuit commence à tomber, vous vous approchez d'une auberge ayant l'air bien entretenue. Vous décidez donc d'y passer la nuit. Alors que vous rentrez dans le bâtiment,vous vous faites accoster par l'aubergiste qui vous accueille et vous propose de prendre place.L'auberge est bien vide, et vous vous posez la question de pourquoi. Mais avant même que vous n'ayez le temps de poser la question, l'aubergiste prend la parole :"+
+            "<hr>"+
+            "<button onclick='introDia()'>Continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+
+function introDia(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste :</b>J'imagine que vous vous demandez pourquoi il fait si calme, alors que nous sommes en été et que l'établissement n'a pas l'air miteux? C'est normal de se poser la question... Et pour vous répondre, c'est du aux brigands."+
+            "<hr>"+
+            "<button onclick='introDia11()'>Lui demander qui sont ces brigands</button>"+
+            "<button onclick='introDia12()'>Le laisser continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte)
+}
+
+function introDia11(){
+    let texte=
+        "<section>"+
+            "<b>Vous :</b> Des brigands? Dans cette region? D'où viennent-ils et qui sont-ils?"+
+            "<hr>"+
+            "<button onclick='introDia2()'>Attendre la réponse de l'aubergiste</button>"+
+        "</section>"
+    articleHtml("intro",texte)
+}
+
+function introDia12(){
+    let texte=
+        "<section>"+
+            "<b>Vous :</b> ..."+
+            "<hr>"+
+            "<button onclick='introDia2()'>Laissez l'aubergiste expliquer la situation</button>"+
+        "</section>"
+    articleHtml("intro",texte)
+}
+
+function introDia2(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste : </b> Il s'agit d'un groupe assez organisé, ils se sont organisés dans une fort non loin. Ils ne sont pas beaucoup mais leur chef est fort... Depuis son arrivée beaucoup sont partis en laissant leurs biens à leur merci, et je pense être le seul à leur résister... Mais c'est comme cela, buvons pour oublier. Parlons plutôt de vous. Qui êtes-vous et pourquoi êtes-vous là?"+
+            "<hr>"+
+            "<button onclick='introDia21()'>Lui dire ce qu'il veut savoir</button>"+
+            "<button onclick='introDia22()'>Ne donner que très peu d'informations</button>"+
+        "<section>"
+    articleHtml("intro",texte);
+}
+
+function introDia21(){
+    let texte=
+        "<section>"+
+            "<b>Vous : </b> Je suis un aventurier, je parcours les terres afin de gagner de l'argent et découvrir un peu plus du monde qui m'entoure... Je ne suis que de passage ici car j'essaie de rejoindre la ville la plus proche pour offrir mes services. Peut être que je pourrais être utile dans le cadre de cette crise, si vous m'aidez en retour."+
+            "<hr>"+
+            "<button onclick='introDia211()'>Continuer</button>"+
+        "<section>"
+    articleHtml("intro",texte);
+}
+
+
+function introDia22(){
+    let texte=
+        "<section>"+
+            "<b>Vous : </b> Je ne parle pas beaucoup de moi, et je ne préfère pas le faire ici... Partez du principe que je suis de passage."+
+            "<hr>"+
+            "<button onclick='introDia221()'>Continuer</button>"+
+        "<section>"
+    articleHtml("intro",texte);
+}
+
+function introDia211(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste : </b> Un aventurier nous serait de grand secours dans cette situation. Si vous accepter, vous recevriez un paiement à la hauteur, de ma part et de celle du maire. Vous êtes notre seul espoir, s'il vous plaît aidez-nous !"+
+            "<hr>"+
+            "<button onclick='introDia3()'>Accepter l'offre</button>"+
+            "<button onclick='introDia222()'>Lui demander quelle récompense vous pourriez recevoir</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+function introDia221(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste : </b> Peu m'importe qui vous êtes de toute façon. Je suis prêt à vous payer pour que vous nous débarrassiez de ces malandrins, et je pense que le maire du village également. Qu'en dites-vous?"+
+            "<hr>"+
+            "<button onclick='introDia3()'>Accepter l'offre</button>"+
+            "<button onclick='introDia222()'>Lui demander quelle récompense vous pourriez recevoir</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+
+function introDia222(){
+    let texte=
+        "<section>"+
+            "<b>Vous : </b> J'aimerais avoir plus d'informations sur cette dite récompense... Je ne travaille pas pour rien, et même si c'est un plaisir d'aider, il me faut pouvoir me nourrir, me loger, et m'abreuver. Qu'en est-il cher aubergiste?"+
+            "<hr>"+
+            "<button onclick='introDia4()'>Continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte)
+}
+
+function introDia3(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste : </b> Merci pour votre aide, nous ferons de notre mieux pour subvenir à vos besoins, en esperant que votre simple présence suffise à faire fuir ces couards de brigands !"+
+            "<hr>"+
+            "<button onclick='introDia31()'>Demander à l'aubergiste si vous pouvez loger ici pendant la durée de votre quête</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+
+function introDia31(){
+    let texte=
+        "<section>"+
+            "<b>Vous : </b> C'est normal de venir en aide aux petits gens mon cher. Par contre, je ne pense pas pouvoir dormir sous tente pendant toute la durée de ce travail. Votre auberge a l'air bien vide. Est-il possible de me libérer une chambre pour que je puisse me reposer de mon long voyage?"+
+            "<hr>"+
+            "<button onclick='introDia32()'>Continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+
+function introDia32(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste : </b> Bien sûr mon brave ! Et cela à mes propres frais, je vous l'assure. Ce n'est pas tous les jours qu'un aventurier de votre trempe accepte de nous aider!"+
+            "<hr>"+
+            "<button onclick='introDia4()'>Demander à l'aubergiste ce qu'il en est de la récompense</button>"+
+        "<section>"
+    articleHtml("intro",texte);
+}
+
+function introDia4(){
+    let texte=
+        "<section>"+
+            "<b>Vous : </b> Et qu'en est-il de la récompense? Puis-je avoir plus d'informations là-dessus, mon brave aubergiste?"+
+            "<hr>"+
+            "<button onclick='IntroDia5'>Continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+
+function introDia5(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste : </b> Je vous propose donc déjà mon hospitalité gratuitement pendant la durée de votre quête, et j'accompagnerait cela d'un sac bien rempli d'or. Je ne sais pas ce que le maire compte vous offrir mais je pense que cette récompense devrait déjà être suffisante pour vous rendre enthousiaste."+
+            "<hr>"+
+            "<button onclick='introDia6'>Continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+
+function introDia6(){
+    let texte=
+        "<section>"+
+            "<b>Vous : </b> Cela me semble être un bonne offre. J'accepte. Il me faut me préparer pour cette nouvelle aventure donc je m'en vais me reposer, si vous pouviez me montrer mon logis temporaire ce ne serait pas de refus."+
+            "<hr>"+
+            "<button onclick='introDia7'>Continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+
+function introDia7(){
+    let texte=
+        "<section>"+
+            "<b>L'aubergiste : </b> Suivez-moi donc mon brave, je vais vous faire visiter !"+
+            "<hr>"+
+            "Vous décidez après la visite de cette auberge vide de monde, d'aller vous reposer afin de pouvoir commencer vos opérations le lendemain. Vous vous endormez assez rapidement."+
+            "<hr>"+
+            "<button onclick='introDiaFin'>Continuer</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+function introDiaFin(){
+    let texte=
+        "<section>"+
+            "Vous vous réveillez le lendemain dans votre lit de l'auberge, vous préparer, et vous mettez en route vers le centre du village, dans lequel vous espérez pouvoir obtenir plus d'informations sur les bandits."+
+            "<hr>"+
+            "<button onclick='...'>Se déplacer</button>"+
+        "</section>"
+    articleHtml("intro",texte);
+}
+// Fin de l'instance d'intro //
+
