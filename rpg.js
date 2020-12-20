@@ -7,7 +7,7 @@ var personnage = [];
 //Tableau d'ennemis
 var ennemis = [
 	{ race : "Orque", arme : "Epée", degats : 6, vie : 100},
-	{ race : "Pillard", arme : "Arc", degats : 12, vie : 100},
+	{ race : "Pillard", arme : "Arc", degats : 3, vie : 100},
 	{ race : "Troll", arme : "Massue", degats : 8, vie : 100}
 	];
 //Sauvegarde l'ennemi apparu dans le combat
@@ -46,7 +46,38 @@ function ajouterPersonnage(formulaire) {
   return false;
 }
 
-
+//Charge le formulaire dans la page, comme ça on peut utiliser le formulaire ennemi car on travaille dans le body et plus la page
+function afficherFormulairePerso(){
+	let texte = "<form id='formulairePersonnage' action=# onSubmit='return ajouterPersonnage(this);'>"+
+                    "<fieldset>"+
+                        "<legend>Création du personnage</legend>"+
+                            "<div>"+
+                                "<label for='name'>Nom :</label>"+
+                                "<input type='text' id='name' name='pseudo' maxlength='30' required='required'>"+
+                                "</div>"+
+                            "<div>"+
+                                "<label for='age'>Age :</label>"+
+                                "<input type='number' id='age' name='age' min='16' max='99' required='required'>"+
+                            "</div>"+
+                            "<div>"+
+                                "<label for='classe'>Classe :</label>"+
+                                "<select name='classe' size='1' required='required'>"+
+                                    "<option>Archer</option>"+
+                                    "<option>Guerrier</option>"+
+                                    "<option>Mage</option>"+
+                                    "<option>Voleur</option>"+
+                                "</select>"+
+                            "</div>"+
+                            "<div>"+
+                                "<label for='sexe'>Sexe :</label><br>"+
+                                    "Masculin :<input type='radio' name='sexe' value='M' required='required'><br>"+
+                                    "Feminin :<input type='radio' name='sexe' value='F' required='required'><br>"+
+                            "</div>"+
+                            "<input type='submit' value='Créer votre personnage'>"+
+                    "</fieldset>"+
+                "</form>";
+	articleHtml("formulaire",texte);
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                     //INSTANCE INTRO
@@ -307,6 +338,25 @@ function dialogueVillageois(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                          //INSTANCE Arène
+//Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
+function instanceArene(){
+	let texte = "";
+	entreeArene++;
+	if(entreeArene == 0){
+		texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent"+
+								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,instanceArene,'aleatoire');'>Entrer tournoi</button>";
+	}
+	else if(entreeArene == 1){
+		argentGagne += 2;
+		texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + "pièces d'or"+
+								"Voulez vous continuer ? <button onCLick='combat(0,instanceArene,'aleatoire');'>Continuer</button><br>"+
+								"Ou bien quitter ? (vous ne pourrez plus revenir)<button onclick=''>Quitter</button>";
+	}
+	else{
+		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
+	}
+	articleHtml("Arene", texte);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Magasin
@@ -318,7 +368,34 @@ function dialogueVillageois(){
                                                          //INSTANCE Pont	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-                                                         //INSTANCE Camp	
+                                                         //INSTANCE Camp
+let nbreCombat = 0;
+function instanceCamp(entreeSortie){
+	let texte = "";
+	if(entreeSortie == 0){
+		entreeSortie++;
+		texte = "Bonjour jeune aventurier, es-tu sûr de vouloir continuer vers le camp des brigants, tout retour sera impossible.<br>"+
+							"<button onClick='instanceCamp(1)'>Entrer</button><button onClick='instanceCamp(-1)'>Sortir</button>";
+	}
+	else if(entreeSortie == -1){
+		//pont();
+	} 
+	else{
+		if(nbreCombat == 0){
+			nbreCombat++;
+			texte = "Tu es entré dans le camp des brigants,ceux-ci t'ont repéré et commencent à t'attaquer.<br><button onClick='combat(0,instanceCamp,\"Pillard\")'>Se défendre</button>"
+		}
+		else if(nbreCombat < 3){
+			nbreCombat++;
+			texte = "Vous avez réussi à battre l'ennemi, un autre arrive !"+		//On pourrait faire des phrase différentes à chaque fois, celles-ci sont choisies parmis un liste en aléatoire
+							"<button onClick='combat(0,instanceCamp,\"Pillard\")'>Ok</button>";
+		}
+		else{
+			combat(2,instanceCamp);
+		}
+	}
+	articleHtml('camp',texte);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Fin du Jeu		
@@ -331,49 +408,16 @@ function dialogueVillageois(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 	                                                     //function combat
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-	                                                     //function Inventaire	
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-	                                                     //function Shop
-// (p-e juste à mettre dans l'instance magasin si il suffit d'ajouter les items dans l'inventaire)
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-	                                                     //function Carte
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-														//function ajouter des monstres personnalisés
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
-	                                                     //function sans catégorie.
-														 
-														
-												
-//Ajout Oscar du 14/12/20 à 21h
-//paramètre : le nom de l'instance, et le texte à afficher dans l'article text
-// modifie la section(id jeu) et y crée deux article tel que le premier article a comme id: image+nomDeInstance et le second texte+nomDeInstance
-// et le paramètre texte est injecter dans le deuxième article.
-function articleHtml(nomDeInstance,texte){
-	let mHtml= '<article id="'+nomDeInstance+'Image"></article>'
-			   + '<article id="'+nomDeInstance+'Text">'
-			   + texte
-               + "</article>";
-	document.getElementById("jeu").innerHTML = mHtml;
-}
-
 /*Fonction qui indique un combat, les points de vie de chaque personnage et les actions à réaliser.
 * @param premiereFois : Si 0, indique que c'est la premiere fois du combat que la fonction est appelée. 
 * 											Si 1, indique que la fonction a deja ete appelée et donc il ne faut pas changer d'ennemi.
 *												Si 2, (Pas encore implémenté) indique que la fonction est appelée dans le cadre du boss et donc il faut selectionner celui-ci.
 *				 endroit : permet de faire une sauvegarde de l'endroit la premiere fois que le combat est appelé ou on doit aller pour pouvoir y aller si le combat est gagné
 */
-function combat(premiereFois,endroit){
+function combat(premiereFois,endroit,type){
 	if(premiereFois == 0){
-		ennemiApparu = ennemis[choixEnnemi()];
 		sauvegardeEndroit = endroit.name;
+		ennemiApparu = ennemis[choixEnnemi(type)];
 	}
 /*else if(premiereFois == 2){
 		ennemiApparu = boss;				Boss encore a faire
@@ -394,19 +438,6 @@ function combat(premiereFois,endroit){
 		texte = "Vous êtes mort !";
 	}
 	articleHtml("Combat",texte);
-}
-//Crée un nombre aléatoire entier entre 0 et 10, utile pour le choix d'ennemi et les degats d'attaque
-function nombreAleatoire(){
-	let nombre = (Math.random()*10).toFixed(0);
-	return nombre;
-}
-//Fonction qui permet de choisir un ennemi aléatoire dans la liste d'ennemis via la fonction nombreAleatoire()
-function choixEnnemi(){
-	let choix = 9999;
-	do{
-		choix = nombreAleatoire();
-	}while(choix > (ennemis.length-1))
-		return choix;
 }
 //Attaque la cible en lui infligeant des dégats entre 1 et 10 (nombreAleatoire()) et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaquer(cible){
@@ -458,29 +489,37 @@ function tourEnnemi(){
 			alert("L'adversaire vous a infligé un coup critique !\n Vous perdez " + (ennemiApparu.degats + 10) +" points de vie.");
 	}
 }
-
-//Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
-function instanceArene(){
-	let texte = "";
-	entreeArene++;
-	if(entreeArene == 0){
-		texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent"+
-								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,instanceArene);'>Entrer tournoi</button>";
-	}
-	else if(entreeArene == 1){
-		argentGagne += 2;
-		texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + "pièces d'or"+
-								"Voulez vous continuer ? <button onCLick='combat(0,instanceArene);'>Continuer</button><br>"+
-								"Ou bien quitter ? (vous ne pourrez plus revenir)<button onclick=''>Quitter</button>";
+//Fonction qui permet de choisir un ennemi aléatoire dans la liste d'ennemis via la fonction nombreAleatoire() et permet de choisir un ennemi en fonction de sa race si celle-ci a ete donnée
+function choixEnnemi(type){
+	let choix = 9999;
+	if(type == "aleatoire"){
+		choix = nombreAleatoire()*(ennemis.length-1)/10;
+		return Math.round(choix);
 	}
 	else{
-		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
+		let listeIntermediaire = [];
+		for(let i in ennemis){
+			let valeurEnnemis = Object.values(ennemis[i]);
+			if(valeurEnnemis[0] == type){ listeIntermediaire.push(ennemis.indexOf(ennemis[i]));}
+			choix = listeIntermediaire[Math.round(nombreAleatoire()*(listeIntermediaire.length-1)/10)];
+		}
+	return choix;
 	}
-	articleHtml("Arene", texte);
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+	                                                     //function Inventaire	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+	                                                     //function Shop
+// (p-e juste à mettre dans l'instance magasin si il suffit d'ajouter les items dans l'inventaire)
 
-
-//Change l'html pour avoir le formulaire d'ajout d'ennemis
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+	                                                     //function Carte
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+						//function ajouter des monstres personnalisés
 function ouvrirFormEnnemi(){
 	let texte =" <!---Création des ennemis--> "+
 		"<section>"+
@@ -499,7 +538,12 @@ function ouvrirFormEnnemi(){
 					"<div>"+
 						"<dl>"+
 							"<dt>Arme:</dt>"+
-							"<dd>Nom : <input type='text' id='nomArmeEnnemi' required='required'></dd>"+
+							"<dd>Type : <select id='nomArmeEnnemi' required='required'>"+
+									"<option>Massue</option>"+
+									"<option>Arc</option>"+
+									"<option>Hache</option>"+
+									"<option>Epee</option>"+
+						"</select>"+
 							"<dd>Dégats (1 à 10): <input type='number' id='degatArmeEnnemi' min='1' max='10' required='required'></dd>"+
 						"</dl>"+
 					"</div>"+
@@ -514,7 +558,6 @@ function ouvrirFormEnnemi(){
 		articleHtml("formulaireEnnemi",texte);
 		afficherEnnemi();
 }
-//Fin ajout Oscar 14/12/20 à 21h
 
 
 // Fonction pour créer un nouvel objet ennemi
@@ -526,7 +569,7 @@ function nouveauEnnemi(classeEnnemi, nomArmeEnnemi, degatArmeEnnemi){
 
 // Fonction qui ajoute le nouvel ennemi dans l'array
 function ajouterEnnemi(formulaire){
-	var ennemiIntermediaire = new nouveauEnnemi(formulaire.classeEnnemi.value, formulaire.nomArmeEnnemi.value, formulaire.degatArmeEnnemi.value);
+	var ennemiIntermediaire = {race : formulaire.classeEnnemi.value, arme : formulaire.nomArmeEnnemi.value, degats : parseInt(formulaire.degatArmeEnnemi.value), vie : 100};
 	ennemis.push(ennemiIntermediaire);
 	afficherEnnemi();
 	return false;
@@ -548,5 +591,25 @@ function supprimer(aSupprimer){
 	ennemis.splice(aSupprimer,1);
 	afficherEnnemi();
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+	                                                     //function sans catégorie.
+														 
+//paramètre : le nom de l'instance, et le texte à afficher dans l'article text
+// modifie la section(id jeu) et y crée deux article tel que le premier article a comme id: image+nomDeInstance et le second texte+nomDeInstance
+// et le paramètre texte est injecter dans le deuxième article.
+function articleHtml(nomDeInstance,texte){
+	let mHtml= '<article id="'+nomDeInstance+'Image"></article>'
+			   + '<article id="'+nomDeInstance+'Text">'
+			   + texte
+               + "</article>";
+	document.getElementById("jeu").innerHTML = mHtml;
+}
 
 
+//Crée un nombre aléatoire entier entre 0 et 10, utile pour le choix d'ennemi et les degats d'attaque
+function nombreAleatoire(){
+	let nombre = (Math.random()*10).toFixed(0);
+	return nombre;
+}
