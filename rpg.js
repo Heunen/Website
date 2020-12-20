@@ -10,6 +10,8 @@ var ennemis = [
 	{ race : "Pillard", arme : "Arc", degats : 3, vie : 100},
 	{ race : "Troll", arme : "Massue", degats : 8, vie : 100}
 	];
+//Boss  de fin de game
+var boss = {race : "Boss", arme : "Anduril", degats : 10, vie : 150};
 //Sauvegarde l'ennemi apparu dans le combat
 let ennemiApparu;
 //Fonctionne comme une 'horloge' pour laisser un temps avant de réutiliser le pouvoir
@@ -379,12 +381,12 @@ function instanceCamp(entreeSortie){
 							"<button onClick='instanceCamp(1)'>Entrer</button><button onClick='instanceCamp(-1)'>Sortir</button>";
 	}
 	else if(entreeSortie == -1){
-		//pont();
+		//instancePont();
 	} 
 	else{
 		if(nbreCombat == 0){
 			nbreCombat++;
-			texte = "Tu es entré dans le camp des brigants,ceux-ci t'ont repéré et commencent à t'attaquer.<br><button onClick='combat(0,instanceCamp,\"Pillard\")'>Se défendre</button>"
+			texte = "Tu es devant le camp des brigants,ceux-ci t'ont repéré et commencent à t'attaquer.<br><button onClick='combat(0,instanceCamp,\"Pillard\")'>Se défendre</button>"
 		}
 		else if(nbreCombat < 3){
 			nbreCombat++;
@@ -392,10 +394,94 @@ function instanceCamp(entreeSortie){
 							"<button onClick='combat(0,instanceCamp,\"Pillard\")'>Ok</button>";
 		}
 		else{
-			combat(2,instanceCamp);
+			if(cle){
+				texte = "Vous tuez le dernier pillard qui vous attaquait. Les autres n'osent pas s'avancer.<br> Vous ouvrez les portes du camp et vous avancez prudement jusqu'au centre du camp. Vous voyez un trône immense fait avec ce qu'il semble être des os.<br><button onClick='combatBoss(0)'>Continuer</button>";
+			}
+			else{ texte = "Devant vous se dresse la palissade dy camp. Vous ne savez pas entrer, il vous manque la clé pour ouvrir les portes.<button onClick='instanceVillage()'>Retourner au village</button>";}
 		}
 	}
 	articleHtml('camp',texte);
+}
+function combatBoss(avancementHist){
+	ennemiApparu = boss;
+	let texte ="";
+	switch(avancementHist){
+		case 0 : texte = "BOSS : <br>Bonjour à toi jeune aventurier, je suis Volsung de Nichor, chef de ce camp.<br>Tu as peut-être réussi à battre mes camarades mais avec moi ce sera différent, ce n'est pas pour rien que je suis leur chef."+
+											"<br><button onClick='combatBoss(1)'>Je n'ai pas peur de vous</button> <button onClick='combatBoss(1)'>Et ce n'est pas pour rien que je suis arrivé jusqu'à vous</button>";
+						break;
+		case 1 : texte = "BOSS : <br>Hmm je ne sais pas si je dois avoir peur ou bien rigoler haha.<br>Prépare toi à goûter de ma lame"+
+											"<br><button onClick='combatBoss(2)'>Et toi à goûter de la mienne</button>";
+							rechargePouvoir = 0;
+							break;
+		case 2 : 
+			if(boss.vie != 0 && personnage[5] != 0){
+				texte = "Les pillards ont fait un cercle autour de vous, vous n'avez aucun moyen de vous échapper. Volsung est en face de vous et attend votre attaque."+
+								"<br>Votre vie est à : "+personnage[5]+
+								"<br>Vie de Volsung : "+boss.vie+"<br>"+
+								"<button onClick='attaquerBoss(boss)'>Attaque simple</button>" +
+								"<button onClick='attaqueSpecialeBoss(boss)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>" ;
+			}
+			else if(boss.vie == 0 && personnage[5] != 0){
+				texte = "Vous avez asséné un coup fatal à Volsung. Tout le monde se tait et un silence de plomb tombe sur le camp."+
+								"<br> Vous vous approchez de Volsung. Les brigants ont les yeux rivés sur vous."+
+								"<br><button onClick='combatBoss(3)'>Vérifier si Volsung est mort</button> <button onClick='combatBoss(103)'>Planter votre arme dans le corps de Volsung</button>";
+			}
+			else{ texte = "Vous êtes mort";}
+			break;
+		case 3 : texte = "Vous approchez votre arme du corps de Volsung et le tapez légèrement avec le bout. Volsung lâche alors râle, il n'est pas encore mort."+
+											"<br>Vous regardez autour de vous, tout le monde vous regarde mais personne n'a entendu Volsung. Vous devez faire quelque chose avant qu'on se rende compte qu'il n'est pas mort."+
+											"<br><button onClick='combatBoss(31)'>Dire : Il n'est pas mort</button> <button onClick='combatBoss(32)'>Mentir et dire : Il est mort</button> <button onClick='combatBoss(4)'>Sortir un poignard et lui trancher la gorge</button>";
+						break;
+		case 31 : texte = "Un brigand s'approche de vous, il semble être le sous-chef du camp. <br>Il vous dit : <br>Tu as réussi à vaincre notre chef, nous te laisserons la vie sauve car tu l'as fait dans un combat équitable."+
+											"<br>Sa vie est entre tes mains. Tu dois maintenant faire un choix :"+
+											"<br>Tu peux l'épargner et nous le laisser, nous promettons de ne plus aller piller les villages de cette région. <button onClick='combatBoss(100)'>L'épargner<\button>"+
+											"<br>Tu peux mettre fin à ses souffrances et repartir au village, nous quitterons le camp et irons autre part. <button onClick='combatBoss(101)'>L'achever</button>"+
+											"<br>Tu peux mettre fin à ses souffrances et devenir notre chef, je pense qu'avec ta direction nous pourrons devenir riches. <button onClick='combatBoss(102)'>L'achever et devenir le chef</button>";
+						break;
+		case 32 : texte = "Après que vous ayez dit cela tous les brigands s'agenouillent. Vous êtes devenu leur chef. Vous regardez alors le trone vide qui vous attends.<br>A ce moment là vous sentez tout à coup une forte douleur dans le ventre."+
+											"<br> Vous baissez les yeux et voyez le bout d'Anduril l'épée de Volsung sortir de votre ventre. Vous tombez à genoux et juste avant de perdre connaisance vous voyez Volsung debout, marcher difficilement vers son trône."+
+											"<br><button onClick='combatBoss(2)'>Mourir</button>";
+							personnage[5] = 0;
+							break;
+		case 100 : texte = "Vous décidez de l'épargner.<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin()'>Prendre la bourse et partir</button>";
+							break;
+		case 101 : texte = "Vous achevez Volsung en plantant votre arme dans son coeur. Vous ramassez Anduril son épée, il n'en aura plus besoin."+
+												".<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin()'>Prendre la bourse et partir</button>";
+							break;
+		case 102 : texte = "Vous achevez Volsung en plantant votre arme dans son coeur. Les brigands s'agenouillent, vous êtes leur nouveau chef.<br>Vous décidez de déménager le camp et de partir vers le Sud.<br><br><br>"+
+												"Vous ne pourrez pas profiter de votre vie de grand banditisme, les plaies infligées par Volsung s'infèctent rapidement et vous mourrez dans d'attroces souffrances peu de temps après.";
+							break;
+		case 4 : texte = "Vous tranchez la gorge de Volsung. Vous prenez Anduril, l'épée de Volsung et partez en direction du village. <br>Les brigands vous regardent le faire sans rien dire...<br><button onClick='instanceFin()'>Aller au village</button>";
+						break;
+	}
+	articleHtml('Boss',texte);
+}
+function attaquerBoss(cible){
+	let degats = nombreAleatoire();
+	cible.vie -= degats;
+	if(cible.vie <= 0){
+		cible.vie = 0;
+	}
+	alert("Vous avez fait " + degats + " de dégats, la vie de l'adversaire est passée à " + cible.vie);
+	tourEnnemi();
+	if(rechargePouvoir > 0){
+		rechargePouvoir--;
+	}
+	combatBoss(2);
+}
+//Attaque la cible en lui infligeant 15 de dégats et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
+function attaqueSpecialeBoss(cible){
+	if(rechargePouvoir <= 0){
+		let degats = 15;
+		cible.vie -= degats;
+		if(cible.vie <= 0){
+			cible.vie = 0;
+		}
+		rechargePouvoir = 2;
+		alert("Vous avez fait " + degats + " de dégats, la vie de l'adversaire est passée à " + cible.vie);
+	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};
+	tourEnnemi();
+	combatBoss(2);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -571,6 +657,12 @@ function nouveauEnnemi(classeEnnemi, nomArmeEnnemi, degatArmeEnnemi){
 // Fonction qui ajoute le nouvel ennemi dans l'array
 function ajouterEnnemi(formulaire){
 	var ennemiIntermediaire = {race : formulaire.classeEnnemi.value, arme : formulaire.nomArmeEnnemi.value, degats : parseInt(formulaire.degatArmeEnnemi.value), vie : 100};
+	for(let i in ennemis){
+		if((ennemiIntermediaire.race === ennemis[i].race) && (ennemiIntermediaire.arme === ennemis[i].arme) && (ennemiIntermediaire.degats === ennemis[i].degats)){
+			alert("Vous avez déjà créé ce type d'ennemi");
+			return false;
+		}
+	}
 	ennemis.push(ennemiIntermediaire);
 	afficherEnnemi();
 	return false;
@@ -586,11 +678,13 @@ function afficherEnnemi(){
 }
 
 function supprimer(aSupprimer){
-	
-	
-
+	if(ennemis.length==1){
+		alert("Vous ne pouvez pas supprimer le dernier ennemi");
+	}
+	else{
 	ennemis.splice(aSupprimer,1);
 	afficherEnnemi();
+	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
