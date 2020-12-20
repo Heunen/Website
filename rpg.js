@@ -97,6 +97,7 @@ function instanceIntro(){
   texte+="<button onClick='instanceArene()'>Arene</button>";
   texte+="<button onClick='instanceVillage()'>Village</button>";
   texte+="<button onClick='instanceCamp(0)'>Camp</button>";
+  texte+="<button onClick='combatBoss(0)'>Boss</button>";
   articleHtml(nomDeInstance,texte);
 }
 function introHist(){
