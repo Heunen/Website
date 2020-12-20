@@ -94,6 +94,7 @@ function instanceIntro(){
   texte+="<button onClick=alert'(alerte)'>modifier votre personnage</button>";
   texte+="<button onClick='instanceArene()'>Arene</button>";
   texte+="<button onClick='instanceVillage()'>Village</button>";
+  texte+="<button onClick='instanceCamp(0)'>Camp</button>";
   articleHtml(nomDeInstance,texte);
 }
 function introHist(){
