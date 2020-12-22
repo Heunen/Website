@@ -2,16 +2,16 @@
 
 // initialisation du tableau des personnages Ã  vide
 // un personnage est un tableau de cette forme [ nom, age, classe, sexe, niveau]
-var personnage = [];
+let personnage = [];
 
 //Tableau d'ennemis
-var ennemis = [
+let ennemis = [
 	{ race : "Orque", arme : "Epée", degats : 6, vie : 100},
 	{ race : "Pillard", arme : "Arc", degats : 3, vie : 100},
 	{ race : "Troll", arme : "Massue", degats : 8, vie : 100}
 	];
 //Boss  de fin de game
-var boss = {race : "Boss", arme : "Anduril", degats : 10, vie : 150};
+let boss = {race : "Boss", arme : "Anduril", degats : 10, vie : 150};
 //Sauvegarde l'ennemi apparu dans le combat
 let ennemiApparu;
 //Fonctionne comme une 'horloge' pour laisser un temps avant de réutiliser le pouvoir
