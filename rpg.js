@@ -347,8 +347,8 @@ function instanceArene(){
 	let texte = "";
 	entreeArene++;
 	if(entreeArene == 0){
-		texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent"+
-								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,instanceArene,'aleatoire');'>Entrer tournoi</button>";
+		texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"+
+								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,instanceArene,\"aleatoire\");'>Entrer tournoi</button>";
 	}
 	else if(entreeArene == 1){
 		argentGagne += 2;
