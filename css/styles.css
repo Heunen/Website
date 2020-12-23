@@ -73,56 +73,56 @@ footer{
     height:180px;
 }
 
-#AreneText{
+#areneText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 
-#VillageText{
+#villageText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 
-#ForetText{
+#foretText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 
-#PontText{
+#pontText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 
-#CampText{
+#campText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 
-#MagasinText{
+#magasinText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 
-#AubergeText{
+#aubergeText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 
-#CombatText{
+#combatText{
     background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
@@ -141,7 +141,7 @@ footer{
     height:700px;
     background-size:cover;
 }
-#Village{
+#village{
     background-image:url("../images/village\ abandonné.jpg");
     height:700px;
     background-size:cover;
@@ -177,13 +177,13 @@ height:700px;
 background-size:cover;
 }
 
-#Arene{
+#arene{
     background-image:url("../images/arena2.jpg");
     height:700px;
     background-size:cover;
 }
 
-#Combat{
+#combat{
     background-image:url("../images/arena2.jpg");
     height:700px;
     background-size:cover;
