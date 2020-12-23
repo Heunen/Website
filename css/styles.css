@@ -4,16 +4,16 @@ html{
 }
 body{
     margin:5% 15% 5% 15%;
-    background-color:brown;
+    background-color:rgba(4, 134, 69, 0.952);
     padding:5% 5% 5% 5%;
     border:black solid;
     border-radius:3%;
     height:85%;
-    
 }
+
 header{
     padding:5px;
-    background-color:rgb(116, 15, 35);
+    background-color:rgb(3, 80, 32);
     border:black solid;
 }
 nav{
@@ -21,6 +21,9 @@ nav{
 }
 #liens{
     color:black;
+}
+link{
+    color:azure;
 }
 
 footer{
@@ -32,16 +35,17 @@ footer{
     font-weight:bolder;
     font-style:italic;
     text-decoration: underline;
-    height:1em
+    height:1em;
+    color:black;
 }
 #formulairePersonnage{
-    background-color:rgb(116, 15, 35);
+    background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
 }
 #formulaireEnnemi{
-    background-color:rgb(116, 15, 35);
+    background-color:rgb(3, 80, 32);
     border: solid black;
     padding: 3px;
     height:180px;
@@ -50,15 +54,17 @@ footer{
 /* Zones de jeu ! */
 
 #jeu{
-    background-image:url(../images/auberge.jpg);
     width:100%;
     height: 700px;
     font-weight: bold;
-    color:black;
+    color:white;
     border: black solid;
     background-size:cover;
     background-repeat: no-repeat;
+    background-image:url("../images/rpg.jpg")
 }
+
+/* Ajout depuis la derniere màj */
 
 #introText{
     background-color:rgb(3, 80, 32);
@@ -136,7 +142,7 @@ footer{
     background-size:cover;
 }
 #Village{
-    background-image:url("../images/villageVide.jpg");
+    background-image:url("../images/village\ abandonné.jpg");
     height:700px;
     background-size:cover;
 }
@@ -160,7 +166,7 @@ footer{
 }
 
 #carte{
-    background-image:url("../images/carteVillage.jpg");
+    background-image:url("../images/carte\ village\ générale.jpg");
     height:700px;
     background-size:cover;
 }
@@ -172,13 +178,13 @@ background-size:cover;
 }
 
 #Arene{
-    background-image:url("../images/arena.jpg");
+    background-image:url("../images/arena2.jpg");
     height:700px;
     background-size:cover;
 }
 
 #Combat{
-    background-image:url("../images/arena.jpg");
+    background-image:url("../images/arena2.jpg");
     height:700px;
     background-size:cover;
 }
