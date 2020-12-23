@@ -298,7 +298,7 @@ function instanceVillage(){
   let texte="bvn au village ";
   texte+="<br> <button onClick='dialogueMaireDuVillage()'>Aller parler au maire du village</button>";
   texte+="<button onClick='dialogueVillageois()'>Aller parler à un villageois</button>";
-  texte+="<button onClick='SeDeplacerVillage()'>Se déplacer</button>";
+  texte+="<button onClick='seDeplacerVillage()'>Se déplacer</button>";
   
   articleHtml("village",texte);
   
@@ -360,7 +360,7 @@ function instanceArene(){
 		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
 	}
 	texte+="<hr>"
-	texte+="<button onClick='SeDeplacerArene()'>Se déplacer</button>";
+	texte+="<button onClick='seDeplacerArene()'>Se déplacer</button>";
 	articleHtml("arene", texte);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
