@@ -300,7 +300,7 @@ function instanceVillage(){
   texte+="<button onClick='dialogueVillageois()'>Aller parler à un villageois</button>";
   texte+="<button onClick='SeDeplacerVillage()'>Se déplacer</button>";
   
-  articleHtml("Village",texte);
+  articleHtml("village",texte);
   
 }
 
@@ -313,7 +313,7 @@ function dialogueMaireDuVillage(){
    
    let texte= dialogue+ "<br><button onClick='instanceVillage()'>Retour au Village</button>";
    
-   articleHtml("Village",texte);	
+   articleHtml("village",texte);	
    
    aParleAuMaireDuVillage=1;
 }
@@ -334,7 +334,7 @@ function dialogueVillageois(){
 	}
 	
 	texte+= "<button onClick='instanceVillage()'>Retour au Village</button>";
-	 articleHtml("Village",texte);	
+	 articleHtml("village",texte);	
 
 }
 
@@ -361,7 +361,7 @@ function instanceArene(){
 	}
 	texte+="<hr>"
 	texte+="<button onClick='SeDeplacerArene'>Se déplacer</button>";
-	articleHtml("Arene", texte);
+	articleHtml("arene", texte);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -457,7 +457,7 @@ function combatBoss(avancementHist){
 		case 4 : texte = "Vous tranchez la gorge de Volsung. Vous prenez Anduril, l'épée de Volsung et partez en direction du village. <br>Les brigands vous regardent le faire sans rien dire...<br><button onClick='instanceFin()'>Aller au village</button>";
 						break;
 	}
-	articleHtml('Boss',texte);
+	articleHtml('boss',texte);
 }
 function attaquerBoss(cible){
 	let degats = nombreAleatoire();
@@ -527,7 +527,7 @@ function combat(premiereFois,endroit,type){
 	else{
 		texte = "Vous êtes mort !";
 	}
-	articleHtml("Combat",texte);
+	articleHtml("combat",texte);
 }
 //Attaque la cible en lui infligeant des dégats entre 1 et 10 (nombreAleatoire()) et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaquer(cible){
