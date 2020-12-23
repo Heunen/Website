@@ -20,10 +20,7 @@ nav{
     border:black solid;
 }
 #liens{
-    color:cyan;
-}
-link{
-    color:azure;
+    color:black;
 }
 
 footer{
@@ -61,4 +58,127 @@ footer{
     border: black solid;
     background-size:cover;
     background-repeat: no-repeat;
+}
+
+#introText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#AreneText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#VillageText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#ForetText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#PontText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#CampText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#MagasinText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#AubergeText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#CombatText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#carteText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
+#intro{
+    background-image:url("../images/auberge.jpg");
+    height:700px;
+    background-size:cover;
+}
+#Village{
+    background-image:url("../images/village\ abandonné.jpg");
+    height:700px;
+    background-size:cover;
+}
+
+#auberge{
+    background-image:url("../images/auberge.jpg");
+    height:700px;
+    background-size:cover;
+}
+
+#forêt{
+    background-image:url("../images/wood.jpg");
+    height:700px;
+    background-size:cover;
+}
+
+#pont{
+    background-image:url("../images/bridge.jpg");
+    height:700px;
+    background-size:cover;
+}
+
+#carte{
+    background-image:url("../images/carte\ village\ générale.jpg");
+    height:700px;
+    background-size:cover;
+}
+
+#magasin{
+background-image:url("../images/shop.jpg");
+height:700px;
+background-size:cover;
+}
+
+#Arene{
+    background-image:url("../images/arena2.jpg");
+    height:700px;
+    background-size:cover;
+}
+
+#Combat{
+    background-image:url("../images/arena2.jpg");
+    height:700px;
+    background-size:cover;
 }
