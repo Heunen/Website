@@ -3,7 +3,6 @@
 // initialisation du tableau des personnages Ã  vide
 // un personnage est un tableau de cette forme [ nom, age, classe, sexe, niveau]
 let personnage = [];
-
 //Tableau d'ennemis
 let ennemis = [
 	{ race : "Orque", arme : "Epée", degats : 6, vie : 100},
@@ -22,7 +21,8 @@ let sauvegardeEndroit = "";
 let entreeArene = -1;
 //argent gagné dans l'arene
 let argentGagne = 0;
-let message="salut";
+//sauvegarde l'instance en cours
+let instanceEnCours="";
 
 //paramètre : les données du formulaire
 //rempli le tableau personnage de ses données.
@@ -293,14 +293,15 @@ function introDiaFin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                      //INSTANCE Village
 												   
-var aParleAuMaireDuVillage=0;												   
+let aParleAuMaireDuVillage=0;	
+let	queteBois=0;									   
 function instanceVillage(){     
   let texte="bvn au village ";
   texte+="<br> <button onClick='dialogueMaireDuVillage()'>Aller parler au maire du village</button>";
   texte+="<button onClick='dialogueVillageois()'>Aller parler à un villageois</button>";
-  texte+="<button onClick='seDeplacerVillage()'>Se déplacer</button>";
+  texte+="<button onClick='SeDeplacerVillage()'>Se déplacer</button>";
   
-  articleHtml("village",texte);
+  articleHtmlSac("village",texte);
   
 }
 
@@ -321,12 +322,20 @@ function dialogueMaireDuVillage(){
 function dialogueVillageois(){
 	let dialogue="";
 	let texte="";
-	if(aParleAuMaireDuVillage==1){
+	if (queteBois==2){
+		dialogue+="Merci de m'avoir cherché du bois, tenez je vous donne en prime un ticket pour participer à l'arène. Je n'y ai aucune chance"
+				+ " mais vous vous auriez surement toutes vos chances ! <br>";
+		texte+=dialogue;
+	}
+	else if(queteBois==1){
+		dialogue+="Alors vous m'avez coupé du bois ?";
+		texte+=dialogue+ "<br><button onClick='rendreLeBois()'>Donner 30 bouts de bois</button>";
+	}
+	else if(aParleAuMaireDuVillage==1){
 		dialogue+="Vous avez le tablard du village ? Pourtant je vois que vous venez pas d'ici. Vous avez l'air plutôt fort.";
 		dialogue+="pouriez m'aider en allant chercher du bois dans la forêt ? Plus personne n'ose s'aventurer dans la forêt, elle est envahie";
 		dialogue+="de monstre et de bandits."
-		texte+=dialogue + "<br><button onClick='alert(\'fonction à créer\')'>Confirmer la quête</button>";
-		
+		texte+=dialogue + "<br><button onClick='recevoirHache();'>Confirmer la quête</button>";
 		}
 	else {
 		dialogue+="Le villageois vous daigne du regard et s'éloigne d'un air méfiant lorsque vous l'approcher.<br>";
@@ -336,6 +345,31 @@ function dialogueVillageois(){
 	texte+= "<button onClick='instanceVillage()'>Retour au Village</button>";
 	 articleHtml("village",texte);	
 
+}
+function recevoirHache(){
+	let msg="Vous avez reçu une hâche dans votre inventaire, à utiliser dans la forêt, veuillez récuperer 30 bouts de bois";
+	alert(msg);
+	ajouterSac("Hache de bûcheron",1);
+	queteBois=1;
+	instanceVillage();
+	dialogueVillageois();
+}
+
+function rendreLeBois(){
+	if(sac.bois>=30){
+		queteBois=2;
+		alert("Vous avez rempli cette quête. Vous avez reçu 30 pièces d'or et un ticket d'arène");
+		ajouterSac("ticket d'arène",1);
+		for(let i=0;i<30;i++){
+			retirerSac("bois")
+		}
+		argentGagne+=30;
+		instanceVillage();
+		dialogueVillageois();
+	}
+	else{
+		alert("Vous n'avez pas assez de bois pour remplir cette quête");
+	}
 }
 
 
@@ -360,15 +394,29 @@ function instanceArene(){
 		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
 	}
 	texte+="<hr>"
-	texte+="<button onClick='seDeplacerArene()'>Se déplacer</button>";
-	articleHtml("arene", texte);
+	texte+="<button onClick='SeDeplacerArene()'>Se déplacer</button>";
+	articleHtmlSac("arene", texte);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Magasin
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-                                                         //INSTANCE Foret	
+                                                         //INSTANCE Foret
+function instanceForet(){
+	let texte="Après avoir arpenté une petite route délabrée vous arrivez dans une petite claièrer où débute une grande fôret de sequoia";
+	if(sac."hache de bûcheron"==1){
+		texte+="<br> <button onClick='couperDuBois()'>Aller couper du bois</button>";
+	}
+		texte+="<button onClick='seBalader()'>Faire une petite balade</button>";
+		texte+="<button onClick='SeDeplacerForet()'>Se déplacer</button>";
+  
+  articleHtmlSac("village",texte);
+}
+function couperDuBois(){
+	
+}
+														 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Pont	
@@ -403,7 +451,7 @@ function instanceCamp(entreeSortie){
 			else{ texte = "Devant vous se dresse la palissade dy camp. Vous ne savez pas entrer, il vous manque la clé pour ouvrir les portes.<button onClick='instanceVillage()'>Retourner au village</button>";}
 		}
 	}
-	articleHtml('camp',texte);
+	articleHtmlSac('camp',texte);
 }
 function combatBoss(avancementHist){
 	ennemiApparu = boss;
@@ -599,6 +647,52 @@ function choixEnnemi(type){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 	                                                     //function Inventaire	
+														 
+
+
+var sac={};
+/* Fonction qui prend en paramètre l'objet que l'on doit mettre dans le sac, et le nombre de fois
+contenu est un string, nombre un integer
+*/
+function ajouterSac(contenu,nombre){
+	if(contenu in sac){
+		sac[contenu]+= nombre;
+	}
+	sac[contenu]=nombre;
+}
+/*function qui retire une fois un element de l'array et renvoie true si l'élément à bien pu être retiré.
+*/
+function retirerSac(contenu){
+	if(contenu in sac && sac[contenu]>0){
+		sac[contenu]--;
+		return true;
+	}
+	alert("Vous ne disposez pas de cet objet : " + contenu);
+	return false;
+	
+}
+/* function pour afficher l'inventaire dans une table
+*/
+function afficherSac(){	
+	let texte="<table id=tableInventaire><tr>";
+	let compteur=0;
+	for(let p in sac){
+		compteur++;
+		texte+="<td id='"+p+"'>"+sac[p]+"</td>";
+	}
+	for(let i=compteur;i<8;i++){
+		texte+="<td id='vide'></td>";
+	}
+	texte+="</tr></table>";
+	texte+="<button id=fermerInventaire onClick='deAfficherSac()'>Fermer l'inventaire</button>"
+	document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
+} 
+function deAfficherSac(){
+	document.getElementById("tableInventaire").outerHTML="";
+	document.getElementById("fermerInventaire").outerHTML="";
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 	                                                     //function Shop
@@ -787,8 +881,9 @@ function supprimer(aSupprimer){
 														 
 //paramètre : le nom de l'instance, et le texte à afficher dans l'article text
 // modifie la section(id jeu) et y crée deux article tel que le premier article a comme id: image+nomDeInstance et le second texte+nomDeInstance
-// et le paramètre texte est injecter dans le deuxième article.
+// et le paramètre texte est injecter dans le deuxième article. Place le nom de l'instance en cours dans la variable instanceEnCours
 function articleHtml(nomDeInstance,texte){
+	instanceEnCours=nomDeInstance;
     let mHtml= '<div id="'+nomDeInstance+'">'
                     + '<article id="'+nomDeInstance+'Image"></article>'
 			        + '<article id="'+nomDeInstance+'Text">'
@@ -796,6 +891,11 @@ function articleHtml(nomDeInstance,texte){
                     + "</article>";
                +'</div>'
 	document.getElementById("jeu").innerHTML = mHtml;
+}
+function articleHtmlSac(nomDeInstance,texte){
+	articleHtml(nomDeInstance,texte);
+	let msg="<button onClick='afficherSac()'>Afficher l'inventaire</button>"
+	document.getElementById(nomDeInstance+'Text').innerHTML += msg;
 }
 
 //Crée un nombre aléatoire entier entre 0 et 10, utile pour le choix d'ennemi et les degats d'attaque
