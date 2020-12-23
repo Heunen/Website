@@ -360,7 +360,7 @@ function instanceArene(){
 		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
 	}
 	texte+="<hr>"
-	texte+="<button onClick='SeDeplacerArene'>Se déplacer</button>";
+	texte+="<button onClick='SeDeplacerArene()'>Se déplacer</button>";
 	articleHtml("arene", texte);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
