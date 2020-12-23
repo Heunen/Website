@@ -142,7 +142,7 @@ footer{
     background-size:cover;
 }
 #village{
-    background-image:url("../images/village\ abandonné.jpg");
+    background-image:url("../images/villageVide.jpg");
     height:700px;
     background-size:cover;
 }
@@ -166,7 +166,7 @@ footer{
 }
 
 #carte{
-    background-image:url("../images/carte\ village\ générale.jpg");
+    background-image:url("../images/carteVillage.jpg");
     height:700px;
     background-size:cover;
 }
