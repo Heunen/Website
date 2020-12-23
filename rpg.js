@@ -604,7 +604,8 @@ function choixEnnemi(type){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-	                                                     //function Carte
+	                                                    //function Carte
+// Fonction général à modifier pour diff instances.
 function seDeplacer(){
     let texte= 
         "<section>"+
@@ -618,6 +619,80 @@ function seDeplacer(){
         "</section>";
     articleHtml("carte",texte);
 }
+
+// Fonction par instance
+
+function seDeplacerVillage(){
+    let texte= 
+        "<section>"+
+            "se déplacer vers : "+
+            "<hr>"+
+            "<button onclick='instanceVillage()'>Le village</button>"+
+            "<button onclick='instanceAuberge()'>L'auberge</button>"+
+            "<button onclick='instanceForet()'>La forêt</button>"+
+            "<button onclick='instancePont()'>Le pont</button>"+                
+            "<button onclick='instanceArene()'>L'arène</button>"+
+            "<button onclick='instanceMagasin()'>Le magasin</button>"+
+        "</section>";
+    articleHtml("carte",texte);
+}
+
+function seDeplacerAuberge(){
+    let texte= 
+        "<section>"+
+            "se déplacer vers : "+
+            "<hr>"+
+            "<button onclick='instanceVillage()'>Le village</button>"+
+            "<button onclick='instanceAuberge()'>L'auberge</button>"+
+        "</section>";
+    articleHtml("carte",texte);
+}
+
+function seDeplacerArene(){
+    let texte= 
+        "<section>"+
+            "se déplacer vers : "+
+            "<hr>"+
+            "<button onclick='instanceVillage()'>Le village</button>"+             
+            "<button onclick='instanceArene()'>L'arène</button>"+
+        "</section>";
+    articleHtml("carte",texte);
+}
+
+function seDeplacerForet(){
+    let texte= 
+        "<section>"+
+            "se déplacer vers : "+
+            "<hr>"+
+            "<button onclick='instanceVillage()'>Le village</button>"+
+            "<button onclick='instanceForet()'>La forêt</button>"+
+        "</section>";
+    articleHtml("carte",texte);
+}
+
+function seDeplacerPont(){
+    let texte= 
+        "<section>"+
+            "se déplacer vers : "+
+            "<hr>"+
+            "<button onclick='instanceVillage()'>Le village</button>"+
+            "<button onclick='instancePont()'>Le pont</button>"+                
+        "</section>";
+    articleHtml("carte",texte);
+}
+
+function seDeplacerMagasin(){
+    let texte= 
+        "<section>"+
+            "se déplacer vers : "+
+            "<hr>"+
+            "<button onclick='instanceVillage()'>Le village</button>"+               
+            "<button onclick='instanceMagasin()'>Le magasin</button>"+
+        "</section>";
+    articleHtml("carte",texte);
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 						//function ajouter des monstres personnalisés
@@ -709,13 +784,14 @@ function supprimer(aSupprimer){
 // modifie la section(id jeu) et y crée deux article tel que le premier article a comme id: image+nomDeInstance et le second texte+nomDeInstance
 // et le paramètre texte est injecter dans le deuxième article.
 function articleHtml(nomDeInstance,texte){
-	let mHtml= '<article id="'+nomDeInstance+'Image"></article>'
-			   + '<article id="'+nomDeInstance+'Text">'
-			   + texte
-               + "</article>";
+    let mHtml= '<div id="'+nomDeInstance+'">'
+                    + '<article id="'+nomDeInstance+'Image"></article>'
+			        + '<article id="'+nomDeInstance+'Text">'
+			            + texte
+                    + "</article>";
+               +'</div>'
 	document.getElementById("jeu").innerHTML = mHtml;
 }
-
 
 //Crée un nombre aléatoire entier entre 0 et 10, utile pour le choix d'ennemi et les degats d'attaque
 function nombreAleatoire(){
