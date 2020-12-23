@@ -678,7 +678,8 @@ function seDeplacerPont(){
             "se déplacer vers : "+
             "<hr>"+
             "<button onclick='instanceVillage()'>Le village</button>"+
-            "<button onclick='instancePont()'>Le pont</button>"+                
+            "<button onclick='instancePont()'>Le pont</button>"+
+	    "<button onclick='instanceCamp()'>Le camp des brigantds</button>"+
         "</section>";
     articleHtml("carte",texte);
 }
@@ -693,6 +694,8 @@ function seDeplacerMagasin(){
         "</section>";
     articleHtml("carte",texte);
 }
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
