@@ -23,6 +23,12 @@ let entreeArene = -1;
 let argentGagne = 0;
 //sauvegarde l'instance en cours
 let instanceEnCours="";
+//argent total
+let argent=0;
+//stock le mot aléatoire
+let aleatoire="aleatoire";
+//dégats de l'arme
+let degatsArme=100;
 
 //paramètre : les données du formulaire
 //rempli le tableau personnage de ses données.
@@ -38,7 +44,7 @@ function ajouterPersonnage(formulaire) {
   // enregistrer le personnage dans le tableau
   // [ nom, age, classe, sexe, niveau, vie, attaque spéciale] 
   personnage.push( formulaire.name.value, formulaire.age.value,
-                      formulaire.classe.value, formulaire.sexe.value, 1, 100, attaque );
+                      formulaire.classe.value, formulaire.sexe.value, argent, 100, attaque );
   
   //on lance la première instance : intro
   instanceIntro();
@@ -299,7 +305,7 @@ function instanceVillage(){
   let texte="bvn au village ";
   texte+="<br> <button onClick='dialogueMaireDuVillage()'>Aller parler au maire du village</button>";
   texte+="<button onClick='dialogueVillageois()'>Aller parler à un villageois</button>";
-  texte+="<button onClick='SeDeplacerVillage()'>Se déplacer</button>";
+  texte+="<button onClick='seDeplacerVillage()'>Se déplacer</button>";
   
   articleHtmlSac("village",texte);
   
@@ -314,7 +320,7 @@ function dialogueMaireDuVillage(){
    
    let texte= dialogue+ "<br><button onClick='instanceVillage()'>Retour au Village</button>";
    
-   articleHtml("village",texte);	
+   articleHtmlSac("village",texte);	
    
    aParleAuMaireDuVillage=1;
 }
@@ -343,7 +349,7 @@ function dialogueVillageois(){
 	}
 	
 	texte+= "<button onClick='instanceVillage()'>Retour au Village</button>";
-	 articleHtml("village",texte);	
+	 articleHtmlSac("village",texte);	
 
 }
 function recevoirHache(){
@@ -363,7 +369,7 @@ function rendreLeBois(){
 		for(let i=0;i<30;i++){
 			retirerSac("bois")
 		}
-		argentGagne+=30;
+		argent+=30;
 		instanceVillage();
 		dialogueVillageois();
 	}
@@ -386,9 +392,10 @@ function instanceArene(){
 	}
 	else if(entreeArene == 1){
 		argentGagne += 2;
-		texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + "pièces d'or"+
-								"Voulez vous continuer ? <button onCLick='combat(0,instanceArene,'aleatoire');'>Continuer</button><br>"+
-								"Ou bien quitter ? (vous ne pourrez plus revenir)<button onclick=''>Quitter</button>";
+		argent+=argentGagne;
+		texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + "pièces d'or"
+			  +	"Voulez vous continuer ? <button onCLick='combat(0,instanceArene,aleatoire)'>Continuer</button><br>"
+			  + "Ou bien quitter ? (vous ne pourrez plus revenir)<button onclick='instanceArene'>Quitter</button>";
 	}
 	else{
 		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
@@ -397,17 +404,74 @@ function instanceArene(){
 	texte+="<button onClick='SeDeplacerArene()'>Se déplacer</button>";
 	articleHtmlSac("arene", texte);
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-                                                         //INSTANCE Magasin
+                                                      //INSTANCE Magasin
+/*let magasin={};
+let equipement={}
+function instanceMagasin(){
+		let texte="Vous entrez dans le seul batiment qui semble ouvert sur la place du village. Vous pouvez apercevoir quelques objet dont vous ne"
+				 +" percevez pas l'utilité. Au fond de la pièce se trouve un vieil homme barbu qui vous offre son plus beau sourire edenté";
+		texte+="<br><button onClick='dialogueMarchand()'>Parler au marchand.</button>";
+		texte+="<button onClick='seDeplacerMagasin()'>Se déplacer</button>";
+  
+  articleHtmlSac("magasin",texte);	
+	
+}
+
+function dialogueMarchand(){
+	let dialogue="Que voulez-vous donc acheter dans ma modeste boutique aventurier ?";
+	let texte="<br><button onClick='listeMagasin()'>Consulter les objets proposés.</button>";
+	articleHtmlSac("magasin",texte);	
+}
+function listeMagasin(){
+	for(let p in magasin){
+		console.log(p);
+	}
+	for(equipement.sort)
+}
+*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Foret
+function instanceForet(){
+	let texte="Après avoir arpenté une petite route délabrée vous arrivez dans une petite clairière où débute une grande fôret de sequoia";
+		texte+="<br><button onClick='seBalader()'>Se balader dans la forêt</button>";
+		texte+="<button onClick='seDeplacerForet()'>Se déplacer</button>";
+  
+  articleHtmlSac("foret",texte);
+}
+function seBalader(){
+	let chiffre;
+	let dialogue="";
+	let texte="";
+	dialogue+="Il y a plein d'arbres au alentours, mais vous sentez une présence obscure dans les parages.<br>";
+	if(sac["Hache de bûcheron"]==1){
+		dialogue+="<button onClick='couperDuBois()'>Aller couper du bois</button>";
+	}
+	texte+=dialogue + "<button onClick='instanceForet()'>Retour à l'entrée de la forêt</button>";	
+	articleHtmlSac("foret",texte);	
+}	
 
-														 
+function couperDuBois(){
+	let chiffre;
+	if(Math.random()<0.7){
+		chiffre=Math.floor(Math.random()*4.1)+1;
+		alert("Vous avez coupé du bois, vous avez reçu "+  chiffre +" bouts de bois");
+		ajouterSac("bois",chiffre);
+		seBalader();
+	}
+	else{	
+	alert("une bête sauvage est apparu !")
+	combat(0,couperDuBois,'aleatoire');
+	}
+	
+}	
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-                                                         //INSTANCE Pont	
+                                                         //INSTANCE Pont														 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Camp
@@ -567,7 +631,7 @@ function combat(premiereFois,endroit,type){
 }
 //Attaque la cible en lui infligeant des dégats entre 1 et 10 (nombreAleatoire()) et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaquer(cible){
-	let degats = nombreAleatoire();
+	let degats = nombreAleatoire()+degatsArme;
 	cible.vie -= degats;
 	if(cible.vie <= 0){
 		cible.vie = 0;
@@ -582,15 +646,15 @@ function attaquer(cible){
 //Attaque la cible en lui infligeant 15 de dégats et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaqueSpeciale(cible){
 	if(rechargePouvoir <= 0){
-		let degats = 15;
+		let degats = 15+degatsArme;
 		cible.vie -= degats;
 		if(cible.vie <= 0){
 			cible.vie = 0;
 		}
 		rechargePouvoir = 2;
 		alert("Vous avez fait " + degats + " de dégats, la vie de l'adversaire est passée à " + cible.vie);
-	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};
-	tourEnnemi();
+		tourEnnemi();
+	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};	
 	combat(1);
 }
 //Tour de l'ennemi où il peut attquer normalement, rater ou faire un coup critique
