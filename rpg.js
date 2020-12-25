@@ -335,7 +335,7 @@ function aubergeDormir(){
 let aParleAuMaireDuVillage=0;	
 let	queteBois=0;									   
 function instanceVillage(){     
-  let texte="bvn au village ";
+  let texte="Bienvenue au village ";
   texte+="<br> <button onClick='dialogueMaireDuVillage()'>Aller parler au maire du village</button>";
   texte+="<button onClick='dialogueVillageois()'>Aller parler à un villageois</button>";
   texte+="<button onClick='seDeplacerVillage()'>Se déplacer</button>";
@@ -418,23 +418,29 @@ function rendreLeBois(){
 //Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
 function instanceArene(){
 	let texte = "";
-	entreeArene++;
-	if(entreeArene == 0){
-		texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"+
-								"Vous gagnez 2 pièces si vous battez votre premier adversaire, ensuite 4, 6, 8 et ainsi de suite<br><button onClick='combat(0,instanceArene,\"aleatoire\");'>Entrer tournoi</button>";
+	if(sac["ticket d'arène"]){
+		entreeArene++;
+		if(entreeArene == 0){
+			texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"+
+									"Vous gagnez 2 pièces si vous battez votre premier adversaire et 4 au deuxième.<br> Gagnez 3 combats pour finir l'arène, mériter le torphée et gagner le gros lot, 15 pièces.<br><button onClick='combat(0,instanceArene,\"aleatoire\");'>Entrer tournoi</button>";
+		}
+		else if(entreeArene < 3){
+			argent+=argentGagne;
+			argentGagne += 2;
+			texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + " pièces d'or !"
+						+	"<br><button onCLick='combat(0,instanceArene,aleatoire)'>Continuer</button><br>";
+		}
+		else if(entreeArene == 3){
+				argent += 15;
+				texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 15 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
+			}
+		else{
+			texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
+		}
 	}
-	else if(entreeArene == 1){
-		argentGagne += 2;
-		argent+=argentGagne;
-		texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + "pièces d'or"
-			  +	"Voulez vous continuer ? <button onCLick='combat(0,instanceArene,aleatoire)'>Continuer</button><br>"
-			  + "Ou bien quitter ? (vous ne pourrez plus revenir)<button onclick='instanceArene'>Quitter</button>";
-	}
-	else{
-		texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
-	}
+	else{texte = "Vous ne pouvez pas encore participer au tournoi de l'arène, vous n'avez pas encore de ticket d'entrée.<br>Avancez dans la quête principale pour pouvoir participer.";}
 	texte+="<hr>"
-	texte+="<button onClick='SeDeplacerArene()'>Se déplacer</button>";
+	texte+="<button onClick='seDeplacerArene()'>Se déplacer</button>";
 	articleHtmlSac("arene", texte);
 }
 
@@ -533,7 +539,7 @@ function instanceCamp(entreeSortie){
 			if(cle){
 				texte = "Vous tuez le dernier pillard qui vous attaquait. Les autres n'osent pas s'avancer.<br> Vous ouvrez les portes du camp et vous avancez prudement jusqu'au centre du camp. Vous voyez un trône immense fait avec ce qu'il semble être des os.<br><button onClick='combatBoss(0)'>Continuer</button>";
 			}
-			else{ texte = "Devant vous se dresse la palissade dy camp. Vous ne savez pas entrer, il vous manque la clé pour ouvrir les portes.<button onClick='instanceVillage()'>Retourner au village</button>";}
+			else{ texte = "Devant vous se dresse la palissade du camp. Vous ne savez pas entrer, il vous manque la clé pour ouvrir les portes.<button onClick='instanceVillage()'>Retourner au village</button>";}
 		}
 	}
 	articleHtmlSac('camp',texte);
@@ -650,8 +656,9 @@ function combat(premiereFois,endroit,type){
 	if(ennemiApparu.vie != 0 && personnage[5] != 0){
 		texte = "Vous rencontrez un "+ennemiApparu.race+" sur votre chemin !<br> Votre vie est à: "
 									+ personnage[5] + "<br>Vie de l'adversaire : " + ennemiApparu.vie + "<br> Vous avez plusieurs choix : " 
-									+ "<button onClick='attaquer(ennemiApparu)'>Attaque simple</button>" +
-									"<button onClick='attaqueSpeciale(ennemiApparu)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>" ;
+									+"<br><button onClick='attaquer(ennemiApparu)'>Attaque simple</button>" +
+									"<br><button onClick='attaqueSpeciale(ennemiApparu)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>"+
+									"<br><button onClick='utiliserPotion()'>Utiliser une potion (rends de la vie)</button>";;
 	}
 	else if(ennemiApparu.vie == 0 && personnage[5] != 0){
 		texte = "<h3>Vous avez battu votre adversaire !</h3><br> Vous pouvez acceder à la suite.<button onClick='"+sauvegardeEndroit+"()'>Suite</button>";
@@ -664,7 +671,7 @@ function combat(premiereFois,endroit,type){
 }
 //Attaque la cible en lui infligeant des dégats entre 1 et 10 (nombreAleatoire()) et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaquer(cible){
-	let degats = nombreAleatoire()+degatsArme;
+	let degats = nombreAleatoire()+degatsArme;  //Mettre parseInt pour avoir une attaque "normale"
 	cible.vie -= degats;
 	if(cible.vie <= 0){
 		cible.vie = 0;
@@ -689,6 +696,14 @@ function attaqueSpeciale(cible){
 		tourEnnemi();
 	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};	
 	combat(1);
+}
+//Utilisation d'une potion pour ajouter 20 de vie
+function utiliserPotion(){
+	if(sac[potion]){
+		sac[potion]--;
+		personnage[5] += 20;
+	}
+	else{ alert("Vous n'avez pas de potion");}
 }
 //Tour de l'ennemi où il peut attquer normalement, rater ou faire un coup critique
 function tourEnnemi(){
