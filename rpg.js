@@ -295,6 +295,39 @@ function introDiaFin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                      //INSTANCE Auberge
+function instanceAuberge(){
+    texte=
+        "<section>"+
+            "Bienvenue à l'auberge mon cher ! Qu'est-ce que je te sers?"+
+            "<hr>"+
+            "<button onclick='aubergeBoire()'>Prendre à Boire</button>"+
+            "<button onclick='aubergeManger()'>Prendre à Manger</button>"+
+            "<button onclick='aubergeDormir()'>Se reposer</button>"+
+            "<hr>"+
+            "<button onclick='seDeplacerAuberge()'>Se déplacer</button>"+
+        "</section>"
+    articleHtml("auberge",texte)
+}
+
+function aubergeBoire(){
+    personnage[5]+=50
+    if(personnage[5]>100){
+        personnage[5]=100
+    }
+}
+
+function aubergeManger(){
+    personnage[5]+=75
+    if(personnage[5]>100){
+        personnage[5]=100
+    }
+
+}
+
+function aubergeDormir(){
+    personnage[5]=100
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                      //INSTANCE Village
