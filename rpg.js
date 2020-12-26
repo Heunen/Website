@@ -426,14 +426,17 @@ articleHtmlSac("arene", texte);
 
 function instanceAreneCombat(){
 	let texte = "";
+	let chiffre;
 	if(enArene ||retirerSac("ticket d'arène")){
 		enArene=true;
 		entreeArene++;
+		chiffre=3-entreeArene;
 		if( entreeArene==0)
-			combat(0,instanceAreneCombat,"aleatoire");
+			texte = "Voici votre premier adversaire !"
+				+"<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		else if(entreeArene < 3){
-			texte = "Bien joué, vous avez battu votre adversaire, il ne vous faut plus que "+ (3-entreeArene) +" de combats restants !"
-						+	"<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
+			texte = "Bien joué, vous avez battu votre adversaire, il ne vous faut plus que " + chiffre + " de combats restants !"
+				+ "<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		}
 		else{
 			argent += 45;
