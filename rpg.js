@@ -345,11 +345,11 @@ function instanceVillage(){
 }
 
 function dialogueMaireDuVillage(){
-   let dialogue="-Salut à toi aventurier ! Je suis Sparti, le chef de ce village. Tu viens d'arriver au village n'est-ce pas ?";
-   dialogue +="<br> -J'ai bien peur que tu arrives dans des temps assez troubles, une grande menace pèse sur le village, des bandits acharnés";
-   dialogue+="nous attaque régulièrement et tende des embusacdes aux marchands ossant s'aventurer sur les routes des environs.";
-   dialogue+="<br> Tiens je te donne ce tablard afin que les villageois te reconnaisse comme l'un des leurs. Sinon il risque de te prendre"
-   dialogue+="pour un de ses maudits bandits !";
+   let dialogue="-Salut à toi aventurier ! Je suis Sparti, le chef de ce village. Tu viens d'arriver au village n'est-ce pas ?"
+   	 +"<br> -J'ai bien peur que tu arrives dans des temps assez troubles, une grande menace pèse sur le village, des bandits acharnés"
+   	 +" nous attaque régulièrement et tendent des embusacdes aux marchands osant s'aventurer sur les routes des environs."
+   	 +"<br> Tiens je te donne ce tablard afin que les villageois te reconnaissent comme l'un des leurs. Sinon ils risquent de te prendre"
+  	 +" pour un de ces maudits bandits !";
    
    let texte= dialogue+ "<br><button onClick='instanceVillage()'>Retour au Village</button>";
    
@@ -362,7 +362,7 @@ function dialogueVillageois(){
 	let dialogue="";
 	let texte="";
 	if (queteBois==2){
-		dialogue+="Merci de m'avoir cherché du bois, tenez je vous donne en prime un ticket pour participer à l'arène. Je n'y ai aucune chance"
+		dialogue+="Merci de m'avoir apporté du bois, tenez je vous donne en prime un ticket pour participer aux combats dans l'arène. Je n'y ai aucune chance"
 				+ " mais vous vous auriez surement toutes vos chances ! <br>";
 		texte+=dialogue;
 	}
@@ -371,13 +371,13 @@ function dialogueVillageois(){
 		texte+=dialogue+ "<br><button onClick='rendreLeBois()'>Donner 30 bouts de bois</button>";
 	}
 	else if(aParleAuMaireDuVillage==1){
-		dialogue+="Vous avez le tablard du village ? Pourtant je vois que vous venez pas d'ici. Vous avez l'air plutôt fort.";
-		dialogue+="pouriez m'aider en allant chercher du bois dans la forêt ? Plus personne n'ose s'aventurer dans la forêt, elle est envahie";
-		dialogue+="de monstre et de bandits."
+		dialogue+="Vous avez le tablard du village ? Pourtant je vois que vous ne venez pas d'ici. Vous avez l'air plutôt fort."
+			+"<br>Pouriez vous m'aider en allant chercher du bois dans la forêt ? Plus personne n'ose s'y aventurer car elle est envahie"
+			+" de monstre et de bandits."
 		texte+=dialogue + "<br><button onClick='recevoirHache();'>Confirmer la quête</button>";
 		}
 	else {
-		dialogue+="Le villageois vous daigne du regard et s'éloigne d'un air méfiant lorsque vous l'approcher.<br>";
+		dialogue+="Le villageois vous daigne du regard et s'éloigne d'un air méfiant lorsque vous l'approchez.<br>";
 		texte+=dialogue +"<br>";
 	}
 	
@@ -386,7 +386,7 @@ function dialogueVillageois(){
 
 }
 function recevoirHache(){
-	let msg="Vous avez reçu une hâche dans votre inventaire, à utiliser dans la forêt, veuillez récuperer 30 bouts de bois";
+	let msg="Vous avez reçu une hâche dans votre inventaire, utilisez la dans la forêt et veuillez récuperer 30 bouts de bois";
 	alert(msg);
 	ajouterSac("Hache de bûcheron",1);
 	queteBois=1;
@@ -758,7 +758,9 @@ function ajouterSac(contenu,nombre){
 	if(contenu in sac){
 		sac[contenu]+= nombre;
 	}
+	else{
 	sac[contenu]=nombre;
+	}
 }
 /*function qui retire une fois un element de l'array et renvoie true si l'élément à bien pu être retiré.
 */
@@ -778,7 +780,7 @@ function afficherSac(){
 	let compteur=0;
 	for(let p in sac){
 		compteur++;
-		texte+="<td id='"+p+"'>"+sac[p]+"</td>";
+		texte+="<td id='"+p+"'>"+p+" : "+sac[p]+"</td>";
 	}
 	for(let i=compteur;i<8;i++){
 		texte+="<td id='vide'></td>";
