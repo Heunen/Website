@@ -105,12 +105,13 @@ function instanceIntro(){
   texte+="<button onClick='instanceVillage()'>Village</button>";
   texte+="<button onClick='instanceCamp(0)'>Camp</button>";
   texte+="<button onClick='combatBoss(0)'>Boss</button>";
+	texte+="<button onClick='combat(0,instanceVillage)'>combat</button>";
   articleHtml(nomDeInstance,texte);
 }
 function introHist(){
     let texte="<!--Introduction à l'histoire-->"+
         "<section>"+
-            "Alors que la nuit commence à tomber, vous vous approchez d'une auberge ayant l'air bien entretenue. Vous décidez donc d'y passer la nuit. Alors que vous rentrez dans le bâtiment,vous vous faites accoster par l'aubergiste qui vous accueille et vous propose de prendre place.L'auberge est bien vide, et vous vous posez la question de pourquoi. Mais avant même que vous n'ayez le temps de poser la question, l'aubergiste prend la parole :"+
+            "Alors que la nuit commence à tomber, vous vous approchez d'une auberge ayant l'air bien entretenue. Vous décidez donc d'y passer la nuit. Alors que vous entrez dans le bâtiment,vous vous faites accoster par l'aubergiste qui vous accueille et vous propose de prendre place. L'auberge est bien vide, et vous vous posez la question de pourquoi. Mais avant même que vous n'ayez le temps de poser la question, l'aubergiste prend la parole :"+
             "<hr>"+
             "<button onclick='introDia()'>Continuer</button>"+
         "</section>"
@@ -120,7 +121,7 @@ function introHist(){
 function introDia(){
     let texte=
         "<section>"+
-            "<b>L'aubergiste :</b>J'imagine que vous vous demandez pourquoi il fait si calme, alors que nous sommes en été et que l'établissement n'a pas l'air miteux? C'est normal de se poser la question... Et pour vous répondre, c'est du aux brigands."+
+            "<b>L'aubergiste :</b>J'imagine que vous vous demandez pourquoi il fait si calme, alors que nous sommes en été et que l'établissement n'a pas l'air miteux? C'est normal de se poser la question... Et pour vous répondre, c'est dû aux brigands."+
             "<hr>"+
             "<button onclick='introDia11()'>Lui demander qui sont ces brigands</button>"+
             "<button onclick='introDia12()'>Le laisser continuer</button>"+
@@ -151,7 +152,7 @@ function introDia12(){
 function introDia2(){
     let texte=
         "<section>"+
-            "<b>L'aubergiste : </b> Il s'agit d'un groupe assez organisé, ils se sont organisés dans une fort non loin. Ils ne sont pas beaucoup mais leur chef est fort... Depuis son arrivée beaucoup sont partis en laissant leurs biens à leur merci, et je pense être le seul à leur résister... Mais c'est comme cela, buvons pour oublier. Parlons plutôt de vous. Qui êtes-vous et pourquoi êtes-vous là?"+
+            "<b>L'aubergiste : </b> Il s'agit d'un groupe assez organisé, ils se sont installé dans un fort non loin. Ils ne sont pas beaucoup mais leur chef est fort... Depuis son arrivée beaucoup sont partis en laissant leurs biens à leur merci, et je pense être le seul à leur résister... Mais c'est comme cela, buvons pour oublier. Parlons plutôt de vous. Qui êtes-vous et pourquoi êtes-vous là?"+
             "<hr>"+
             "<button onclick='introDia21()'>Lui dire ce qu'il veut savoir</button>"+
             "<button onclick='introDia22()'>Ne donner que très peu d'informations</button>"+
@@ -162,7 +163,7 @@ function introDia2(){
 function introDia21(){
     let texte=
         "<section>"+
-            "<b>Vous : </b> Je suis un aventurier, je parcours les terres afin de gagner de l'argent et découvrir un peu plus du monde qui m'entoure... Je ne suis que de passage ici car j'essaie de rejoindre la ville la plus proche pour offrir mes services. Peut être que je pourrais être utile dans le cadre de cette crise, si vous m'aidez en retour."+
+            "<b>Vous : </b> Je suis un aventurier, je parcours les terres afin de gagner de l'argent et découvrir un peu plus du monde qui m'entoure... Je ne suis que de passage ici car j'essaie de rejoindre la ville la plus proche pour offrir mes services. Peut-être que je pourrais être utile dans le cadre de cette crise, si vous m'aidez en retour."+
             "<hr>"+
             "<button onclick='introDia211()'>Continuer</button>"+
         "<section>"
@@ -173,7 +174,7 @@ function introDia21(){
 function introDia22(){
     let texte=
         "<section>"+
-            "<b>Vous : </b> Je ne parle pas beaucoup de moi, et je ne préfère pas le faire ici... Partez du principe que je suis de passage."+
+            "<b>Vous : </b> Je ne parle pas beaucoup de moi et je ne préfère pas le faire ici... Partez du principe que je suis de passage."+
             "<hr>"+
             "<button onclick='introDia221()'>Continuer</button>"+
         "<section>"
@@ -183,7 +184,7 @@ function introDia22(){
 function introDia211(){
     let texte=
         "<section>"+
-            "<b>L'aubergiste : </b> Un aventurier nous serait de grand secours dans cette situation. Si vous accepter, vous recevriez un paiement à la hauteur, de ma part et de celle du maire. Vous êtes notre seul espoir, s'il vous plaît aidez-nous !"+
+            "<b>L'aubergiste : </b> Un aventurier nous serait de grand secours dans cette situation. Si vous acceptez, vous recevrez un paiement à la hauteur, de ma part et de celle du maire. Vous êtes notre seul espoir, s'il vous plaît aidez-nous !"+
             "<hr>"+
             "<button onclick='introDia3()'>Accepter l'offre</button>"+
             "<button onclick='introDia222()'>Lui demander quelle récompense vous pourriez recevoir</button>"+
@@ -193,7 +194,7 @@ function introDia211(){
 function introDia221(){
     let texte=
         "<section>"+
-            "<b>L'aubergiste : </b> Peu m'importe qui vous êtes de toute façon. Je suis prêt à vous payer pour que vous nous débarrassiez de ces malandrins, et je pense que le maire du village également. Qu'en dites-vous?"+
+            "<b>L'aubergiste : </b> Peu m'importe qui vous êtes de toute façon. Je suis prêt à vous payer pour que vous nous débarrassiez de ces malandrins et je pense que le maire du village également. Qu'en dites-vous?"+
             "<hr>"+
             "<button onclick='introDia3()'>Accepter l'offre</button>"+
             "<button onclick='introDia222()'>Lui demander quelle récompense vous pourriez recevoir</button>"+
@@ -204,7 +205,7 @@ function introDia221(){
 function introDia222(){
     let texte=
         "<section>"+
-            "<b>Vous : </b> J'aimerais avoir plus d'informations sur cette dite récompense... Je ne travaille pas pour rien, et même si c'est un plaisir d'aider, il me faut pouvoir me nourrir, me loger, et m'abreuver. Qu'en est-il cher aubergiste?"+
+            "<b>Vous : </b> J'aimerais avoir plus d'informations sur cette dite récompense... Je ne travaille pas pour rien, et même si c'est un plaisir d'aider, il me faut pouvoir me nourrir, me loger et m'abreuver. Qu'en est-il cher aubergiste?"+
             "<hr>"+
             "<button onclick='introDia4()'>Continuer</button>"+
         "</section>"
@@ -254,7 +255,7 @@ function introDia4(){
 function introDia5(){
     let texte=
         "<section>"+
-            "<b>L'aubergiste : </b> Je vous propose donc déjà mon hospitalité gratuitement pendant la durée de votre quête, et j'accompagnerait cela d'un sac bien rempli d'or. Je ne sais pas ce que le maire compte vous offrir mais je pense que cette récompense devrait déjà être suffisante pour vous rendre enthousiaste."+
+            "<b>L'aubergiste : </b> Je vous propose donc déjà mon hospitalité gratuitement pendant la durée de votre quête, et j'accompagnerai cela d'un sac bien rempli d'or. Je ne sais pas ce que le maire compte vous offrir mais je pense que cette récompense devrai déjà être suffisante pour vous rendre enthousiaste."+
             "<hr>"+
             "<button onclick='introDia6()'>Continuer</button>"+
         "</section>"
@@ -285,7 +286,7 @@ function introDia7(){
 function introDiaFin(){
     let texte=
         "<section>"+
-            "Vous vous réveillez le lendemain dans votre lit de l'auberge, vous préparer, et vous mettez en route vers le centre du village, dans lequel vous espérez pouvoir obtenir plus d'informations sur les bandits."+
+            "Vous vous réveillez le lendemain dans votre lit de l'auberge, vous vous préparez et vous mettez en route vers le centre du village dans lequel vous espérez pouvoir obtenir plus d'informations sur les bandits."+
             "<hr>"+
             "<button onclick='seDeplacerAuberge()'>Se déplacer</button>"+
         "</section>"
@@ -346,25 +347,42 @@ function instanceVillage(){
 }
 
 function dialogueMaireDuVillage(){
-   let dialogue="-Salut à toi aventurier ! Je suis Sparti, le chef de ce village. Tu viens d'arriver au village n'est-ce pas ?"
-   	 +"<br> -J'ai bien peur que tu arrives dans des temps assez troubles, une grande menace pèse sur le village, des bandits acharnés"
-   	 +" nous attaque régulièrement et tendent des embusacdes aux marchands osant s'aventurer sur les routes des environs."
-   	 +"<br> Tiens je te donne ce tablard afin que les villageois te reconnaissent comme l'un des leurs. Sinon ils risquent de te prendre"
-  	 +" pour un de ces maudits bandits !";
-   
-   let texte= dialogue+ "<br><button onClick='instanceVillage()'>Retour au Village</button>";
-   
-   articleHtmlSac("village",texte);	
-   
-   aParleAuMaireDuVillage=1;
+	let dialogue = "";
+	if(sac["trophée d'arène"]){
+		retirerSac("trophée d'arène");
+		dialogue = "Ah je vois que vous avez gagné le tournoi organisé dans notre arène.<br>Cela prouve que vous êtes un vrai guerrier, serriez vous d'accord de nous aider pour vaincre les brigands se trouvant de l'autre côté du pont ?"+
+										"<br>Nous vous en serions tous très reconnaisant et vous donnerons notre plus grand trésor.<br>Pour vous aider dans cette dure tâche je vous offre 3 potions de vie et un  laissez passer pour traverser le pont et aller dans le camp."+
+										"<br><button onClick='dialogueMaireDuVillagePassePartout()'>Accepter</button>"
+	}
+	else if(aParleAuMaireDuVillage == 1){
+		dialogue = "Re-bonjour, malheureusement je suis assez occupé actuellement, je ne peux rien pour toi.";
+	}
+	else{
+		 dialogue="-Salut à toi aventurier ! Je suis Sparti, le chef de ce village. Tu viens d'arriver au village n'est-ce pas ?"
+			 +"<br> -J'ai bien peur que tu arrives dans des temps assez troubles, une grande menace pèse sur le village.<br>Des bandits acharnés"
+			 +" nous attaque régulièrement et tendent des embusacdes aux marchands osant s'aventurer sur les routes des environs."
+			 +"<br> Tiens je te donne ce tablard afin que les villageois te reconnaissent comme l'un des leurs. Sinon ils risquent de te prendre"
+			 +" pour un de ces maudits bandits !";
+	}
+	let texte= dialogue+ "<br><button onClick='instanceVillage()'>Retour au Village</button>";
+	 
+	articleHtmlSac("village",texte);	
+	 
+	aParleAuMaireDuVillage=1;
+}
+function dialogueMaireDuVillagePassePartout(){
+	let texte = "Merci à vous, je sais que vous ne nous décevrez pas !<br><br><button onClick='instanceVillage()'>Retour au Village</button>";
+	articleHtmlSac("village",texte);
+	alert("Vous avez reçu 3 potions et le laissez passer.");
+	ajouterSac("potion",3);
+	ajouterSac("laissez passer",1);
 }
 
 function dialogueVillageois(){
 	let dialogue="";
 	let texte="";
 	if (queteBois==2){
-		dialogue+="Merci de m'avoir apporté du bois, tenez je vous donne en prime un ticket pour participer aux combats dans l'arène. Je n'y ai aucune chance"
-				+ " mais vous vous auriez surement toutes vos chances ! <br>";
+		dialogue+="Merci de m'avoir apporté du bois, tenez je vous donne en prime un ticket pour participer aux combats dans l'arène. Je n'y ai aucune chance mais vous vous aurez surement toutes vos chances ! <br>";
 		texte+=dialogue;
 	}
 	else if(queteBois==1){
@@ -373,8 +391,7 @@ function dialogueVillageois(){
 	}
 	else if(aParleAuMaireDuVillage==1){
 		dialogue+="Vous avez le tablard du village ? Pourtant je vois que vous ne venez pas d'ici. Vous avez l'air plutôt fort."
-			+"<br>Pouriez vous m'aider en allant chercher du bois dans la forêt ? Plus personne n'ose s'y aventurer car elle est envahie"
-			+" de monstre et de bandits."
+			+"<br>Pouriez vous m'aider en allant chercher du bois dans la forêt ? Plus personne n'ose s'y aventurer car elle est envahie de monstre et de bandits."
 		texte+=dialogue + "<br><button onClick='recevoirHache();'>Confirmer la quête</button>";
 		}
 	else {
@@ -418,31 +435,31 @@ function rendreLeBois(){
 let enArene=false;
 function instanceArene(){
 let texte = "";	
-texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"
-      +	"Je vous rapelle que tout les combats sont des combats à MORT !<br> Gagnez 3 combats pour finir l'arène, mériter le torphée et gagner le gros lot, 45 pièces.<br><button onClick='instanceAreneCombat();'>Entrer tournoi</button>";
-		
+texte = "Bienvenue au tournoi du roi !<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent.<br>"
+      +	"Je vous rapelle que tout les combats sont des combats à MORT !<br> Gagnez 3 combats pour finir l'arène, mériter le torphée et gagner le gros lot : 45 pièces.<br><button onClick='instanceAreneCombat();'>Entrer tournoi</button>";
 articleHtmlSac("arene", texte);
 }
 
 function instanceAreneCombat(){
 	let texte = "";
 	let chiffre;
-	if(enArene ||retirerSac("ticket d'arène")){
+	if(enArene || sac["ticket d'arène"]){
+		retirerSac("ticket d'arène");
 		enArene=true;
 		entreeArene++;
 		chiffre=3-entreeArene;
-		if( entreeArene==0)
+		if(entreeArene==0)
 			texte = "Voici votre premier adversaire !"
 				+"<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		else if(entreeArene < 3){
-			texte = "Bien joué, vous avez battu votre adversaire, il ne vous faut plus que " + chiffre + " de combats restants !"
+			texte = "Bien joué, vous avez battu votre adversaire, il ne vous reste plus que " + chiffre + " combats de restant !"
 				+ "<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		}
 		else{
 			argent += 45;
 			entreeArene=0;	
 			enArene=false;
-			texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 15 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
+			texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 45 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
 			}
 	}
 	else{texte = "Vous ne pouvez pas encore participer au tournoi de l'arène, vous n'avez pas de ticket d'entrée.<br>Avancez dans la quête principale pour pouvoir participer.";}
@@ -482,7 +499,7 @@ function listeMagasin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Foret
 function instanceForet(){
-	let texte="Après avoir arpenté une petite route délabrée vous arrivez dans une petite clairière où débute une grande fôret de sequoia";
+	let texte="Après avoir arpenté une petite route délabrée vous arrivez dans une petite clairière où débute une grande fôret de séquoia";
 		texte+="<br><button onClick='seBalader()'>Se balader dans la forêt</button>";
 		texte+="<button onClick='seDeplacerForet()'>Se déplacer</button>";
   
@@ -509,7 +526,7 @@ function couperDuBois(){
 		seBalader();
 	}
 	else{	
-	alert("une bête sauvage est apparu !")
+	alert("un ennemi est apparu !")
 	combat(0,couperDuBois,'aleatoire');
 	}
 	
@@ -521,7 +538,7 @@ function couperDuBois(){
 function instancePont(){
 	let dialogue="";
 	let texte="";
-	    dialogue="Devant le pont se trouve deux garde lourdement armée qui vous bouche le passage";
+	    dialogue="Devant le pont se trouve deux gardes lourdement armés qui vous bloquent le passage.";
 		dialogue+="-Montrez moi votre laissez passer ou rentrez au village petit intrépide !";
 		texte+=dialogue + "<br><button onClick='laissezPasser()'>Montrer votre laissez passer</button>";
 	texte+="<button onClick='instanceVillage()'>Rentrer au Village </button>";
@@ -536,29 +553,26 @@ function laissezPasser(){
 	else {
 		let dialogue="";
 		let texte="";
-			dialogue="-Vous n'avez pas le laissez passer veuillez déguerpir pauvre avorton";
+			dialogue="-Vous n'avez pas le laissez passer veuillez déguerpir pauvre avorton.";
 			texte+=dialogue + "<br><button onClick='instanceVillage()'>Rentrer au Village </button>";
 		articleHtmlSac("pont",texte);
 	}
 }
 
 function instancePonton(){
-	alert("salut");
+	instanceCamp(0);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Camp
 let nbreCombat = 0;
-function instanceCamp(entreeSortie){
+function instanceCamp(entreeCamp){
 	let texte = "";
-	if(entreeSortie == 0){
-		entreeSortie++;
+	if(entreeCamp == 0){
+		entreeCamp++;
 		texte = "Bonjour jeune aventurier, es-tu sûr de vouloir continuer vers le camp des brigants, tout retour sera impossible.<br>"+
-							"<button onClick='instanceCamp(1)'>Entrer</button><button onClick='instanceCamp(-1)'>Sortir</button>";
+							"<button onClick='instanceCamp(1)'>Entrer</button><button onClick='instancePont()'>Sortir</button>";
 	}
-	else if(entreeSortie == -1){
-		//instancePont();
-	} 
 	else{
 		if(nbreCombat == 0){
 			nbreCombat++;
@@ -566,16 +580,16 @@ function instanceCamp(entreeSortie){
 		}
 		else if(nbreCombat < 3){
 			nbreCombat++;
-			texte = "Vous avez réussi à battre l'ennemi, un autre arrive !"+		//On pourrait faire des phrase différentes à chaque fois, celles-ci sont choisies parmis un liste en aléatoire
+			if (nombreAleatoire() > 5){
+				texte = "Vous avez réussi à battre l'ennemi, un autre arrive ! "+
 							"<button onClick='combat(0,instanceCamp,\"Pillard\")'>Ok</button>";
+			}
+			else{texte = "Un brigand surgit devant vous, préparez-vous à l'affronter. <button onClick='combat(0,instanceCamp,\"Pillard\")'>Ok</button>";}
 		}
 		else{
-			if(cle){
 				texte = "Vous tuez le dernier pillard qui vous attaquait. Les autres n'osent pas s'avancer.<br> Vous ouvrez les portes du camp et vous avancez prudement jusqu'au centre du camp. Vous voyez un trône immense fait avec ce qu'il semble être des os.<br><button onClick='combatBoss(0)'>Continuer</button>";
 			}
-			else{ texte = "Devant vous se dresse la palissade du camp. Vous ne savez pas entrer, il vous manque la clé pour ouvrir les portes.<button onClick='instanceVillage()'>Retourner au village</button>";}
 		}
-	}
 	articleHtmlSac('camp',texte);
 }
 function combatBoss(avancementHist){
@@ -595,14 +609,15 @@ function combatBoss(avancementHist){
 								"<br>Votre vie est à : "+personnage[5]+
 								"<br>Vie de Volsung : "+boss.vie+"<br>"+
 								"<button onClick='attaquerBoss(boss)'>Attaque simple</button>" +
-								"<button onClick='attaqueSpecialeBoss(boss)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>" ;
+								"<button onClick='attaqueSpecialeBoss(boss)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>"+
+								"<button onClick='utiliserPotion()'>Boire une potion (rend 20 points de vie)</button>";
 			}
 			else if(boss.vie == 0 && personnage[5] != 0){
 				texte = "Vous avez asséné un coup fatal à Volsung. Tout le monde se tait et un silence de plomb tombe sur le camp."+
-								"<br> Vous vous approchez de Volsung. Les brigants ont les yeux rivés sur vous."+
+								"<br> Vous vous approchez de Volsung. Les brigands ont les yeux rivés sur vous."+
 								"<br><button onClick='combatBoss(3)'>Vérifier si Volsung est mort</button> <button onClick='combatBoss(103)'>Planter votre arme dans le corps de Volsung</button>";
 			}
-			else{ texte = "Vous êtes mort";}
+			else{ texte = "<h1>Vous êtes mort.</h1>";}
 			break;
 		case 3 : texte = "Vous approchez votre arme du corps de Volsung et le tapez légèrement avec le bout. Volsung lâche alors râle, il n'est pas encore mort."+
 											"<br>Vous regardez autour de vous, tout le monde vous regarde mais personne n'a entendu Volsung. Vous devez faire quelque chose avant qu'on se rende compte qu'il n'est pas mort."+
@@ -615,17 +630,20 @@ function combatBoss(avancementHist){
 											"<br>Tu peux mettre fin à ses souffrances et devenir notre chef, je pense qu'avec ta direction nous pourrons devenir riches. <button onClick='combatBoss(102)'>L'achever et devenir le chef</button>";
 						break;
 		case 32 : texte = "Après que vous ayez dit cela tous les brigands s'agenouillent. Vous êtes devenu leur chef. Vous regardez alors le trone vide qui vous attends.<br>A ce moment là vous sentez tout à coup une forte douleur dans le ventre."+
-											"<br> Vous baissez les yeux et voyez le bout d'Anduril l'épée de Volsung sortir de votre ventre. Vous tombez à genoux et juste avant de perdre connaisance vous voyez Volsung debout, marcher difficilement vers son trône."+
-											"<br><button onClick='combatBoss(2)'>Mourir</button>";
-							personnage[5] = 0;
+											"<br> Vous baissez les yeux et voyez le bout d'Anduril l'épée de Volsung sortir par votre nombril. Vous tombez à genoux et juste avant de perdre connaisance vous voyez Volsung debout, marcher difficilement vers son trône."+
+											"<br><button onClick='combatBoss(33)'>Mourir</button>";
+							break;
+		case 33 : texte = "<h1>Vous êtes mort.</h1><br>Ce n'est pas bien de mentir.";
 							break;
 		case 100 : texte = "Vous décidez de l'épargner.<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin()'>Prendre la bourse et partir</button>";
+							ajouterSac("bourse",1);
 							break;
 		case 101 : texte = "Vous achevez Volsung en plantant votre arme dans son coeur. Vous ramassez Anduril son épée, il n'en aura plus besoin."+
 												".<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin()'>Prendre la bourse et partir</button>";
+							ajouterSac("bourse",1);
 							break;
 		case 102 : texte = "Vous achevez Volsung en plantant votre arme dans son coeur. Les brigands s'agenouillent, vous êtes leur nouveau chef.<br>Vous décidez de déménager le camp et de partir vers le Sud.<br><br><br>"+
-												"Vous ne pourrez pas profiter de votre vie de grand banditisme, les plaies infligées par Volsung s'infèctent rapidement et vous mourrez dans d'attroces souffrances peu de temps après.";
+												"Vous n'aurez pas le temps de profiter de votre vie de grand banditisme, les plaies infligées par Volsung s'infèctent rapidement et vous mourrez dans d'atroces souffrances peu de temps après.";
 							break;
 		case 4 : texte = "Vous tranchez la gorge de Volsung. Vous prenez Anduril, l'épée de Volsung et partez en direction du village. <br>Les brigands vous regardent le faire sans rien dire...<br><button onClick='instanceFin()'>Aller au village</button>";
 						break;
@@ -666,7 +684,6 @@ function attaqueSpecialeBoss(cible){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 
-
                                                          //function utilitaire	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -692,14 +709,14 @@ function combat(premiereFois,endroit,type){
 									+ personnage[5] + "<br>Vie de l'adversaire : " + ennemiApparu.vie + "<br> Vous avez plusieurs choix : " 
 									+"<br><button onClick='attaquer(ennemiApparu)'>Attaque simple</button>" +
 									"<br><button onClick='attaqueSpeciale(ennemiApparu)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>"+
-									"<br><button onClick='utiliserPotion()'>Utiliser une potion (rends de la vie)</button>";;
+									"<br><button onClick='utiliserPotion()'>Boire une potion (rends 20 points de vie)</button>";;
 	}
 	else if(ennemiApparu.vie == 0 && personnage[5] != 0){
-		texte = "<h3>Vous avez battu votre adversaire !</h3><br> Vous pouvez acceder à la suite.<button onClick='"+sauvegardeEndroit+"()'>Suite</button>";
+		texte = "<h3>Vous avez battu votre adversaire !</h3><br> Vous pouvez accéder à la suite.<button onClick='"+sauvegardeEndroit+"()'>Suite</button>";
 		ennemiApparu.vie = 100;
 	}
 	else{
-		texte = "Vous êtes mort !";
+		texte = "<h1>Vous êtes mort !</h1>";
 	}
 	articleHtml("combat",texte);
 }
@@ -733,7 +750,26 @@ function attaqueSpeciale(cible){
 }
 //Utilisation d'une potion pour ajouter 20 de vie
 function utiliserPotion(){
-	retirerSac("Potion");
+	if(sac.potion > 0){
+		if(personnage[5]<80){
+			personnage[5] += 20;
+			retirerSac("potion");
+			alert("Vous avez bu une potion de vie.");
+			tourEnnemi();
+			combat(1);
+		}
+		else if(personnage[5]>=80 && personnage[5]<100){
+			personnage[5] = 100;
+			retirerSac("potion");
+			alert("Vous avez bu une potion de vie.");
+			tourEnnemi();
+			combat(1);
+		}
+		else{
+			alert("Vous êtes déjà au maximum de votre vie, vous ne pouvez pas utiliser de potion");
+		}
+	}
+	else{alert("Vous n'avez pas de potion dans votre inventaire");}
 }
 //Tour de l'ennemi où il peut attquer normalement, rater ou faire un coup critique
 function tourEnnemi(){
@@ -760,7 +796,7 @@ function tourEnnemi(){
 //Fonction qui permet de choisir un ennemi aléatoire dans la liste d'ennemis via la fonction nombreAleatoire() et permet de choisir un ennemi en fonction de sa race si celle-ci a ete donnée
 function choixEnnemi(type){
 	let choix = 9999;
-	if(type == "aleatoire"){
+	if(type == "aleatoire" || type === undefined){
 		choix = nombreAleatoire()*(ennemis.length-1)/10;
 		return Math.round(choix);
 	}
@@ -807,24 +843,20 @@ function retirerSac(contenu){
 /* function pour afficher l'inventaire dans une table
 */
 function afficherSac(){	
-	if(!affiche){
-		affiche=true;
-		let texte="<table id=tableInventaire><tr>";
-		let compteur=0;
-		for(let p in sac){
-			compteur++;
-			texte+="<td id='"+p+"'>"+sac[p]+"</td>";
-		}
-		for(let i=compteur;i<8;i++){
-			texte+="<td id='vide'></td>";
-		}
-		texte+="</tr></table>";
-		texte+="<button id=fermerInventaire onClick='deAfficherSac()'>Fermer l'inventaire</button>"
-		document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
+	let texte="<table id=tableInventaire><tr>";
+	let compteur=0;
+	for(let p in sac){
+		compteur++;
+		texte+="<td id='"+p+"'>"+p+" : "+sac[p]+"</td>";
 	}
-}
+	for(let i=compteur;i<8;i++){
+		texte+="<td id='vide'></td>";
+	}
+	texte+="</tr></table>";
+	texte+="<button id=fermerInventaire onClick='deAfficherSac()'>Fermer l'inventaire</button>"
+	document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
+} 
 function deAfficherSac(){
-	affiche=false;
 	document.getElementById("tableInventaire").outerHTML="";
 	document.getElementById("fermerInventaire").outerHTML="";
 }
