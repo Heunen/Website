@@ -415,29 +415,26 @@ function rendreLeBois(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                          //INSTANCE Arène
 //Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
+let enArene=false;
 function instanceArene(){
 	let texte = "";
-	if(sac["ticket d'arène"]){
+	if(enArene ||retirerSac("ticket d'arène")){
 		entreeArene++;
 		if(entreeArene == 0){
-			texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"+
-									"Vous gagnez 2 pièces si vous battez votre premier adversaire et 4 au deuxième.<br> Gagnez 3 combats pour finir l'arène, mériter le torphée et gagner le gros lot, 15 pièces.<br><button onClick='combat(0,instanceArene,\"aleatoire\");'>Entrer tournoi</button>";
+			texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"
+			      +	"Je vous rapelle que tout les combats sont des combats à MORT !<br> Gagnez 3 combats pour finir l'arène, mériter le torphée et gagner le gros lot, 45 pièces.<br><button onClick='combat(0,instanceArene,\"aleatoire\");'>Entrer tournoi</button>";
 		}
 		else if(entreeArene < 3){
-			argent+=argentGagne;
-			argentGagne += 2;
-			texte = "Bien joué, vous avez battu votre adversaire, vous gagnez " + argentGagne + " pièces d'or !"
+			texte = "Bien joué, vous avez battu votre adversaire, il ne vous faut plus que "+ 3-entreeArene +" de combats restants !"
 						+	"<br><button onCLick='combat(0,instanceArene,aleatoire)'>Continuer</button><br>";
 		}
-		else if(entreeArene == 3){
-				argent += 15;
-				texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 15 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
-			}
 		else{
-			texte = "Vous avez déjà participé au tournoi, vous ne pouvez plus participer";
-		}
+			argent += 45;
+			texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 15 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
+			entreeArene=0;	
+			}
 	}
-	else{texte = "Vous ne pouvez pas encore participer au tournoi de l'arène, vous n'avez pas encore de ticket d'entrée.<br>Avancez dans la quête principale pour pouvoir participer.";}
+	else{texte = "Vous ne pouvez pas encore participer au tournoi de l'arène, vous n'avez pas de ticket d'entrée.<br>Avancez dans la quête principale pour pouvoir participer.";}
 	texte+="<hr>"
 	texte+="<button onClick='seDeplacerArene()'>Se déplacer</button>";
 	articleHtmlSac("arene", texte);
@@ -457,7 +454,7 @@ function instanceMagasin(){
   articleHtmlSac("magasin",texte);	
 	
 }
-
+ 
 function dialogueMarchand(){
 	let dialogue="Que voulez-vous donc acheter dans ma modeste boutique aventurier ?";
 	let texte="<br><button onClick='listeMagasin()'>Consulter les objets proposés.</button>";
