@@ -391,7 +391,6 @@ function recevoirHache(){
 	alert(msg);
 	ajouterSac("Hache de bûcheron",1);
 	queteBois=1;
-	instanceVillage();
 	dialogueVillageois();
 }
 
@@ -404,7 +403,6 @@ function rendreLeBois(){
 			retirerSac("bois")
 		}
 		argent+=30;
-		instanceVillage();
 		dialogueVillageois();
 	}
 	else{
@@ -511,7 +509,34 @@ function couperDuBois(){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-                                                         //INSTANCE Pont														 
+                                                         //INSTANCE Pont	
+function instancePont(){
+	let dialogue="";
+	let texte="";
+	    dialogue="Devant le pont se trouve deux garde lourdement armée qui vous bouche le passage";
+		dialogue+="-Montrez moi votre laissez passer ou rentrez au village petit intrépide !";
+		texte+=dialogue + "<br><button onClick='laissezPasser()'>Montrer votre laissez passer</button>";
+	texte+="<button onClick='instanceVillage()'>Rentrer au Village </button>";
+  
+  articleHtmlSac("pont",texte);
+}
+
+function laissezPasser(){
+	if(sac["laissez passer"]==1){
+		instancePonton();
+	}
+	else {
+		let dialogue="";
+		let texte="";
+			dialogue="-Vous n'avez pas le laissez passer veuillez déguerpir pauvre avorton";
+			texte+=dialogue + "<br><button onClick='instanceVillage()'>Rentrer au Village </button>";
+		articleHtmlSac("pont",texte);
+	}
+}
+
+function instancePonton(){
+	alert("salut");
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Camp
@@ -700,11 +725,7 @@ function attaqueSpeciale(cible){
 }
 //Utilisation d'une potion pour ajouter 20 de vie
 function utiliserPotion(){
-	if(sac[potion]){
-		sac[potion]--;
-		personnage[5] += 20;
-	}
-	else{ alert("Vous n'avez pas de potion");}
+	retirerSac("Potion");
 }
 //Tour de l'ennemi où il peut attquer normalement, rater ou faire un coup critique
 function tourEnnemi(){
@@ -752,6 +773,7 @@ function choixEnnemi(type){
 
 
 var sac={};
+let affiche=false;
 /* Fonction qui prend en paramètre l'objet que l'on doit mettre dans le sac, et le nombre de fois
 contenu est un string, nombre un integer
 */
@@ -777,20 +799,24 @@ function retirerSac(contenu){
 /* function pour afficher l'inventaire dans une table
 */
 function afficherSac(){	
-	let texte="<table id=tableInventaire><tr>";
-	let compteur=0;
-	for(let p in sac){
-		compteur++;
-		texte+="<td id='"+p+"'>"+p+" : "+sac[p]+"</td>";
+	if(!affiche){
+		affiche=true;
+		let texte="<table id=tableInventaire><tr>";
+		let compteur=0;
+		for(let p in sac){
+			compteur++;
+			texte+="<td id='"+p+"'>"+sac[p]+"</td>";
+		}
+		for(let i=compteur;i<8;i++){
+			texte+="<td id='vide'></td>";
+		}
+		texte+="</tr></table>";
+		texte+="<button id=fermerInventaire onClick='deAfficherSac()'>Fermer l'inventaire</button>"
+		document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
 	}
-	for(let i=compteur;i<8;i++){
-		texte+="<td id='vide'></td>";
-	}
-	texte+="</tr></table>";
-	texte+="<button id=fermerInventaire onClick='deAfficherSac()'>Fermer l'inventaire</button>"
-	document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
-} 
+}
 function deAfficherSac(){
+	affiche=false;
 	document.getElementById("tableInventaire").outerHTML="";
 	document.getElementById("fermerInventaire").outerHTML="";
 }
