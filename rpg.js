@@ -419,6 +419,7 @@ let enArene=false;
 function instanceArene(){
 	let texte = "";
 	if(enArene ||retirerSac("ticket d'arène")){
+		enArene=true;
 		entreeArene++;
 		if(entreeArene == 0){
 			texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"
