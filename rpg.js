@@ -432,13 +432,14 @@ function instanceAreneCombat(){
 		if( entreeArene==0)
 			combat(0,instanceAreneCombat,"aleatoire");
 		else if(entreeArene < 3){
-			texte = "Bien joué, vous avez battu votre adversaire, il ne vous faut plus que "+ 3-entreeArene +" de combats restants !"
+			texte = "Bien joué, vous avez battu votre adversaire, il ne vous faut plus que "+ (3-entreeArene) +" de combats restants !"
 						+	"<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		}
 		else{
 			argent += 45;
-			texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 15 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
 			entreeArene=0;	
+			enArene=false;
+			texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 15 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
 			}
 	}
 	else{texte = "Vous ne pouvez pas encore participer au tournoi de l'arène, vous n'avez pas de ticket d'entrée.<br>Avancez dans la quête principale pour pouvoir participer.";}
