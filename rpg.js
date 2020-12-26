@@ -962,19 +962,19 @@ function ajouterEnnemi(formulaire){
 function afficherEnnemi(){
 	let liste = "";
 	for(let i=0;i<ennemis.length;i++){
-		liste += "<button onClick='supprimer("+i+");'>Supprimer</button> <b>" + ennemis[i]["race"] + "</b> avec une " + ennemis[i]["arme"] + " qui fait " + ennemis[i]["degats"]+ " de dégats<br>";
+		if(i<4){
+			liste += ennemis[i]["race"] + "</b> avec une " + ennemis[i]["arme"] + " qui fait " + ennemis[i]["degats"]+ " de dégats<br>";
+		}
+		else{
+			liste+="<b>"+ennemis[i]["race"] + "</b> avec une " + ennemis[i]["arme"] + " qui fait " + ennemis[i]["degats"]+ " de dégats	<button onClick='supprimer("+i+");'>Supprimer</button><br>";
+		}
 	}
 	document.getElementById("listeEnnemi").innerHTML = liste;
 }
 
 function supprimer(aSupprimer){
-	if(ennemis.length==1){
-		alert("Vous ne pouvez pas supprimer le dernier ennemi");
-	}
-	else{
 	ennemis.splice(aSupprimer,1);
 	afficherEnnemi();
-	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
