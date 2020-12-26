@@ -417,17 +417,23 @@ function rendreLeBois(){
 //Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
 let enArene=false;
 function instanceArene(){
+let texte = "";	
+texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"
+      +	"Je vous rapelle que tout les combats sont des combats à MORT !<br> Gagnez 3 combats pour finir l'arène, mériter le torphée et gagner le gros lot, 45 pièces.<br><button onClick='instanceAreneCombat();'>Entrer tournoi</button>";
+		
+articleHtmlSac("arene", texte);
+}
+
+function instanceAreneCombat(){
 	let texte = "";
 	if(enArene ||retirerSac("ticket d'arène")){
 		enArene=true;
 		entreeArene++;
-		if(entreeArene == 0){
-			texte = "Bienvenue au tournoi du roi<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent<br>"
-			      +	"Je vous rapelle que tout les combats sont des combats à MORT !<br> Gagnez 3 combats pour finir l'arène, mériter le torphée et gagner le gros lot, 45 pièces.<br><button onClick='combat(0,instanceArene,\"aleatoire\");'>Entrer tournoi</button>";
-		}
+		if( entreeArene==0)
+			combat(0,instanceAreneCombat,"aleatoire");
 		else if(entreeArene < 3){
 			texte = "Bien joué, vous avez battu votre adversaire, il ne vous faut plus que "+ 3-entreeArene +" de combats restants !"
-						+	"<br><button onCLick='combat(0,instanceArene,aleatoire)'>Continuer</button><br>";
+						+	"<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		}
 		else{
 			argent += 45;
