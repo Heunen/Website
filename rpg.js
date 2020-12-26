@@ -7,7 +7,8 @@ let personnage = [];
 let ennemis = [
 	{ race : "Orque", arme : "Epée", degats : 6, vie : 100},
 	{ race : "Pillard", arme : "Arc", degats : 3, vie : 100},
-	{ race : "Troll", arme : "Massue", degats : 8, vie : 100}
+	{ race : "Troll", arme : "Massue", degats : 8, vie : 100},
+	{ race : "Géant", arme : "Hache", degats : 7, vie : 100}
 	];
 //Boss  de fin de game
 let boss = {race : "Boss", arme : "Anduril", degats : 10, vie : 150};
