@@ -23,8 +23,11 @@ let instanceEnCours="";
 let argent=0;
 //dégats de l'arme
 let degatsArme=1;
-//compteur du nombre d'ennemis battus
+//compteurs pour la fin du game
 let compteurEnnemis = 0;
+let compteurPotion = 0;
+let compteurAttaqueSpeciale = 0;
+let horloge = [];
 /*LISTE DE TOUT LES OBJETS DANS LE JEU :
 potion, hâche de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
 epée du gladiateur, armure en cuir, armure en fer, clé.
@@ -752,6 +755,7 @@ function attaqueSpecialeBoss(cible){
 		}
 		rechargePouvoir = 2;
 		alert("Vous avez fait " + degats + " de dégats, la vie de l'adversaire est passée à " + cible.vie);
+		compteurAttaqueSpeciale++;
 	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};
 	tourEnnemi();
 	combatBoss(2);
@@ -766,6 +770,7 @@ function utiliserPotionBoss(){
 			if(personnage[5]>personnage[7]){
 				personnage[5]=personnage[7];
 			}
+			compteurPotion++;
 			tourEnnemi();
 			combatBoss(2);
 		}
@@ -842,9 +847,38 @@ function instanceFin(avancementHist){
 }
 
 function resumeFin(){
+	var date = new Date();
+	let secondes = date.getSeconds() - horloge[2];
+	if(secondes < 0){
+		minutes--;
+		secondes = 60+secondes;
+	}
+	let minutes = date.getMinutes() - horloge[1];
+	if(minutes<0){
+		heure--;
+		minutes = 60+minutes;
+	}
+	let heure = date.getHours() - horloge[0];
+	if(heure<0){
+		heure=24+heure;
+	}
+
+
+	let chrono = "";
+	if(heure==0 && minutes==0){
+		chrono = secondes+" sec";
+	}
+	else if(heure==0){
+		chrono = minutes+" min et "+secondes+" sec";
+	}
+	else{ chrono = heure+" h "+minutes+" min et "+secondes+" sec";}
 	let texte = "<h1>Vous avez fini notre jeu !</h1><br>Merci d'y avoir joué, nous espérons que ça vous à plu. N'hésitez pas à le recommencer pour trouver toutes les fins possibles.<br>Voici un petit résumé de vos statistiques : <br>"+
-								"<b>Votre personnage : un "+personnage[2]+" nommé "+personnage[0]+", age : "+personnage[1]+" ans<br>"+
-								"Vous avez battu : " + compteurEnnemis + " ennemis.";
+								"Vous avez fini le jeu en : " +chrono+"<br>"+
+								"Avec votre personnage : un "+personnage[2]+" nommé "+personnage[0]+", age : "+personnage[1]+" ans.<br>"+
+								"Vous avez battu : " + compteurEnnemis + " ennemis.<br>"+
+								"Pris " + compteurPotion + " potions.<br>"+
+								"Et utilisé " + compteurAttaqueSpeciale + " attaques spéciales."
+								
 	articleHtml("resume",texte);
 }
 
@@ -912,6 +946,7 @@ function attaqueSpeciale(cible){
 		}
 		rechargePouvoir = 2;
 		alert("Vous avez fait " + degats + " de dégats, la vie de l'adversaire est passée à " + cible.vie);
+		compteurAttaqueSpeciale++;
 		tourEnnemi();
 	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};	
 	combat(1);
@@ -926,6 +961,7 @@ function utiliserPotion(){
 			if(personnage[5]>personnage[7]){
 				personnage[5]=personnage[7];
 			}
+			compteurPotion++;
 			tourEnnemi();
 			combat(1);
 		}
