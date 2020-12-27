@@ -1000,7 +1000,7 @@ function ouvrirFormEnnemi(){
 									"<option>Massue</option>"+
 									"<option>Arc</option>"+
 									"<option>Hache</option>"+
-									"<option>Epee</option>"+
+									"<option>Epée</option>"+
 						"</select>"+
 							"<dd>Dégats (1 à 10): <input type='number' id='degatArmeEnnemi' min='1' max='10' required='required'></dd>"+
 						"</dl>"+
