@@ -30,6 +30,8 @@ let argent=0;
 let aleatoire="aleatoire";
 //dégats de l'arme
 let degatsArme=1;
+//compteur du nombre d'ennemis battus
+let compteurEnnemis = 0;
 /*LISTE DE TOUT LES OBJETS DANS LE JEU :
 potion, hâche de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
 epée du gladiateur, armure en cuir, armure en fer, clé.
@@ -99,6 +101,7 @@ function afficherFormulairePerso(){
                     "</fieldset>"+
                 "</form>";
 	articleHtml("formulaire",texte);
+	document.getElementById("liensDebut").innerHTML = "<a id='liens' href='#' onClick='afficherFormulairePerso();'>Accueil</a> <a id='liens' href='#' onCLick='ouvrirFormEnnemi();'>Création d'ennemis</a>";
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,6 +122,9 @@ function instanceIntro(){
   texte+="<button onClick='instanceCamp(0)'>Camp</button>";
   texte+="<button onClick='combatBoss(0)'>Boss</button>";
 	texte+="<button onClick='combat(0,instanceVillage)'>combat</button>";
+texte+="<button onClick='instanceFin(1)'>Fin 1</button>";
+	texte+="<button onClick='instanceFin(2)'>Fin 2</button>";
+	texte+="<button onClick='instanceFin(3)'>Fin 3</button>";
   articleHtml(nomDeInstance,texte);
 }
 function introHist(){
@@ -485,6 +491,7 @@ function instanceAreneCombat(){
 			argent += 45;
 			entreeArene=-1;	
 			enArene=false;
+			ajouterSac("trophée d'arène",1);
 			texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 45 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
 			}
 	}
@@ -630,7 +637,7 @@ function instancePont(){
 
 function laissezPasser(){
 	if(sac["laissez passer"]==1){
-		instancePonton();
+		instanceCamp(0);
 	}
 	else {
 		let dialogue="";
@@ -639,10 +646,6 @@ function laissezPasser(){
 			texte+=dialogue + "<br><button onClick='instanceVillage()'>Rentrer au Village </button>";
 		articleHtmlSac("pont",texte);
 	}
-}
-
-function instancePonton(){
-	instanceCamp(0);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -717,17 +720,17 @@ function combatBoss(avancementHist){
 							break;
 		case 33 : texte = "<h1>Vous êtes mort.</h1><br>Ce n'est pas bien de mentir.";
 							break;
-		case 100 : texte = "Vous décidez de l'épargner.<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin()'>Prendre la bourse et partir</button>";
+		case 100 : texte = "Vous décidez de l'épargner.<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin(2)'>Prendre la bourse et partir</button>";
 							ajouterSac("bourse",1);
 							break;
 		case 101 : texte = "Vous achevez Volsung en plantant votre arme dans son coeur. Vous ramassez Anduril son épée, il n'en aura plus besoin."+
-												".<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin()'>Prendre la bourse et partir</button>";
+												".<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin(1)'>Prendre la bourse et partir</button>";
 							ajouterSac("bourse",1);
 							break;
 		case 102 : texte = "Vous achevez Volsung en plantant votre arme dans son coeur. Les brigands s'agenouillent, vous êtes leur nouveau chef.<br>Vous décidez de déménager le camp et de partir vers le Sud.<br><br><br>"+
 												"Vous n'aurez pas le temps de profiter de votre vie de grand banditisme, les plaies infligées par Volsung s'infèctent rapidement et vous mourrez dans d'atroces souffrances peu de temps après.";
 							break;
-		case 4 : texte = "Vous tranchez la gorge de Volsung. Vous prenez Anduril, l'épée de Volsung et partez en direction du village. <br>Les brigands vous regardent le faire sans rien dire...<br><button onClick='instanceFin()'>Aller au village</button>";
+		case 4 : texte = "Vous tranchez la gorge de Volsung. Vous prenez Anduril, l'épée de Volsung et partez en direction du village. <br>Les brigands vous regardent le faire sans rien dire...<br><button onClick='instanceFin(3)'>Aller au village</button>";
 						break;
 	}
 	articleHtml('boss',texte);
@@ -759,12 +762,97 @@ function attaqueSpecialeBoss(cible){
 	tourEnnemi();
 	combatBoss(2);
 }
+//Utilisation d'une potion pour ajouter 30 de vie
+function utiliserPotionBoss(){
+	if(sac.potion > 0){
+		if(personnage[5]<personnage[7]){
+			personnage[5] += 30;
+			retirerSac("potion");
+			alert("Vous avez bu une potion de vie.");
+			if(personnage[5]>personnage[7]){
+				personnage[5]=personnage[7];
+			}
+			tourEnnemi();
+			combatBoss(2);
+		}
+		else{
+			alert("Vous êtes déjà au maximum de votre vie, vous ne pouvez pas utiliser de potion");
+		}
+	}
+	else{alert("Vous n'avez pas de potion dans votre inventaire");}
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Fin du Jeu		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+function instanceFin(avancementHist){
+	let texte = "";
+	switch(avancementHist){
+		case 1 : texte = "Vous revenez au village après avoir vaincu le chef des brigands, Volsung. Tandis que vous arrivez sur la place centrale, vous remarquez que les villageois commencent à sortir de leur maison et vous observent.<br>"+
+										"Alors que vous atteignez l'entrée de la mairie, une foule silencieuse s'est formée autour de vous. Vous toquez à la porte.<br>Le maire ouvre et vous dit :<br>"+
+										"- Aaah je vois que vous êtes toujours en vie, vous avez donc vaincu les brigands ?<br>"+
+										"<button onCLick='instanceFin(11)'>Oui, leur chef à été vaincu, il est blessé. Ils arreteront de vous embêter</button><br>"+
+										"<button onClick='instanceFin(12)'>Oui, j'ai tué leur chef. (mentir)</button>";
+										break;
+		case 2 : texte = "Vous revenez au village après avoir vaincu le chef des brigands, Volsung. Tandis que vous arrivez sur la place centrale, vous remarquez que les villageois commencent à sortir de leur maison et vous observent.<br>"+
+										"Alors que vous atteignez l'entrée de la mairie, une foule silencieuse s'est formée autour de vous. Vous toquez à la porte.<br>Le maire ouvre et vous dit :<br>"+
+										"- Aaah je vois que vous êtes toujours en vie, vous avez donc vaincu les brigands <br>?"+
+										"<button onClick='instanceFin(12)'>Oui, j'ai tué leur chef.</button>";
+										break;
+		case 3 : texte = "Vous revenez au village après avoir vaincu le chef des brigands, Volsung. Tandis que vous arrivez sur la place centrale, vous remarquez que les villageois commencent à sortir de leur maison et vous observent.<br>"+
+										"Alors que vous atteignez l'entrée de la mairie, une foule silencieuse s'est formée autour de vous. Vous toquez à la porte.<br>Le maire ouvre et vous dit :<br>"+
+										"- Aaah je vois que vous êtes toujours en vie, vous avez donc vaincu les brigands ?<br>"+
+										"<button onClick='instanceFin(31)'>Oui, j'ai tué leur chef.</button>";
+										break;
+		case 11 : texte = "Je suis entré dans leur camp et défié le chef. J'ai réussi à le battre.<br>Mais je ne l'ai pas tué, le sous-chef m'a promis qu'ils ne vous embêterons plus.<br>"+
+											"<button onClick='instanceFin(111)'>Rendre la bourse</button> <button onClick='instanceFin(112)'>Garder la bourse</button>";
+											break;
+		case 12 : texte = "Je suis entré dans leur camp et défié le chef. J'ai réussi à le battre et je l'ai tué. Je voulais m'assurer qu'ils ne vous embêtent plus.<br>"+
+											"<button onClick='instanceFin(111)'>Rendre la bourse</button> <button onClick='instanceFin(112)'>Garder la bourse</button>";
+											break;
+		case 31 : texte = "Je suis entré dans leur camp et défié le chef. J'ai réussi à le battre et je l'ai tué. Je voulais m'assurer qu'ils ne vous embêtent plus.<br>"+
+											"<button onClick='instanceFin(11113)'>Je souhaiterai recevoir un payement maintenant que j'ai accompli ma mission.</button>";
+											break;
+		case 111 : texte = "J'ai pu récuperer ce que les brigands vous avaient pillé. Voici la bourse qu'ils m'ont donné.<br><button onClick='instanceFin(1111)'>Donner la bourse</button>";
+								retirerSac("bourse");
+								break;
+		case 112 : texte = "Le maire du village vous félicite : Merci à vous étranger. Ce que vous avez fait pour ce village est digne d'un vrai chevalier.<br>Dommage que vous n'avez pas réussi à réccupérer ce qu'ils nous avaient dérobé.<br>"+
+												"<button onClick='instanceFin(1121)'>Continuer</button> <button onClick='instanceFin(111)'>Rendre la bourse</button>";
+		case 1111 : texte = "Le maire vous dit : Un tout grand merci, vous êtes vraiment un héros. Sans vous nous aurions continué à vivre dans la peur et la pauvreté. Nous vous sommes mille fois reconnaissant.<br>"+
+												"Dites-nous ce que vous souhaitez et nous ferons tout notre possible pour le réaliser.<br>"+
+												"<button onClick='instanceFin(11111)'>Je ne veux rien, voir votre bonheur à été ma récompense</button><br>"+
+												"<button onClick='instanceFin(11112)'>Si vous acceptez, j'aimerai bien vivre dans votre village, il est temps que je pose racine</button><br>"+
+												"<button onClick='instanceFin(11113)'>J'aimerais juste un peu d'argent comme convenu avec vous et l'aubergiste</button><br>"+
+												"<button onClick='instanceFin(11114)'>Il me faudrait une lettre attestant de mes faits d'arme</button>";
+												break;
+		case 1121 : texte = "Malheureusement je n'ai rien pu récupérer, j'ai déjà réussi à les faire partir, ça aurait relevé du miracle de pouvoir avoir ça en plus.<br>"+
+													"<button onClick='instanceFin(11113)'>Continuer</button>";
+													break;
+		case 11111 : texte = "Sans rien dire de plus vous reprenez chemin, tous vous observent.<br>Depuis ce jour, le village est paisible et on apprend aux enfants que c'est l'oeuvre d'un mysterieux étranger qui a disparu dans la nature.<br>"+
+													"Certains disent même que c'est l'oeuvre d'un dieu...<br>"+
+													"<button onClick='resumeFin()'>The END</button>";
+													break;
+		case 11112 : texte = "Le maire du vilage accepte directement.<br>Vous vivrez au village jusqu'à votre mort des années plus tard. Entre-temps vous fondez une famille et devenez une famille importante du village.<br>"+
+													"<button onClick='resumeFin()'>The END</button>";
+													break;
+		case 11113 : texte = "Le maire du village vous offre 150 pièces d'or. Vous disparaissez peu de temps après la fête organisée en votre honneur. On dit de vous que vous avez continué votre vie de vagabond en allant d'auberge en auberge et en faisant des petits boulots.<br>"+
+													"<button onClick='resumeFin()'>The END</button>";
+													break;
+		case 11114 : texte = "Le maire vous écrit alors une lettre encensant vos exploit. Vous quittez le village pour aller au chateau du roi et grâce à celle-ci, le roi vous prend dans sa cours en tant que chevalier. Vous ferez des centaines de batailles et deviendrez un des chevaliers les plus connus du royaume.<br>"+
+													"<button onClick='resumeFin()'>The END</button>";
+													break;
+		default : texte = "oups il semblerait qu'il y ait une erreur.";
+	}
+	articleHtml("fin",texte);
+}
 
+function resumeFin(){
+	let texte = "<h1>Vous avez fini notre jeu !</h1><br>Merci d'y avoir joué, nous espérons que ça vous à plu.<br>Voici un petit résumé de vos statistiques : <br>"+
+								"<b>Votre personnage : un "+personnage[2]+" nommé "+personnage[0]+", age : "+personnage[1]+" ans<br>"+
+								"Vous avez battu : " + compteurEnnemis + " ennemis.";
+	articleHtml("resume",texte);
+}
 
                                                          //function utilitaire	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -830,7 +918,7 @@ function attaqueSpeciale(cible){
 	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};	
 	combat(1);
 }
-//Utilisation d'une potion pour ajouter 20 de vie
+//Utilisation d'une potion pour ajouter 30 de vie
 function utiliserPotion(){
 	if(sac.potion > 0){
 		if(personnage[5]<personnage[7]){
@@ -1091,6 +1179,7 @@ function ouvrirFormEnnemi(){
 
 		articleHtml("formulaireEnnemi",texte);
 		afficherEnnemi();
+	document.getElementById("liensDebut").innerHTML = "<a id='liens' href='#' onClick='afficherFormulairePerso();'>Accueil</a> <a id='liens' href='#' onCLick='ouvrirFormEnnemi();'>Création d'ennemis</a>";
 }
 
 
