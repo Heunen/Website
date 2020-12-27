@@ -842,7 +842,7 @@ function instanceFin(avancementHist){
 }
 
 function resumeFin(){
-	let texte = "<h1>Vous avez fini notre jeu !</h1><br>Merci d'y avoir joué, nous espérons que ça vous à plu.<br>Voici un petit résumé de vos statistiques : <br>"+
+	let texte = "<h1>Vous avez fini notre jeu !</h1><br>Merci d'y avoir joué, nous espérons que ça vous à plu. N'hésitez pas à le recommencer pour trouver toutes les fins possibles.<br>Voici un petit résumé de vos statistiques : <br>"+
 								"<b>Votre personnage : un "+personnage[2]+" nommé "+personnage[0]+", age : "+personnage[1]+" ans<br>"+
 								"Vous avez battu : " + compteurEnnemis + " ennemis.";
 	articleHtml("resume",texte);
