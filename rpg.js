@@ -849,21 +849,19 @@ function instanceFin(avancementHist){
 function resumeFin(){
 	var date = new Date();
 	let secondes = date.getSeconds() - horloge[2];
+	let minutes = date.getMinutes() - horloge[1];
+	let heure = date.getHours() - horloge[0];
 	if(secondes < 0){
 		minutes--;
 		secondes += 60;
 	}
-	let minutes = date.getMinutes() - horloge[1];
 	if(minutes<0){
 		heure--;
 		minutes += 60;
 	}
-	let heure = date.getHours() - horloge[0];
 	if(heure<0){
 		heure += 24;
 	}
-
-
 	let chrono = "";
 	if(heure==0 && minutes==0){
 		chrono = secondes+" sec";
