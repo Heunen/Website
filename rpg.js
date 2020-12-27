@@ -652,7 +652,7 @@ function instanceCamp(entreeCamp){
 	let texte = "";
 	if(entreeCamp == 0){
 		entreeCamp++;
-		texte = "Bonjour jeune aventurier, es-tu sûr de vouloir continuer vers le camp des brigants, tout retour sera impossible.<br>"+
+		texte = "Bonjour jeune aventurier, es-tu sûr de vouloir continuer vers le camp des brigands, tout retour sera impossible.<br>"+
 							"<button onClick='instanceCamp(1)'>Entrer</button><button onClick='instancePont()'>Sortir</button>";
 	}
 	else{
@@ -692,7 +692,7 @@ function combatBoss(avancementHist){
 								"<br>Vie de Volsung : "+boss.vie+"<br>"+
 								"<button onClick='attaquerBoss(boss)'>Attaque simple</button>" +
 								"<button onClick='attaqueSpecialeBoss(boss)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>"+
-								"<button onClick='utiliserPotion()'>Boire une potion (rend 20 points de vie)</button>";
+								"<button onClick='utiliserPotionBoss()'>Boire une potion (rend 20 points de vie)</button>";
 			}
 			else if(boss.vie == 0 && personnage[5] != 0){
 				texte = "Vous avez asséné un coup fatal à Volsung. Tout le monde se tait et un silence de plomb tombe sur le camp."+
@@ -851,16 +851,16 @@ function resumeFin(){
 	let secondes = date.getSeconds() - horloge[2];
 	if(secondes < 0){
 		minutes--;
-		secondes = 60+secondes;
+		secondes += 60;
 	}
 	let minutes = date.getMinutes() - horloge[1];
 	if(minutes<0){
 		heure--;
-		minutes = 60+minutes;
+		minutes += 60;
 	}
 	let heure = date.getHours() - horloge[0];
 	if(heure<0){
-		heure=24+heure;
+		heure += 24;
 	}
 
 
