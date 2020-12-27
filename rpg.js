@@ -335,7 +335,7 @@ function aubergeManger(){
 }
 
 function aubergeDormir(){
-	let texte="Vous passer la nuit à l'auberge.";
+	let texte="Vous passez la nuit à l'auberge.";
 	aubergeAction(texte,100);
 }
 function aubergeAction(msg,nombre){
@@ -347,7 +347,7 @@ function aubergeAction(msg,nombre){
 		fullHp="<br> Vous voilà complètement requinqué !";
     }
 	else{
-		fullHp="<br> Vous vous êtes reposé, mais vous vous sentez pas encore totalement requiqué";
+		fullHp="<br> Vous vous êtes reposé, mais vous ne vous sentez pas encore totalement requinqué";
 	}
 	texte+=fullHp + "<br><button onclick='instanceAuberge()'>Ok</button>";
 	articleHtmlSac("auberge",texte);	
@@ -577,7 +577,7 @@ function stat(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Foret
 function instanceForet(){
-	let texte="Après avoir arpenté une petite route délabrée vous arrivez dans une petite clairière où débute une grande fôret de séquoia";
+	let texte="Après avoir arpenté une petite route délabrée vous arrivez dans une petite clairière où débute une grande fôret de séquoias";
 		texte+="<br><button onClick='seBalader()'>Se balader dans la forêt</button>";
 		texte+="<button onClick='seDeplacerForet()'>Se déplacer</button>";
   
@@ -1065,6 +1065,8 @@ function ouvrirFormEnnemi(){
 							"<option>Pillard</option>"+
 							"<option>Troll</option>"+
 							"<option>Géant</option>"+
+	    						"<option>Ours</option>"+
+	    						"<option>Renard</option>"+
 						"</select>"+
 					"</div>"+
 					"<div>"+
@@ -1074,7 +1076,7 @@ function ouvrirFormEnnemi(){
 									"<option>Massue</option>"+
 									"<option>Arc</option>"+
 									"<option>Hache</option>"+
-									"<option>Epee</option>"+
+									"<option>Epée</option>"+
 						"</select>"+
 							"<dd>Dégats (1 à 10): <input type='number' id='degatArmeEnnemi' min='1' max='10' required='required'></dd>"+
 						"</dl>"+
@@ -1117,7 +1119,7 @@ function ajouterEnnemi(formulaire){
 function afficherEnnemi(){
 	let liste = "";
 	for(let i=0;i<ennemis.length;i++){
-		if(i<4){
+		if(i<6){
 			liste += ennemis[i]["race"] + "</b> avec une " + ennemis[i]["arme"] + " qui fait " + ennemis[i]["degats"]+ " de dégats<br>";
 		}
 		else{
