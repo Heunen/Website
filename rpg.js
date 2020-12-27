@@ -18,8 +18,6 @@ let ennemiApparu;
 let rechargePouvoir = 0;
 //Sauvegarde l'endroit ou l'aventurier est avant un combat
 let sauvegardeEndroit = "";
-//Permet de vérifier si un aventurier a déjà fait l'arene
-let entreeArene = -1;
 //argent gagné dans l'arene
 let argentGagne = 0;
 //sauvegarde l'instance en cours
@@ -31,6 +29,10 @@ let aleatoire="aleatoire";
 //dégats de l'arme
 let degatsArme=100;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+												//Function Creation Personnage
+												
 //paramètre : les données du formulaire
 //rempli le tableau personnage de ses données.
 function ajouterPersonnage(formulaire) {  
@@ -298,7 +300,7 @@ function introDiaFin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                      //INSTANCE Auberge
 function instanceAuberge(){
-    texte=
+    let texte=
         "<section>"+
             "Bienvenue à l'auberge mon cher ! Qu'est-ce que je te sers?"+
             "<hr>"+
@@ -308,7 +310,7 @@ function instanceAuberge(){
             "<hr>"+
             "<button onclick='seDeplacerAuberge()'>Se déplacer</button>"+
         "</section>"
-    articleHtml("auberge",texte)
+    articleHtmlSac("auberge",texte)
 }
 
 function aubergeBoire(){
@@ -431,8 +433,11 @@ function rendreLeBois(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                          //INSTANCE Arène
-//Arene ou l'aventurier peut combattre des ennemis en boucle pour gagner de l'argent (incrément de 2 pour chaque ennemi battu), s'il a deja combattu il ne peut plus participer
+
+//vérifie si une arène est en cours
 let enArene=false;
+//permet de savoir à quel stade de l'arène se trouve le joueur.
+let entreeArene = -1;
 function instanceArene(){
 let texte = "";	
 texte = "Bienvenue au tournoi du roi !<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent.<br>"
@@ -443,8 +448,7 @@ articleHtmlSac("arene", texte);
 function instanceAreneCombat(){
 	let texte = "";
 	let chiffre;
-	if(enArene || sac["ticket d'arène"]){
-		retirerSac("ticket d'arène");
+	if(enArene || retirerSac("ticket d'arène",true)){
 		enArene=true;
 		entreeArene++;
 		chiffre=3-entreeArene;
@@ -457,7 +461,7 @@ function instanceAreneCombat(){
 		}
 		else{
 			argent += 45;
-			entreeArene=0;	
+			entreeArene=-1;	
 			enArene=false;
 			texte = "Vous avez battu le nombre requis d'adversaires et reçu le trophée de l'arène. Vous gagnez 45 pièces d'or ! <br><button onClick='instanceVillage()'>Retour au village</button>";
 			}
@@ -519,15 +523,15 @@ function seBalader(){
 
 function couperDuBois(){
 	let chiffre;
-	if(Math.random()<0.7){
-		chiffre=Math.floor(Math.random()*4.1)+1;
+	if(Math.random()<0.75){
+		chiffre=Math.floor(Math.random()*4.2)+1;
 		alert("Vous avez coupé du bois, vous avez reçu "+  chiffre +" bouts de bois");
 		ajouterSac("bois",chiffre);
 		seBalader();
 	}
 	else{	
 	alert("un ennemi est apparu !")
-	combat(0,couperDuBois,'aleatoire');
+	combat(0,seBalader,'aleatoire');
 	}
 	
 }	
@@ -831,34 +835,44 @@ function ajouterSac(contenu,nombre){
 }
 /*function qui retire une fois un element de l'array et renvoie true si l'élément à bien pu être retiré.
 */
-function retirerSac(contenu){
+function retirerSac(contenu,bool){
 	if(contenu in sac && sac[contenu]>0){
 		sac[contenu]--;
+		if(sac[contenu]==0){
+			delete sac[contenu];
+		}
 		return true;
 	}
-	alert("Vous ne disposez pas de cet objet : " + contenu);
+	if(!bool){
+		alert("Vous ne disposez pas de cet objet : " + contenu);
+	}
 	return false;
 	
 }
 /* function pour afficher l'inventaire dans une table
 */
 function afficherSac(){	
-	let texte="<table id=tableInventaire><tr>";
-	let compteur=0;
-	for(let p in sac){
-		compteur++;
-		texte+="<td id='"+p+"'>"+p+" : "+sac[p]+"</td>";
-	}
-	for(let i=compteur;i<8;i++){
-		texte+="<td id='vide'></td>";
-	}
-	texte+="</tr></table>";
-	texte+="<button id=fermerInventaire onClick='deAfficherSac()'>Fermer l'inventaire</button>"
-	document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
-} 
+	if(!affiche){
+		affiche=true;
+		let texte="<table id=tableInventaire><tr>";
+		let compteur=0;
+		for(let p in sac){
+			compteur++;
+			texte+="<td id='"+p+"'>"+p+" : "+sac[p]+"</td>";
+		}
+		for(let i=compteur;i<8;i++){
+			texte+="<td id='vide'></td>";
+		}
+		texte+="</tr></table>";
+		texte+="<button id=fermerInventaire onClick='deAfficherSac()'>Fermer l'inventaire</button>"
+		document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
+	} 
+}
 function deAfficherSac(){
+	affiche=false;
 	document.getElementById("tableInventaire").outerHTML="";
 	document.getElementById("fermerInventaire").outerHTML="";
+	
 }
 
 
@@ -1062,6 +1076,7 @@ function articleHtml(nomDeInstance,texte){
 	document.getElementById("jeu").innerHTML = mHtml;
 }
 function articleHtmlSac(nomDeInstance,texte){
+	affiche=false;
 	articleHtml(nomDeInstance,texte);
 	let msg="<button onClick='afficherSac()'>Afficher l'inventaire</button>"
 	document.getElementById(nomDeInstance+'Text').innerHTML += msg;
