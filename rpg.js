@@ -64,6 +64,7 @@ function ajouterPersonnage(formulaire) {
   
   //on lance la première instance : intro
   instanceIntro();
+  document.getElementById("liensDebut").innerHTML = "";
   
   // Pour l'instant, on renvoie toujours false
   // Ainsi on est sûr de ne pas envoyer le formulaire (et de ne pas rafraichir la page)
