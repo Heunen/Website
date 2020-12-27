@@ -28,7 +28,10 @@ let argent=0;
 let aleatoire="aleatoire";
 //dégats de l'arme
 let degatsArme=100;
-
+/*LISTE DE TOUT LES OBJETS DANS LE JEU :
+potion, hâche de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
+epée du gladiateur, armure en cuir, armure en fer, clé.
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 												//Function Creation Personnage
@@ -45,9 +48,15 @@ function ajouterPersonnage(formulaire) {
 		case "Voleur": attaque = "Attaque sournoise"; break;
 	}
   // enregistrer le personnage dans le tableau
-  // [ nom, age, classe, sexe, niveau, vie, attaque spéciale] 
+  // [ nom, age, classe, sexe, niveau, vie, attaque spéciale, vie max] 
   personnage.push( formulaire.name.value, formulaire.age.value,
-                      formulaire.classe.value, formulaire.sexe.value, argent, 100, attaque );
+                      formulaire.classe.value, formulaire.sexe.value, argent, 100, attaque, 100 );
+  // La classe choisit par le joueur défini l'arme qui va être proposé dans le magasin.
+  for(let p in equipement){
+	  if(equipement[p]==personnage[2]){
+		  magasin[p]=1;
+	  }
+  }
   
   //on lance la première instance : intro
   instanceIntro();
@@ -314,22 +323,33 @@ function instanceAuberge(){
 }
 
 function aubergeBoire(){
-    personnage[5]+=50
-    if(personnage[5]>100){
-        personnage[5]=100
-    }
+	let texte="Vous prenez une grande choppe d'hydromel pour vous rassasier !";
+	aubergeAction(texte,50);
 }
 
 function aubergeManger(){
-    personnage[5]+=75
-    if(personnage[5]>100){
-        personnage[5]=100
-    }
-
+	let texte="Miam, un petit ragoût de lapin. Meilleur que celui de votre feu grand-mère.";
+	aubergeAction(texte,75);
 }
 
 function aubergeDormir(){
-    personnage[5]=100
+	let texte="Vous passer la nuit à l'auberge.";
+	aubergeAction(texte,100);
+}
+function aubergeAction(msg,nombre){
+	let texte=msg;
+	let fullHp="";
+	personnage[5]+=nombre;
+    if(personnage[5]>personnage[7]){
+        personnage[5]=personnage[7];
+		fullHp="<br> Vous voilà complètement requinqué !";
+    }
+	else{
+		fullHp="<br> Vous vous êtes reposé, mais vous vous sentez pas encore totalement requiqué";
+	}
+	texte+=fullHp + "<br><button onclick='instanceAuberge()'>Ok</button>";
+	articleHtmlSac("auberge",texte);	
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -475,8 +495,9 @@ function instanceAreneCombat(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                       //INSTANCE Magasin
-/*let magasin={};
-let equipement={}
+let magasin={"potion":99,"armure en cuir":1,"armure en fer":1};
+let magasinPrix=[6,2,15,20];
+let equipement={"arbalète du chasseur":"Archer", "dague du voleur":"Voleur", "baguette du sorceleur":"Mage","epée du gladiateur":"Guerrier"}
 function instanceMagasin(){
 		let texte="Vous entrez dans le seul batiment qui semble ouvert sur la place du village. Vous pouvez apercevoir quelques objet dont vous ne"
 				 +" percevez pas l'utilité. Au fond de la pièce se trouve un vieil homme barbu qui vous offre son plus beau sourire edenté";
@@ -489,16 +510,67 @@ function instanceMagasin(){
  
 function dialogueMarchand(){
 	let dialogue="Que voulez-vous donc acheter dans ma modeste boutique aventurier ?";
-	let texte="<br><button onClick='listeMagasin()'>Consulter les objets proposés.</button>";
+	let texte=dialogue + "<br><button onClick='listeMagasin()'>Consulter les objets proposés.</button>";
 	articleHtmlSac("magasin",texte);	
 }
 function listeMagasin(){
+	let texte="Voici toutes mes possessions qui pourraient vous interesser aventurier !<br>";
+	let compteur=0;
 	for(let p in magasin){
-		console.log(p);
+		texte+="<button onClick='magasinAcheter(\""+p+"\","+compteur+")'>Une "+p+" pour "+magasinPrix[compteur] +" pièces d'or</button>";
+		compteur++;
 	}
-	for(equipement.sort)
+	texte+="<br><button onClick='instanceVillage()'>Retourner au Village</button>"
+	articleHtmlSac("magasin",texte);
 }
-*/
+function magasinAcheter(p,chiffre){
+	let msg="";
+	if(argent>magasinPrix[chiffre]){
+		argent-=magasinPrix[chiffre];
+		ajouterSac(p,1);
+		retirerMagasin(p,chiffre);
+		msg="Vous avez bien acheté une "+p+". Vous avez encore "+argent+" pièces d'or.";
+	}
+	else{
+		msg="Vous n'avez pas assez d'argent";
+	}
+	let texte=msg+ "<br><button onClick='stat()'>Ok</button>";
+	articleHtmlSac("magasin",texte);
+}
+function retirerMagasin(p,chiffre){
+		if(magasin[p]==1){
+			delete magasin[p];
+			magasinPrix=nvxTab(chiffre);
+		}
+		else{
+			magasin[p]--;
+		}
+}
+function nvxTab(chiffre){
+	let tab=[];
+	for(let i=0;i<magasinPrix.length;i++){
+		if(i!=chiffre){
+			tab.push(magasinPrix[i]);
+		}
+		
+	}
+	return tab;
+}
+function stat(){
+	for(let p in equipement){
+		if(p in sac){
+			degatsArme+=3;
+		}
+	}
+	if("armure en cuir" in sac){
+		personnage[7]=150;
+	}
+	if("armure en fer" in sac){
+		delete sac["armure en cuir"];
+		personnage[7]=200;
+	}
+	listeMagasin();
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Foret
@@ -755,17 +827,13 @@ function attaqueSpeciale(cible){
 //Utilisation d'une potion pour ajouter 20 de vie
 function utiliserPotion(){
 	if(sac.potion > 0){
-		if(personnage[5]<80){
-			personnage[5] += 20;
+		if(personnage[5]<personnage[7]){
+			personnage[5] += 30;
 			retirerSac("potion");
 			alert("Vous avez bu une potion de vie.");
-			tourEnnemi();
-			combat(1);
-		}
-		else if(personnage[5]>=80 && personnage[5]<100){
-			personnage[5] = 100;
-			retirerSac("potion");
-			alert("Vous avez bu une potion de vie.");
+			if(personnage[5]>personnage[7]){
+				personnage[5]=personnage[7];
+			}
 			tourEnnemi();
 			combat(1);
 		}
@@ -1000,7 +1068,7 @@ function ouvrirFormEnnemi(){
 									"<option>Massue</option>"+
 									"<option>Arc</option>"+
 									"<option>Hache</option>"+
-									"<option>Epée</option>"+
+									"<option>Epee</option>"+
 						"</select>"+
 							"<dd>Dégats (1 à 10): <input type='number' id='degatArmeEnnemi' min='1' max='10' required='required'></dd>"+
 						"</dl>"+
