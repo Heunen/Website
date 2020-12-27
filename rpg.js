@@ -9,8 +9,8 @@ let ennemis = [
 	{ race : "Pillard", arme : "Arc", degats : 3, vie : 100},
 	{ race : "Troll", arme : "Massue", degats : 8, vie : 100},
 	{ race : "Géant", arme : "Hache", degats : 7, vie : 100},
-	{ race : "Ours", arme "Griffe", degats : 5, vie : 60 },
-	{ race : "Renard", arme "Griffe", degats : 3, vie : 40 },
+	{ race : "Ours", arme :"Griffe", degats : 5, vie : 60 },
+	{ race : "Renard", arme :"Griffe", degats : 3, vie : 40 },
 	];
 //Boss  de fin de game
 let boss = {race : "Boss", arme : "Anduril", degats : 10, vie : 150};
