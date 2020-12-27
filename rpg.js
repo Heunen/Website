@@ -14,20 +14,13 @@ let ennemis = [
 	];
 //Boss  de fin de game
 let boss = {race : "Boss", arme : "Anduril", degats : 10, vie : 150};
-//Sauvegarde l'ennemi apparu dans le combat
-let ennemiApparu;
-//Fonctionne comme une 'horloge' pour laisser un temps avant de réutiliser le pouvoir
-let rechargePouvoir = 0;
+
 //Sauvegarde l'endroit ou l'aventurier est avant un combat
 let sauvegardeEndroit = "";
-//argent gagné dans l'arene
-let argentGagne = 0;
 //sauvegarde l'instance en cours
 let instanceEnCours="";
 //argent total
 let argent=0;
-//stock le mot aléatoire
-let aleatoire="aleatoire";
 //dégats de l'arme
 let degatsArme=1;
 //compteur du nombre d'ennemis battus
@@ -865,6 +858,10 @@ function resumeFin(){
 *												Si 2, (Pas encore implémenté) indique que la fonction est appelée dans le cadre du boss et donc il faut selectionner celui-ci.
 *				 endroit : permet de faire une sauvegarde de l'endroit la premiere fois que le combat est appelé ou on doit aller pour pouvoir y aller si le combat est gagné
 */
+//Sauvegarde l'ennemi apparu dans le combat
+let ennemiApparu;
+//Fonctionne comme une 'horloge' pour laisser un temps avant de réutiliser le pouvoir
+let rechargePouvoir = 0;
 function combat(premiereFois,endroit,type){
 	if(premiereFois == 0){
 		sauvegardeEndroit = endroit.name;
@@ -1037,12 +1034,6 @@ function deAfficherSac(){
 	document.getElementById("fermerInventaire").outerHTML="";
 	
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-	                                                     //function Shop
-// (p-e juste à mettre dans l'instance magasin si il suffit d'ajouter les items dans l'inventaire)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -1247,7 +1238,8 @@ function articleHtmlSac(nomDeInstance,texte){
 	let msg="<button onClick='afficherSac()'>Afficher l'inventaire</button>"
 	document.getElementById(nomDeInstance+'Text').innerHTML += msg;
 }
-
+//stock le mot aléatoire
+let aleatoire="aleatoire";
 //Crée un nombre aléatoire entier entre 0 et 10, utile pour le choix d'ennemi et les degats d'attaque
 function nombreAleatoire(){
 	let nombre = (Math.random()*10).toFixed(0);
