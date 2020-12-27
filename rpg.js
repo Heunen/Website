@@ -29,7 +29,7 @@ let argent=0;
 //stock le mot aléatoire
 let aleatoire="aleatoire";
 //dégats de l'arme
-let degatsArme=100;
+let degatsArme=1;
 /*LISTE DE TOUT LES OBJETS DANS LE JEU :
 potion, hâche de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
 epée du gladiateur, armure en cuir, armure en fer, clé.
@@ -561,7 +561,7 @@ function nvxTab(chiffre){
 function stat(){
 	for(let p in equipement){
 		if(p in sac){
-			degatsArme+=3;
+			degatsArme=8;
 		}
 	}
 	if("armure en cuir" in sac){
