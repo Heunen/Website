@@ -798,7 +798,7 @@ function instanceFin(avancementHist){
 										break;
 		case 2 : texte = "Vous revenez au village après avoir vaincu le chef des brigands, Volsung. Tandis que vous arrivez sur la place centrale, vous remarquez que les villageois commencent à sortir de leur maison et vous observent.<br>"+
 										"Alors que vous atteignez l'entrée de la mairie, une foule silencieuse s'est formée autour de vous. Vous toquez à la porte.<br>Le maire ouvre et vous dit :<br>"+
-										"- Aaah je vois que vous êtes toujours en vie, vous avez donc vaincu les brigands <br>?"+
+										"- Aaah je vois que vous êtes toujours en vie, vous avez donc vaincu les brigands ?<br>"+
 										"<button onClick='instanceFin(12)'>Oui, j'ai tué leur chef.</button>";
 										break;
 		case 3 : texte = "Vous revenez au village après avoir vaincu le chef des brigands, Volsung. Tandis que vous arrivez sur la place centrale, vous remarquez que les villageois commencent à sortir de leur maison et vous observent.<br>"+
@@ -830,7 +830,7 @@ function instanceFin(avancementHist){
 		case 1121 : texte = "Malheureusement je n'ai rien pu récupérer, j'ai déjà réussi à les faire partir, ça aurait relevé du miracle de pouvoir avoir ça en plus.<br>"+
 													"<button onClick='instanceFin(11113)'>Continuer</button>";
 													break;
-		case 11111 : texte = "Sans rien dire de plus vous reprenez chemin, tous vous observent.<br>Depuis ce jour, le village est paisible et on apprend aux enfants que c'est l'oeuvre d'un mysterieux étranger qui a disparu dans la nature.<br>"+
+		case 11111 : texte = "Sans rien dire de plus vous reprenez chemin, tous vous observent.<br>Depuis ce jour, le village est paisible et on apprend aux enfants que c'est l'oeuvre d'un mystérieux étranger qui a disparu dans la nature.<br>"+
 													"Certains disent même que c'est l'oeuvre d'un dieu...<br>"+
 													"<button onClick='resumeFin()'>The END</button>";
 													break;
