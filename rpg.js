@@ -62,6 +62,10 @@ function ajouterPersonnage(formulaire) {
   instanceIntro();
   document.getElementById("liensDebut").innerHTML = "";
   
+  var date = new Date();
+  horloge[0] = date.getHours();
+  horloge[1] = date.getMinutes();
+  horloge[2] = date.getSeconds();
   // Pour l'instant, on renvoie toujours false
   // Ainsi on est sûr de ne pas envoyer le formulaire (et de ne pas rafraichir la page)
   return false;
