@@ -1056,7 +1056,7 @@ function afficherSac(){
 		let compteur=0;
 		for(let p in sac){
 			compteur++;
-			texte+="<td id='"+p+"'>"+p+" : "+sac[p]+"</td>";
+			texte+="<td id='"+p+"'>"+sac[p]+"</td>";
 		}
 		for(let i=compteur;i<8;i++){
 			texte+="<td id='vide'></td>";
