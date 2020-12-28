@@ -31,13 +31,21 @@ footer{
     font-size:small;
 
 }
+
 #titre{
     font-weight:bolder;
     font-style:italic;
     text-decoration: underline;
     height:1em;
     color:black;
+    font-size: 32px;
 }
+
+#logo{
+    float:left;
+    height:60px;
+}
+
 #formulairePersonnage{
     background-color:rgb(3, 80, 32);
     border: solid black;
@@ -187,4 +195,115 @@ background-size:cover;
     background-image:url("../images/arena.jpg");
     height:700px;
     background-size:cover;
+}
+
+
+#potion{
+    background-image:url("../images/potion.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#armureCuir{
+    background-image:url("../images/armureCuir.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#armureFer{
+    background-image:url("../images/armureFer.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#arbalete+{
+    background-image:url("../images/arbalete.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#dague+{
+    background-image:url("../images/dague.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#baguette+{
+    background-image:url("../images/baguette.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#epee+{
+    background-image:url("../images/epee.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#ticket{
+    background-image:url("../images/ticket.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#trophée{
+    background-image:url("../images/trophee.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#laisserPasser{
+    background-image:url("../images/autoMaire.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#clé{
+    background-image:url("../images/clé.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
 }
