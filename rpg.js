@@ -50,7 +50,7 @@ function ajouterPersonnage(formulaire) {
   // enregistrer le personnage dans le tableau
   // [ nom, age, classe, sexe, niveau, vie, attaque spéciale, vie max] 
   personnage.push( formulaire.name.value, formulaire.age.value,
-                      formulaire.classe.value, formulaire.sexe.value, argent, 100, attaque, 100 );
+                      formulaire.classe.value, formulaire.sexe.value, horloge, 100, attaque, 100 );
   // La classe choisit par le joueur défini l'arme qui va être proposé dans le magasin.
   for(let p in equipement){
 	  if(equipement[p]==personnage[2]){
@@ -66,6 +66,7 @@ function ajouterPersonnage(formulaire) {
   horloge[0] = date.getHours();
   horloge[1] = date.getMinutes();
   horloge[2] = date.getSeconds();
+  horloge[3] = date.getMilliseconds();
   // Pour l'instant, on renvoie toujours false
   // Ainsi on est sûr de ne pas envoyer le formulaire (et de ne pas rafraichir la page)
   return false;
@@ -605,15 +606,15 @@ function seBalader(){
 
 function couperDuBois(){
 	let chiffre;
-	if(Math.random()<0.75){
-		chiffre=Math.floor(Math.random()*4.2)+1;
+	if(nombreAleatoire()<8){
+		chiffre=nombreAleatoire()+5;
 		alert("Vous avez coupé du bois, vous avez reçu "+  chiffre +" bouts de bois");
 		ajouterSac("bois",chiffre);
 		seBalader();
 	}
 	else{	
 	alert("une bête sauvage est apparue !")
-		if(Math.random()<0.6){	
+		if(nombreAleatoire()<6){	
 		combat(0,seBalader,'Ours');
 		}
 		else 
@@ -852,28 +853,38 @@ function instanceFin(avancementHist){
 
 function resumeFin(){
 	var date = new Date();
+	let millisecondes = date.getMilliseconds() - horloge[3]
 	let secondes = date.getSeconds() - horloge[2];
 	let minutes = date.getMinutes() - horloge[1];
 	let heure = date.getHours() - horloge[0];
+
+	if(millisecondes < 0){
+		secondes--;
+		millisecondes += 1000;
+	}
 	if(secondes < 0){
 		minutes--;
 		secondes += 60;
 	}
+
 	if(minutes<0){
 		heure--;
 		minutes += 60;
 	}
+	
 	if(heure<0){
 		heure += 24;
 	}
+
+
 	let chrono = "";
 	if(heure==0 && minutes==0){
-		chrono = secondes+" sec";
+		chrono = secondes+", "+millisecondes+" sec";
 	}
 	else if(heure==0){
-		chrono = minutes+" min et "+secondes+" sec";
+		chrono = minutes+" min et "+secondes+", "+millisecondes+" sec";
 	}
-	else{ chrono = heure+" h "+minutes+" min et "+secondes+" sec";}
+	else{ chrono = heure+" h "+minutes+" min et "+secondes+", "+millisecondes+" sec";}
 	let texte = "<h1>Vous avez fini notre jeu !</h1><br>Merci d'y avoir joué, nous espérons que ça vous à plu. N'hésitez pas à le recommencer pour trouver toutes les fins possibles.<br>Voici un petit résumé de vos statistiques : <br>"+
 								"Vous avez fini le jeu en : " +chrono+"<br>"+
 								"Avec votre personnage : un "+personnage[2]+" nommé "+personnage[0]+", age : "+personnage[1]+" ans.<br>"+
@@ -922,7 +933,7 @@ function combat(premiereFois,endroit,type){
 	else{
 		texte = "<h1>Vous êtes mort !</h1>";
 	}
-	articleHtml("combat",texte);
+	articleHtml(instanceEnCours,texte);
 }
 //Attaque la cible en lui infligeant des dégats entre 1 et 10 (nombreAleatoire()) et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaquer(cible){
