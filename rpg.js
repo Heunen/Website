@@ -607,7 +607,7 @@ function seBalader(){
 function couperDuBois(){
 	let chiffre;
 	if(nombreAleatoire()<8){
-		chiffre=nombreAleatoire()+5;
+		chiffre=parseInt(nombreAleatoire())+5;
 		alert("Vous avez coupé du bois, vous avez reçu "+  chiffre +" bouts de bois");
 		ajouterSac("bois",chiffre);
 		seBalader();
