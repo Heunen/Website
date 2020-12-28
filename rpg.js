@@ -1048,8 +1048,7 @@ function retirerSac(contenu,bool){
 function afficherSac(){	
 	if(!affiche){
 		affiche=true;
-		let texte="<hr>"+
-		    "<table id=tableInventaire><tr>";
+		let texte="<table id=tableInventaire><tr>";
 		let compteur=0;
 		for(let p in sac){
 			compteur++;
