@@ -697,7 +697,7 @@ function combatBoss(avancementHist){
 								"<br>Vie de Volsung : "+boss.vie+"<br>"+
 								"<button onClick='attaquerBoss(boss)'>Attaque simple</button>" +
 								"<button onClick='attaqueSpecialeBoss(boss)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>"+
-								"<button onClick='utiliserPotionBoss()'>Boire une potion (rend 20 points de vie)</button>";
+								"<button onClick='utiliserPotionBoss()'>Boire une potion (rend 30 points de vie)</button>";
 			}
 			else if(boss.vie == 0 && personnage[5] != 0){
 				texte = "Vous avez asséné un coup fatal à Volsung. Tout le monde se tait et un silence de plomb tombe sur le camp."+
@@ -720,7 +720,7 @@ function combatBoss(avancementHist){
 											"<br> Vous baissez les yeux et voyez le bout d'Anduril l'épée de Volsung sortir par votre nombril. Vous tombez à genoux et juste avant de perdre connaisance vous voyez Volsung debout, marcher difficilement vers son trône."+
 											"<br><button onClick='combatBoss(33)'>Mourir</button>";
 							break;
-		case 33 : texte = "<h1>Vous êtes mort.</h1><br>Ce n'est pas bien de mentir.";
+		case 33 : texte = "<h1>Vous êtes mort.</h1><br>Ce n'est pas bien de mentir.<br><button onClick='resumeFin()'>The END</button>";
 							break;
 		case 100 : texte = "Vous décidez de l'épargner.<br>Le sous-chef sort de ses poches une bourse et vous la tend en vous disant que ce sont toutes les pièces qui ont été volées au village.<br><button onClick='instanceFin(2)'>Prendre la bourse et partir</button>";
 							ajouterSac("bourse",1);
@@ -730,7 +730,8 @@ function combatBoss(avancementHist){
 							ajouterSac("bourse",1);
 							break;
 		case 102 : texte = "Vous achevez Volsung en plantant votre arme dans son coeur. Les brigands s'agenouillent, vous êtes leur nouveau chef.<br>Vous décidez de déménager le camp et de partir vers le Sud.<br><br><br>"+
-												"Vous n'aurez pas le temps de profiter de votre vie de grand banditisme, les plaies infligées par Volsung s'infèctent rapidement et vous mourrez dans d'atroces souffrances peu de temps après.";
+												"Vous n'aurez pas le temps de profiter de votre vie de grand banditisme, les plaies infligées par Volsung s'infèctent rapidement et vous mourrez dans d'atroces souffrances peu de temps après."+
+												"<br><button onClick='resumeFin()'>The END</button>";
 							break;
 		case 4 : texte = "Vous tranchez la gorge de Volsung. Vous prenez Anduril, l'épée de Volsung et partez en direction du village. <br>Les brigands vous regardent le faire sans rien dire...<br><button onClick='instanceFin(3)'>Aller au village</button>";
 						break;
@@ -924,7 +925,7 @@ function combat(premiereFois,endroit,type){
 									+ personnage[5] + "<br>Vie de l'adversaire : " + ennemiApparu.vie + "<br> Vous avez plusieurs choix : " 
 									+"<br><button onClick='attaquer(ennemiApparu)'>Attaque simple</button>" +
 									"<br><button onClick='attaqueSpeciale(ennemiApparu)'>Attaque spéciale : " + personnage[6] + " (tours restants : " + rechargePouvoir +")</button>"+
-									"<br><button onClick='utiliserPotion()'>Boire une potion (rends 20 points de vie)</button>";;
+									"<br><button onClick='utiliserPotion()'>Boire une potion (rends 30 points de vie)</button>";;
 	}
 	else if(ennemiApparu.vie == 0 && personnage[5] != 0){
 		texte = "<h3>Vous avez battu votre adversaire !</h3><br> Vous pouvez accéder à la suite.<button onClick='"+sauvegardeEndroit+"()'>Suite</button>";
