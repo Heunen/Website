@@ -197,7 +197,6 @@ background-size:cover;
     background-size:cover;
 }
 
-
 #potion{
     background-image:url("../images/potion.png");
     height:100px;
@@ -208,7 +207,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#armureCuir{
+#armure_en_cuir{
     background-image:url("../images/armureCuir.png");
     height:100px;
     text-align: center;
@@ -218,7 +217,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#armureFer{
+#armure_en_fer{
     background-image:url("../images/armureFer.png");
     height:100px;
     text-align: center;
@@ -228,7 +227,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#arbalete+{
+#arbalète_du_chasseur{
     background-image:url("../images/arbalete.png");
     height:100px;
     text-align: center;
@@ -238,7 +237,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#dague+{
+#dague_du_voleur{
     background-image:url("../images/dague.png");
     height:100px;
     text-align: center;
@@ -248,7 +247,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#baguette+{
+#baguette_du_sorceleur{
     background-image:url("../images/baguette.png");
     height:100px;
     text-align: center;
@@ -258,7 +257,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#epee+{
+#epee_du_gladiateur{
     background-image:url("../images/epee.png");
     height:100px;
     text-align: center;
@@ -268,7 +267,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#ticket{
+#ticket_d_arène{
     background-image:url("../images/ticket.png");
     height:100px;
     text-align: center;
@@ -278,7 +277,7 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#trophée{
+#trophée_d_arène{
     background-image:url("../images/trophee.png");
     height:100px;
     text-align: center;
@@ -288,7 +287,17 @@ background-size:cover;
     background-repeat: no-repeat;
 }
 
-#laisserPasser{
+#hache_de_bûcheron{
+    background-image:url("../images/hache.png");
+    height:100px;
+    text-align: center;
+    background-size:contain;
+    width:12.5%;
+    width:fit-content;
+    background-repeat: no-repeat;
+}
+
+#laisser_passer{
     background-image:url("../images/autoMaire.png");
     height:100px;
     text-align: center;
