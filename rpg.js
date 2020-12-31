@@ -29,7 +29,7 @@ let compteurPotion = 0;
 let compteurAttaqueSpeciale = 0;
 let horloge = [];
 /*LISTE DE TOUT LES OBJETS DANS LE JEU :
-potion, hâche de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
+potion, hache de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
 epée du gladiateur, armure en cuir, armure en fer, clé.
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -438,7 +438,7 @@ function dialogueVillageois(){
 function recevoirHache(){
 	let msg="Vous avez reçu une hâche dans votre inventaire, utilisez la dans la forêt et veuillez récuperer 30 bouts de bois";
 	alert(msg);
-	ajouterSac("Hache de bûcheron",1);
+	ajouterSac("hache de bûcheron",1);
 	queteBois=1;
 	dialogueVillageois();
 }
@@ -597,7 +597,7 @@ function seBalader(){
 	let dialogue="";
 	let texte="";
 	dialogue+="Il y a plein d'arbres au alentours, mais vous sentez une présence obscure dans les parages.<br>";
-	if(sac["Hache de bûcheron"]==1){
+	if(sac["hache de bûcheron"]==1){
 		dialogue+="<button onClick='couperDuBois()'>Aller couper du bois</button>";
 	}
 	texte+=dialogue + "<button onClick='instanceForet()'>Retour à l'entrée de la forêt</button>";	
@@ -606,8 +606,8 @@ function seBalader(){
 
 function couperDuBois(){
 	let chiffre;
-	if(nombreAleatoire()<8){
-		chiffre=parseInt(nombreAleatoire())+5;
+	if(nombreAleatoire()<7){
+		chiffre=parseInt(nombreAleatoire())+2;
 		alert("Vous avez coupé du bois, vous avez reçu "+  chiffre +" bouts de bois");
 		ajouterSac("bois",chiffre);
 		seBalader();
@@ -1066,9 +1066,11 @@ function afficherSac(){
 		affiche=true;
 		let texte="<table id=tableInventaire><tr>";
 		let compteur=0;
+		let a;
 		for(let p in sac){
+			a=espace(p);
 			compteur++;
-			texte+="<td id='"+p+"'>"+sac[p]+"</td>";
+			texte+="<td id='"+a+"'>"+sac[p]+"</td>";
 		}
 		for(let i=compteur;i<8;i++){
 			texte+="<td id='vide'></td>";
@@ -1083,6 +1085,18 @@ function deAfficherSac(){
 	document.getElementById("tableInventaire").outerHTML="";
 	document.getElementById("fermerInventaire").outerHTML="";
 	
+}
+function espace(mot){
+	let newMot="";
+	for(let i=0;i<mot.length;i++){
+		if(mot[i]==" " || mot[i]=="'"){
+			newMot+="_";
+		}
+		else{
+			newMot+=mot[i];
+		}
+	}
+	return newMot;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
