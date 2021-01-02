@@ -262,7 +262,7 @@ td{
     background-repeat: no-repeat;
     width:10%;
 }
-#arbalète_du_chasseur{
+#arbalete_du_chasseur{
     background-image:url("../images/arbalete.png");
     text-align: center;
     background-position: center;
@@ -298,7 +298,7 @@ td{
     width:10%;
 }
 
-#ticket_d_arène{
+#ticket_d_arene{
     background-image:url("../images/ticket.png");
     text-align: center;
     background-position: center;
@@ -307,7 +307,7 @@ td{
     width:10%;
 }
 
-#trophée_d_arène{
+#trophee_d_arene{
     background-image:url("../images/trophee.png");
     text-align: center;
     background-position: center;
@@ -332,7 +332,7 @@ td{
     background-repeat: no-repeat;
     width:10%;
 }
-#hache_de_bûcheron{
+#hache_de_bucheron{
     background-image:url("../images/hache.png");
     text-align: center;
     background-position: center;
