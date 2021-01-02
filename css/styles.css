@@ -95,6 +95,13 @@ footer{
     height:180px;
 }
 
+#finText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
 #foretText{
     background-color:rgb(3, 80, 32);
     border: solid black;
