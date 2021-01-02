@@ -221,5 +221,82 @@ td{
     background-repeat: no-repeat;
     width:10%;
 }
+#armure_en_cuir{
+        background-image:url("../images/armureCuir.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
+#armure_en_fer{
+        background-image:url("../images/armureFer.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
+#arbalète_du_chasseur{
+        background-image:url("../images/arbalete.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
 
+#dague_du_voleur{
+        background-image:url("../images/dague.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
+
+#baguette_du_sorceleur{
+        background-image:url("../images/baguette.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
+
+#epee_du_gladiateur{
+        background-image:url("../images/epee.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
+
+#ticket_d_arène{
+    background-image:url("../images/ticket.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
+
+#trophée_d_arène{
+        background-image:url("../images/trophee.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
+
+#laisser_passer{
+        background-image:url("../images/autoMaire.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
 /* les autres objets auront les mêmes caractéristiques de "potion" mais avec le fond correspondant. */
