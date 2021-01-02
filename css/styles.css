@@ -157,6 +157,13 @@ footer{
     height:180px;
 }
 
+#bossText{
+    background-color:rgb(3, 80, 32);
+    border: solid black;
+    padding: 3px;
+    height:180px;
+}
+
 #intro{
     background-image:url("../images/auberge.jpg");
     height:700px;
