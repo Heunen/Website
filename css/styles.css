@@ -307,4 +307,12 @@ td{
     background-repeat: no-repeat;
     width:10%;
 }
+#hache_de_bûcheron{
+    background-image:url("../images/hache.png");
+    text-align: center;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:10%;
+}
 /* les autres objets auront les mêmes caractéristiques de "potion" mais avec le fond correspondant. */
