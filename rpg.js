@@ -903,7 +903,7 @@ function resumeFin(){
 	else if(heure==0){
 		chrono = minutes+" min et "+secondes+", "+millisecondes+" sec";
 	}
-	else{ chrono = heure+" h "+minutes+" min et "+secondes+", "+millisecondes+" sec";}
+	else{ chrono = heure+" h "+minutes+" min et "+secondes+", "+millisecondes.toFixed(2)+" sec";}
 	//Texte de fin avec le résumé
 	let texte = "<h1>Vous avez fini notre jeu !</h1><br>Merci d'y avoir joué, nous espérons que ça vous à plu. N'hésitez pas à le recommencer pour trouver toutes les fins possibles.<br>Voici un petit résumé de vos statistiques : <br>"+
 								"Vous avez fini le jeu en : " +chrono+"<br>"+
