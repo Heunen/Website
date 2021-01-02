@@ -365,7 +365,7 @@ function aubergeAction(msg,nombre){
 let aParleAuMaireDuVillage=0;	
 let	queteBois=0;									   
 function instanceVillage(){     
-  let texte="Bienvenue au village Ephec est afiché en toute lettre sur un panneau. Vous voilà au centre de ce petit village isolé de tout, la plupart des bâtiments sont délabrés";
+  let texte="Bienvenue au village Ephec est afiché en toute lettre sur un panneau. Vous voilà au centre de ce petit village isolé de tout, la plupart des bâtiments sont délabrés;
   texte+="commme si tout était abandonnés. Sur la grand place deux batiments se distinguent par leur état encore partiellement intact : le Magasin, et la Mairie. ";
   texte+="<br> <button onClick='dialogueMaireDuVillage()'>Aller parler au maire du village</button>";
   texte+="<button onClick='dialogueVillageois()'>Aller parler à un villageois</button>";
@@ -666,7 +666,7 @@ function instanceCamp(entreeCamp){
 	else{
 		if(nbreCombat == 0){
 			nbreCombat++;
-			texte = "Tu es devant le camp des brigants,ceux-ci t'ont repéré et commencent à t'attaquer.<br><button onClick='combat(true,instanceCamp,\"Pillard\")'>Se défendre</button>"
+			texte = "Tu es devant le camp des brigands,ceux-ci t'ont repéré et commencent à t'attaquer.<br><button onClick='combat(true,instanceCamp,\"Pillard\")'>Se défendre</button>"
 		}
 		else if(nbreCombat < 3){
 			nbreCombat++;
