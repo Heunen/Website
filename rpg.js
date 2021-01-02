@@ -116,6 +116,7 @@ function afficherFormulairePerso(){
 //Instance intro : gènere qu'un seul bouton commencer l'aventure qui lance l'instance : Aventure 
 // Introduction et dialogues d'introduction ! //
 // Les dialogues peuvent être changés ! //
+// l'objectif est de créer des possibilités de réponses pour le joueur amenant à des réponses différentes. Ici les interactions sont limitées mais dans le cas d'un site plus complet, il est bien sur possible d'aller plus loin.
 function instanceIntro(){
   let nomDeInstance="intro";
   let alerte="Il suffit de recharger la page";
