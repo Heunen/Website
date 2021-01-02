@@ -746,7 +746,7 @@ function combatBoss(avancementHist){
 //Fonction utilisée dans le combat avec le boss pour attaquer, inflige des degats aléatoires + degatsArme
 //Appelle la fonction tourEnnemi et reviens a combatBoss
 function attaquerBoss(cible){
-	let degats = nombreAleatoire() + degatsArme;
+	let degats = parseInt(nombreAleatoire()) + degatsArme;
 	cible.vie -= degats;
 	if(cible.vie <= 0){
 		cible.vie = 0;
@@ -950,7 +950,7 @@ function combat(premiereFois,endroit,type="aleatoire"){
 }
 //Attaque la cible en lui infligeant des dégats entre 1 et 10 (nombreAleatoire()) et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaquer(cible){
-	let degats = nombreAleatoire()+degatsArme;  //Mettre parseInt pour avoir une attaque "normale"
+	let degats = parseInt(nombreAleatoire())+degatsArme;
 	cible.vie -= degats;
 	if(cible.vie <= 0){
 		cible.vie = 0;
