@@ -1,9 +1,9 @@
 "use strict"
 
-// initialisation du tableau des personnages Ã  vide
+// initialisation du tableau des personnages à vide
 // un personnage est un tableau de cette forme [ nom, age, classe, sexe, niveau]
 let personnage = [];
-//Tableau d'ennemis
+//Tableau d'ennemis, chaque ennemi est un objet
 let ennemis = [
 	{ race : "Orque", arme : "Epée", degats : 6, vie : 100},
 	{ race : "Pillard", arme : "Arc", degats : 3, vie : 100},
@@ -12,7 +12,8 @@ let ennemis = [
 	{ race : "Ours", arme :"Griffe", degats : 5, vie : 60 },
 	{ race : "Renard", arme :"Griffe", degats : 3, vie : 40 },
 	];
-//Boss  de fin de game
+
+//Boss (objet) de fin de partie
 let boss = {race : "Boss", arme : "Anduril", degats : 10, vie : 150};
 
 //Sauvegarde l'endroit ou l'aventurier est avant un combat
@@ -21,12 +22,13 @@ let sauvegardeEndroit = "";
 let instanceEnCours="";
 //argent total
 let argent=0;
-//dégats de l'arme
+//dégats de l'arme du personnage
 let degatsArme=1;
-//compteurs pour la fin du game
+//compteurs pour la fin du jeu, sont incrémentés lors de l'utilisation de fonctions, lorsqu'un ennemi est vaincu, lorsde l'utilsation d'une potion et lors de l'utilisation d'une attaque spéciale. 
 let compteurEnnemis = 0;
 let compteurPotion = 0;
 let compteurAttaqueSpeciale = 0;
+//Tableau qui stocke les heures, minutes, secondes et millisecondes
 let horloge = [];
 /*LISTE DE TOUT LES OBJETS DANS LE JEU :
 potion, hache de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
@@ -62,11 +64,13 @@ function ajouterPersonnage(formulaire) {
   instanceIntro();
   document.getElementById("liensDebut").innerHTML = "";
   
+  //Date prise au début de la partie et stockée dans horloge
   var date = new Date();
   horloge[0] = date.getHours();
   horloge[1] = date.getMinutes();
   horloge[2] = date.getSeconds();
   horloge[3] = date.getMilliseconds();
+	
   // Pour l'instant, on renvoie toujours false
   // Ainsi on est sûr de ne pas envoyer le formulaire (et de ne pas rafraichir la page)
   return false;
@@ -468,6 +472,7 @@ function rendreLeBois(){
 let enArene=false;
 //permet de savoir à quel stade de l'arène se trouve le joueur.
 let entreeArene = -1;
+//Fonction de départ de l'arène, elle donne les infos importantes de l'arène, avec un bouton lançant les combats
 function instanceArene(){
 let texte = "";	
 texte = "Bienvenue au tournoi du roi !<br>Vous pouvez affronter des ennemis pour essayer de gagner de l'argent.<br>"
@@ -475,9 +480,12 @@ texte = "Bienvenue au tournoi du roi !<br>Vous pouvez affronter des ennemis pour
 articleHtmlSac("arene", texte);
 }
 
+//Fonction des combats d'arène
 function instanceAreneCombat(){
 	let texte = "";
+	//Nombre de combats à faire
 	let chiffre;
+	//Vérifie si soit l'arène est en cours, soit la conditon d'entrée est remplie (il faut le ticket d'arène)
 	if(enArene || retirerSac("ticket d'arène",true)){
 		enArene=true;
 		entreeArene++;
@@ -652,7 +660,9 @@ function laissezPasser(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Camp
+//Compteur du nombre de combats faits dans le camp
 let nbreCombat = 0;
+//fonction du camp avec entreeCamp comme paramètre, pour savoir si c'est la première fois que la fonction est utilisée
 function instanceCamp(entreeCamp){
 	let texte = "";
 	if(entreeCamp == 0){
@@ -679,6 +689,7 @@ function instanceCamp(entreeCamp){
 		}
 	articleHtmlSac('camp',texte);
 }
+//Fonction de combat du boss, fonctionne avec un switch pour avoir une histoire avec des choix multiples où les boutons re-appellent la fonction combatBoss avec un paramètre avancementHist different en fonction du choix
 function combatBoss(avancementHist){
 	ennemiApparu = boss;
 	let texte ="";
@@ -691,6 +702,7 @@ function combatBoss(avancementHist){
 							rechargePouvoir = 0;
 							break;
 		case 2 : 
+			//Combat avec le boss
 			if(boss.vie != 0 && personnage[5] != 0){
 				texte = "Les pillards ont fait un cercle autour de vous, vous n'avez aucun moyen de vous échapper. Volsung est en face de vous et attend votre attaque."+
 								"<br>Votre vie est à : "+personnage[5]+
@@ -738,8 +750,10 @@ function combatBoss(avancementHist){
 	}
 	articleHtml('boss',texte);
 }
+//Fonction utilisée dans le combat avec le boss pour attaquer, inflige des degats aléatoires + degatsArme
+//Appelle la fonction tourEnnemi et reviens a combatBoss
 function attaquerBoss(cible){
-	let degats = nombreAleatoire();
+	let degats = nombreAleatoire() + degatsArme;
 	cible.vie -= degats;
 	if(cible.vie <= 0){
 		cible.vie = 0;
@@ -751,10 +765,10 @@ function attaquerBoss(cible){
 	}
 	combatBoss(2);
 }
-//Attaque la cible en lui infligeant 15 de dégats et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
+//Attaque la cible en lui infligeant 15 de dégats + les degats de l'arme et ensuite appelle la fonction tourEnnemi() et puis reviens à combatBoss
 function attaqueSpecialeBoss(cible){
 	if(rechargePouvoir <= 0){
-		let degats = 15;
+		let degats = 15 + degatsArme;
 		cible.vie -= degats;
 		if(cible.vie <= 0){
 			cible.vie = 0;
@@ -766,7 +780,7 @@ function attaqueSpecialeBoss(cible){
 	tourEnnemi();
 	combatBoss(2);
 }
-//Utilisation d'une potion pour ajouter 30 de vie
+//Utilisation d'une potion pour ajouter 30 de vie si il y en a dans l'inventaire
 function utiliserPotionBoss(){
 	if(sac.potion > 0){
 		if(personnage[5]<personnage[7]){
@@ -791,6 +805,8 @@ function utiliserPotionBoss(){
                                                          //INSTANCE Fin du Jeu		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//Fonction de fin de jeu, avec comme paramètre avancementHist. Celui-ci sera different en fonction des choix faits dans le combatBoss.
+//fonctionne avec un switch pour faire des histoire à choix multiples, avec chaque bouton qui est la fonction instanceFin avec un paramètre différent
 function instanceFin(avancementHist){
 	let texte = "";
 	switch(avancementHist){
@@ -852,13 +868,16 @@ function instanceFin(avancementHist){
 	articleHtml("fin",texte);
 }
 
+//Fonction de toute fin qui affiche un résumé des statistiques de la partie
 function resumeFin(){
+	//Création d'une date lors de l'appel de la fonction et calcule la difference entre les heures, minutes, secondes et millisecondes avec la date prise en début de partie
 	var date = new Date();
 	let millisecondes = date.getMilliseconds() - horloge[3]
 	let secondes = date.getSeconds() - horloge[2];
 	let minutes = date.getMinutes() - horloge[1];
 	let heure = date.getHours() - horloge[0];
 
+	//Si une des différences est négative, enlève une unité à la variable supérieure et l'ajoute pour avoir une valeur positive (après mise à échelle)
 	if(millisecondes < 0){
 		secondes--;
 		millisecondes += 1000;
@@ -867,17 +886,15 @@ function resumeFin(){
 		minutes--;
 		secondes += 60;
 	}
-
 	if(minutes<0){
 		heure--;
 		minutes += 60;
 	}
-	
 	if(heure<0){
 		heure += 24;
 	}
 
-
+	//Crono qui affichera les paramètres en fonction du temps pris
 	let chrono = "";
 	if(heure==0 && minutes==0){
 		chrono = secondes+", "+millisecondes+" sec";
@@ -886,6 +903,7 @@ function resumeFin(){
 		chrono = minutes+" min et "+secondes+", "+millisecondes+" sec";
 	}
 	else{ chrono = heure+" h "+minutes+" min et "+secondes+", "+millisecondes+" sec";}
+	//Texte de fin avec le résumé
 	let texte = "<h1>Vous avez fini notre jeu !</h1><br>Merci d'y avoir joué, nous espérons que ça vous à plu. N'hésitez pas à le recommencer pour trouver toutes les fins possibles.<br>Voici un petit résumé de vos statistiques : <br>"+
 								"Vous avez fini le jeu en : " +chrono+"<br>"+
 								"Avec votre personnage : un "+personnage[2]+" nommé "+personnage[0]+", age : "+personnage[1]+" ans.<br>"+
@@ -900,14 +918,21 @@ function resumeFin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 	                                                     //function combat
-/*Fonction qui indique un combat, les points de vie de chaque personnage et les actions à réaliser.
-* @param premiereFois : booléen qui vérifie si c'est la première fois qu'on fait appel à la fonction dans un combat.
-*				 endroit : permet de faire une sauvegarde de l'endroit la premiere fois que le combat est appelé ou on doit aller pour pouvoir y aller si le combat est gagné
-*/
+
 //Sauvegarde l'ennemi apparu dans le combat
 let ennemiApparu;
-//Fonctionne comme une 'horloge' pour laisser un temps avant de réutiliser le pouvoir
+//Compteur pour laisser un temps avant de réutiliser le pouvoir
 let rechargePouvoir = 0;
+
+/** @function combat
+*	Fonction qui indique un combat, les points de vie de chaque personnage et les actions à réaliser si les variables de vie du personnage et des ennemis sont différentes de 0. 
+*	Sinon indique que l'ennmi est mort ou bien que le personnage est mort.
+* @param {boolean} premiereFois - indique si c'est la première fois qu'on utilise la fonction
+* @param {string} endroit - permet de sauver l'endroit ou on était avant l'appel de la fonction (ou bien ou on désire aller)
+* @param {string} type - type d'ennemis à utiliser lors du combat
+*
+* @example - combat(true,"instanceForet","aleatoire");
+*/
 function combat(premiereFois,endroit,type){
 	if(premiereFois){
 		sauvegardeEndroit = endroit.name;
@@ -1190,6 +1215,7 @@ function seDeplacerMagasin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 						//function ajouter des monstres personnalisés
+//Fonction qui affiche le formulaire de création des ennemis
 function ouvrirFormEnnemi(){
 	let texte =" <!---Création des ennemis--> "+
 		"<section>"+
@@ -1232,7 +1258,7 @@ function ouvrirFormEnnemi(){
 	document.getElementById("liensDebut").innerHTML = "<a id='liens' href='#' onClick='afficherFormulairePerso();'>Accueil</a> <a id='liens' href='#' onCLick='ouvrirFormEnnemi();'>Création d'ennemis</a>";
 }
 
-// Fonction qui ajoute le nouvel ennemi dans l'array
+// Fonction qui ajoute le nouvel ennemi dans l'array si celui-ci n'est pas déjà présent
 function ajouterEnnemi(formulaire){
 	var ennemiIntermediaire = {race : formulaire.classeEnnemi.value, arme : formulaire.nomArmeEnnemi.value, degats : parseInt(formulaire.degatArmeEnnemi.value), vie : 100};
 	for(let i in ennemis){
@@ -1246,7 +1272,7 @@ function ajouterEnnemi(formulaire){
 	return false;
 }
 
-// Affiche les ennemis
+// Affiche les ennemis et ajoute un bouton pour les supprimer à côté de ceux créés manuellement par l'utilisateur
 function afficherEnnemi(){
 	let liste = "";
 	for(let i=0;i<ennemis.length;i++){
@@ -1259,7 +1285,7 @@ function afficherEnnemi(){
 	}
 	document.getElementById("listeEnnemi").innerHTML = liste;
 }
-
+//Supprime l'ennemi choisit avec le paramètre aSupprimer (index de l'ennemi dans le tableau)
 function supprimer(aSupprimer){
 	ennemis.splice(aSupprimer,1);
 	afficherEnnemi();
