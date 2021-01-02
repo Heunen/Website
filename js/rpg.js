@@ -125,7 +125,6 @@ function instanceIntro(){
   texte+="<br> <button onClick='introHist()'>Lancer l'aventure</button>";
   articleHtml(nomDeInstance,texte);
 }
-}
 function introHist(){
     let texte="<!--Introduction à l'histoire-->"+
         "<section>"+
