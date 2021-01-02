@@ -123,16 +123,8 @@ function instanceIntro(){
   let texte="Bienvenue à toi "+ personnage[0] +'!'; // première ligne
   texte+="<br> Pour lancer l'aventure appuis sur le bouton 'lancer l'aventure. ";
   texte+="<br> <button onClick='introHist()'>Lancer l'aventure</button>";
-  texte+="<button onClick=alert'(alerte)'>modifier votre personnage</button>";
-  texte+="<button onClick='instanceArene()'>Arene</button>";
-  texte+="<button onClick='instanceVillage()'>Village</button>";
-  texte+="<button onClick='instanceCamp(0)'>Camp</button>";
-  texte+="<button onClick='combatBoss(0)'>Boss</button>";
-	texte+="<button onClick='combat(true,instanceVillage)'>combat</button>";
-texte+="<button onClick='instanceFin(1)'>Fin 1</button>";
-	texte+="<button onClick='instanceFin(2)'>Fin 2</button>";
-	texte+="<button onClick='instanceFin(3)'>Fin 3</button>";
   articleHtml(nomDeInstance,texte);
+}
 }
 function introHist(){
     let texte="<!--Introduction à l'histoire-->"+
