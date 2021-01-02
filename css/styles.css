@@ -192,127 +192,34 @@ background-size:cover;
 }
 
 #combat{
-    background-image:url("../images/arena.jpg");
+    background-image:url("../images/combat.jpg");
     height:700px;
     background-size:cover;
 }
 
+#boss{
+    background-image:url("../images/combatBoss.jpg");
+    height:700px;
+    background-size:cover;
+}
+
+#tableInventaire{
+ border:2px white solid;
+ height:60px;
+ width:100%;
+}
+td{
+    width:10%;
+    border:1px white solid;
+    height:100%
+}
 #potion{
     background-image:url("../images/potion.png");
-    height:100px;
     text-align: center;
+    background-position: center;
     background-size:contain;
-    width:12.5%;
-    width:fit-content;
     background-repeat: no-repeat;
+    width:10%;
 }
 
-#armure_en_cuir{
-    background-image:url("../images/armureCuir.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#armure_en_fer{
-    background-image:url("../images/armureFer.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#arbalète_du_chasseur{
-    background-image:url("../images/arbalete.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#dague_du_voleur{
-    background-image:url("../images/dague.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#baguette_du_sorceleur{
-    background-image:url("../images/baguette.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#epee_du_gladiateur{
-    background-image:url("../images/epee.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#ticket_d_arène{
-    background-image:url("../images/ticket.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#trophée_d_arène{
-    background-image:url("../images/trophee.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#hache_de_bûcheron{
-    background-image:url("../images/hache.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#laisser_passer{
-    background-image:url("../images/autoMaire.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
-
-#clé{
-    background-image:url("../images/clé.png");
-    height:100px;
-    text-align: center;
-    background-size:contain;
-    width:12.5%;
-    width:fit-content;
-    background-repeat: no-repeat;
-}
+/* les autres objets auront les mêmes caractéristiques de "potion" mais avec le fond correspondant. */
