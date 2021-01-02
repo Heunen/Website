@@ -123,7 +123,7 @@ function instanceIntro(){
   texte+="<button onClick='instanceVillage()'>Village</button>";
   texte+="<button onClick='instanceCamp(0)'>Camp</button>";
   texte+="<button onClick='combatBoss(0)'>Boss</button>";
-	texte+="<button onClick='combat(0,instanceVillage)'>combat</button>";
+	texte+="<button onClick='combat(true,instanceVillage)'>combat</button>";
 texte+="<button onClick='instanceFin(1)'>Fin 1</button>";
 	texte+="<button onClick='instanceFin(2)'>Fin 2</button>";
 	texte+="<button onClick='instanceFin(3)'>Fin 3</button>";
@@ -484,10 +484,10 @@ function instanceAreneCombat(){
 		chiffre=3-entreeArene;
 		if(entreeArene==0)
 			texte = "Voici votre premier adversaire !"
-				+"<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
+				+"<br><button onCLick='combat(true,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		else if(entreeArene < 3){
 			texte = "Bien joué, vous avez battu votre adversaire, il ne vous reste plus que " + chiffre + " combats de restant !"
-				+ "<br><button onCLick='combat(0,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
+				+ "<br><button onCLick='combat(true,instanceAreneCombat,aleatoire)'>Continuer</button><br>";
 		}
 		else{
 			argent += 45;
@@ -615,10 +615,10 @@ function couperDuBois(){
 	else{	
 	alert("une bête sauvage est apparue !")
 		if(nombreAleatoire()<6){	
-		combat(0,seBalader,'Ours');
+		combat(true,seBalader,'Ours');
 		}
 		else 
-		combat(0,seBalader,'Renard');
+		combat(true,seBalader,'Renard');
 	}
 	
 }	
@@ -663,15 +663,15 @@ function instanceCamp(entreeCamp){
 	else{
 		if(nbreCombat == 0){
 			nbreCombat++;
-			texte = "Tu es devant le camp des brigants,ceux-ci t'ont repéré et commencent à t'attaquer.<br><button onClick='combat(0,instanceCamp,\"Pillard\")'>Se défendre</button>"
+			texte = "Tu es devant le camp des brigants,ceux-ci t'ont repéré et commencent à t'attaquer.<br><button onClick='combat(true,instanceCamp,\"Pillard\")'>Se défendre</button>"
 		}
 		else if(nbreCombat < 3){
 			nbreCombat++;
 			if (nombreAleatoire() > 5){
 				texte = "Vous avez réussi à battre l'ennemi, un autre arrive ! "+
-							"<button onClick='combat(0,instanceCamp,\"Pillard\")'>Ok</button>";
+							"<button onClick='combat(true,instanceCamp,\"Pillard\")'>Ok</button>";
 			}
-			else{texte = "Un brigand surgit devant vous, préparez-vous à l'affronter. <button onClick='combat(0,instanceCamp,\"Pillard\")'>Ok</button>";}
+			else{texte = "Un brigand surgit devant vous, préparez-vous à l'affronter. <button onClick='combat(true,instanceCamp,\"Pillard\")'>Ok</button>";}
 		}
 		else{
 				texte = "Vous tuez le dernier pillard qui vous attaquait. Les autres n'osent pas s'avancer.<br> Vous ouvrez les portes du camp et vous avancez prudement jusqu'au centre du camp. Vous voyez un trône immense fait avec ce qu'il semble être des os.<br><button onClick='combatBoss(0)'>Continuer</button>";
@@ -901,9 +901,7 @@ function resumeFin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 	                                                     //function combat
 /*Fonction qui indique un combat, les points de vie de chaque personnage et les actions à réaliser.
-* @param premiereFois : Si 0, indique que c'est la premiere fois du combat que la fonction est appelée. 
-* 											Si 1, indique que la fonction a deja ete appelée et donc il ne faut pas changer d'ennemi.
-*												Si 2, (Pas encore implémenté) indique que la fonction est appelée dans le cadre du boss et donc il faut selectionner celui-ci.
+* @param premiereFois : booléen qui vérifie si c'est la première fois qu'on fait appel à la fonction dans un combat.
 *				 endroit : permet de faire une sauvegarde de l'endroit la premiere fois que le combat est appelé ou on doit aller pour pouvoir y aller si le combat est gagné
 */
 //Sauvegarde l'ennemi apparu dans le combat
@@ -911,14 +909,10 @@ let ennemiApparu;
 //Fonctionne comme une 'horloge' pour laisser un temps avant de réutiliser le pouvoir
 let rechargePouvoir = 0;
 function combat(premiereFois,endroit,type){
-	if(premiereFois == 0){
+	if(premiereFois){
 		sauvegardeEndroit = endroit.name;
 		ennemiApparu = ennemis[choixEnnemi(type)];
 	}
-/*else if(premiereFois == 2){
-		ennemiApparu = boss;				Boss encore a faire
-	}
-*/
 	let texte ="";
 	if(ennemiApparu.vie != 0 && personnage[5] != 0){
 		texte = "Vous rencontrez un "+ennemiApparu.race+" sur votre chemin !<br> Votre vie est à: "
@@ -948,7 +942,7 @@ function attaquer(cible){
 	if(rechargePouvoir > 0){
 		rechargePouvoir--;
 	}
-	combat(1);
+	combat(false);
 }
 //Attaque la cible en lui infligeant 15 de dégats et ensuite appelle la fonction tourEnnemi() et puis reviens à combat
 function attaqueSpeciale(cible){
@@ -963,7 +957,7 @@ function attaqueSpeciale(cible){
 		compteurAttaqueSpeciale++;
 		tourEnnemi();
 	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};	
-	combat(1);
+	combat(false);
 }
 //Utilisation d'une potion pour ajouter 30 de vie
 function utiliserPotion(){
@@ -977,7 +971,7 @@ function utiliserPotion(){
 			}
 			compteurPotion++;
 			tourEnnemi();
-			combat(1);
+			combat(false);
 		}
 		else{
 			alert("Vous êtes déjà au maximum de votre vie, vous ne pouvez pas utiliser de potion");
@@ -1236,14 +1230,6 @@ function ouvrirFormEnnemi(){
 		articleHtml("formulaireEnnemi",texte);
 		afficherEnnemi();
 	document.getElementById("liensDebut").innerHTML = "<a id='liens' href='#' onClick='afficherFormulairePerso();'>Accueil</a> <a id='liens' href='#' onCLick='ouvrirFormEnnemi();'>Création d'ennemis</a>";
-}
-
-
-// Fonction pour créer un nouvel objet ennemi
-function nouveauEnnemi(classeEnnemi, nomArmeEnnemi, degatArmeEnnemi){
-	this.race = classeEnnemi;
-	this.arme = nomArmeEnnemi;
-	this.degats = degatArmeEnnemi;
 }
 
 // Fonction qui ajoute le nouvel ennemi dans l'array
