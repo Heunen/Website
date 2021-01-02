@@ -222,7 +222,7 @@ td{
     width:10%;
 }
 #armure_en_cuir{
-        background-image:url("../images/armureCuir.png");
+    background-image:url("../images/armureCuir.png");
     text-align: center;
     background-position: center;
     background-size:contain;
@@ -230,7 +230,7 @@ td{
     width:10%;
 }
 #armure_en_fer{
-        background-image:url("../images/armureFer.png");
+    background-image:url("../images/armureFer.png");
     text-align: center;
     background-position: center;
     background-size:contain;
@@ -238,7 +238,7 @@ td{
     width:10%;
 }
 #arbalète_du_chasseur{
-        background-image:url("../images/arbalete.png");
+    background-image:url("../images/arbalete.png");
     text-align: center;
     background-position: center;
     background-size:contain;
@@ -247,7 +247,7 @@ td{
 }
 
 #dague_du_voleur{
-        background-image:url("../images/dague.png");
+    background-image:url("../images/dague.png");
     text-align: center;
     background-position: center;
     background-size:contain;
@@ -256,7 +256,7 @@ td{
 }
 
 #baguette_du_sorceleur{
-        background-image:url("../images/baguette.png");
+    background-image:url("../images/baguette.png");
     text-align: center;
     background-position: center;
     background-size:contain;
@@ -265,7 +265,7 @@ td{
 }
 
 #epee_du_gladiateur{
-        background-image:url("../images/epee.png");
+    background-image:url("../images/epee.png");
     text-align: center;
     background-position: center;
     background-size:contain;
@@ -283,7 +283,7 @@ td{
 }
 
 #trophée_d_arène{
-        background-image:url("../images/trophee.png");
+    background-image:url("../images/trophee.png");
     text-align: center;
     background-position: center;
     background-size:contain;
@@ -292,7 +292,7 @@ td{
 }
 
 #laisser_passer{
-        background-image:url("../images/autoMaire.png");
+    background-image:url("../images/autoMaire.png");
     text-align: center;
     background-position: center;
     background-size:contain;
