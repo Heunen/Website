@@ -933,7 +933,7 @@ let rechargePouvoir = 0;
 *
 * @example - combat(true,"instanceForet","aleatoire");
 */
-function combat(premiereFois,endroit,type){
+function combat(premiereFois,endroit,type="aleatoire"){
 	if(premiereFois){
 		sauvegardeEndroit = endroit.name;
 		ennemiApparu = ennemis[choixEnnemi(type)];
@@ -1029,7 +1029,7 @@ function tourEnnemi(){
 //Fonction qui permet de choisir un ennemi aléatoire dans la liste d'ennemis via la fonction nombreAleatoire() et permet de choisir un ennemi en fonction de sa race si celle-ci a ete donnée
 function choixEnnemi(type){
 	let choix = 9999;
-	if(type == "aleatoire" || type === undefined){
+	if(type == "aleatoire"){
 		choix = nombreAleatoire()*(ennemis.length-1)/10;
 		return Math.round(choix);
 	}
