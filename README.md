@@ -34,7 +34,13 @@ En résumé, l'ordre des étapes est :
 
 Une fois arrivé à une des fins du jeu, vous pouvez voir un récapitulatif des statistiques de votre partie, les infos de votre personnage, le temps pris pour finir une partie, le nombre d'ennemis vaincus, le nombre de potions bues et le nombre d'attaques spéciales utilisées.
 
+Instance intro :
 
+Le but d'instance d'introduction est d'introduire l'histoire via un dialogue. Le dialogue est fait de façon à ce que les réponses varient selon ce que le joueur choisit en cliquant sur le bouton, et donc en changeant de réponse, une réponse différente est chargée. Il n'y a actuellement pas beaucoup de réponses initialisées, mais il est possible d'en paramétrer plus pour rendre le dialogue encore plus interactif.
+
+Instance auberge :
+
+L'instance auberge est une instance divisée en 3 boutons. Ces boutons ont pour but de soigner le joueur d'un certain nombre de points de vie, afin de lui permettre de continuer l'aventure sans acheter des potions de soin. Les 3 fonctions associées fonctionnent sur un principe simple, elles augmentent les points de vie du joueur d'un nombre prédéfini (50-75-100), en prenant en compte les points de vie maximum du joueur étant donné que ceux-ci varient dans le courant de l'aventure via l'armure. Les points de vie ne peuvent donc pas dépasser le maximum donné.
 
 Instance arène :
 
@@ -71,6 +77,9 @@ Elle donne les infos basiques de notre personnage (classe, nom et age), le temps
 
 Pour redémarrer une partie il faut alors rafrichir la page pour que tout se réinitiallise.
 
+Fonctions de déplacement:
+
+La fonction de déplacement est une instance permettant de charger toutes les autres. Chaque instance a donc un bouton qui est relié à la fonction correspondante, afin de rejoindre l'instance souhaitée. Certaines instances ne sont pas disponibles depuis certains endroits, la fonction varie donc pour chaque endroit dans lequel le joueur se trouve.
 
 Fonctions de combat :
 
