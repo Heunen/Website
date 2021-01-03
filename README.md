@@ -83,6 +83,10 @@ La fonction magasinAcheter test si le joueur a assez de pièce. Si le joueur n'a
 De plus lors d'un achat d'objet réussi, le jeu appel la fonction Stat qui va modifier les statistiques du joueur selon l'achat et supprimer dans l'inventaire du joueur les objets inutiles (Lors de l'achat de l'armure en fer, si le joueur a une armure en cuir celle-ci est supprimée).
 L'arme proposée dans le magasin est une amélioration de l'arme de base du joueur. En fonction de la classe que le joueur a selectionné début de l'aventure l'arme aura un nom différent.
 
+Instance Foret : 
+Dans cette instance le joueur a lors de l'appel de instanceForet la possiblité de cliquer sur se balader. S'il part se balader un texte s'affiche en conséquence.
+Si le joueur a accepté la quête du villageois en plus du bouton retour à l'entrée de la forêt, il peut aller couper du bois.
+Lors de l'appel de la fonction couperDuBois, la fonction nombreAleatoire est appelée en fonction de son résultat le joueur recevra une notification disant qu'il a coupé du bois et reçoit du bois, l'autre possibilité est qu'il rencontre un monstre sauvage et un combat est lancé.
 Instance camp :
 
 Le camp est divisé en 2 fonctions :
