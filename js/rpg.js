@@ -50,7 +50,7 @@ function ajouterPersonnage(formulaire) {
 		case "Voleur": attaque = "Attaque sournoise"; break;
 	}
   // enregistrer le personnage dans le tableau
-  // [ nom, age, classe, sexe, niveau, vie, attaque spéciale, vie max] 
+  // [ nom, age, classe, sexe, horloge, vie, attaque spéciale, vie max] 
   personnage.push( formulaire.name.value, formulaire.age.value,
                       formulaire.classe.value, formulaire.sexe.value, horloge, 100, attaque, 100 );
   // La classe choisit par le joueur défini l'arme qui va être proposé dans le magasin.
