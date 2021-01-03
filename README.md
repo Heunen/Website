@@ -48,6 +48,21 @@ Instance auberge :
 
 L'instance auberge est une instance divisée en 3 boutons. Ces boutons ont pour but de soigner le joueur d'un certain nombre de points de vie, afin de lui permettre de continuer l'aventure sans acheter des potions de soin. Les 3 fonctions associées fonctionnent sur un principe simple, elles augmentent les points de vie du joueur d'un nombre prédéfini (50-75-100), en prenant en compte les points de vie maximum du joueur étant donné que ceux-ci varient dans le courant de l'aventure via l'armure. Les points de vie ne peuvent donc pas dépasser le maximum donné.
 
+Instance Village :
+
+l'instace village est divisée en 3 fonctions principales :
+
+La première, instanceVillage, est utilisée pour l'arrivée dans le village, deux options sont possibles parler au maire du villageois ou a un villageois.
+
+Lorsqu'on appele la fonction dialogueMaireDuVillage, la toute première fois un dialogue s'affiche et il offre au joueur un tablard se qui change la varialbe global aParleAuMaireDuVillage en lui affectant la valeur 1. Si on rappelle la fonction dialogeMaireDuVillage on vérifie si le joueur lui a déja parlé à l'aide la variable global précèdement dites, et un dialogue en conséquance s'affiche. Si le joueur dispose de l'objet : trophée d'arène, alors un autre dialogue s'affiche et le joueur reçoit l'objet : Laissez passer.
+
+Lorsque qu'on appelle la fonction dialogueVillageois, ici il y a 4 dialogues différents possible : 
+1) Si le joueur n'avez pas encore parlé au maire du village, il n'y a qu'un simple dialogue
+2) Après avoir parlé au maire du village le villageois va quémander de l'aide, le joueur peut accepter via un boutton. Si le joueur accepte la quete, il reçoit une hache, et la variable globale queteBois change en conséquence.
+3) Si le joueur a accepter la quete un dialogue est affiché et un boutton propose de remmettre 30 bois. Si le joueur clic sur le bouton et qu'il dispode de 30 bois la fonction dialogueVillageois est réinvoqué et la variable globale queteBois change de valeur, sinon le joueur reçoit un alert disant qu'il ne dispose pas de 30 bois.
+Lors de la validation de la quête le joueur reçoit aussi 30 pièces d'argent et un ticket d'arène.
+4) Si le joueur a finit la quête, un dialogue le remerciant s'affiche.
+
 Instance arène :
 
 L'instance arène est divisée en 2 fonctions :
@@ -59,6 +74,14 @@ Si les deux conditions ne sont pas remplies, on indique qu'on ne peut participer
 Si elles sont remplies, on lance les combats de l'arène tout en comptant leur nombre pour pouvoir arrêter après 3. Le compteur de combat permet aussi d'afficher un texte different pour le permier combat et les autres.
 Les combats sont réalisés en utilisant la fonction combat.
 Une fois les 3 combats finis, on indique que l'arène est finie et on ajoute 45 dans l'argent et un trophée d'arène dans l'inventaire, c'est ce qu'on gagne pour avoir fini l'arène.
+
+Instance Magasin :
+
+Dans cette instance, le joueur peut cliquer sur un bouton pour parler au marchand. Le marchand propose différent objets que le joueur peut acheter.
+La fonction ListeMagasin permet d'afficher la liste de tout les objets disponible et leur prix sous forme de boutton qui lorsque le joueur clique dessus lancer la fonction magasinAcheter.
+La fonction magasinAcheter test si le joueur a assez de pièce. Si le joueur n'a pas assez de pièces pour un item, un texte s'affiche disant que le joueur ne dispose pas d'assez d'argent, et un boutton propose au joueur de revenir dans la boutique. Sinon si le joueur dispose assez d'argent on retire le prix de l'objet au porte-feuille du joueur et on retire au magasin un exemplaire de l'objet acheté, s'il n'y a plus d'objet de la même sort, lors du prochain appel de la fonction magasin celui-ci ne proposa plus cet objet en question.
+De plus lors d'un achat d'objet réussi, le jeu appel la fonction Stat qui va modifier les statistiques du joueur selon l'achat et supprimer dans l'inventaire du joueur les objets inutiles (Lors de l'achat de l'armure en fer, si le joueur a une armure en cuir celle-ci est supprimée).
+L'arme proposée dans le magasin est une amélioration de l'arme de base du joueur. En fonction de la classe que le joueur a selectionné début de l'aventure l'arme aura un nom différent.
 
 Instance camp :
 
