@@ -537,7 +537,7 @@ function listeMagasin(){
 }
 function magasinAcheter(p,chiffre){
 	let msg="";
-	if(argent>magasinPrix[chiffre]){
+	if(argent>=magasinPrix[chiffre]){
 		argent-=magasinPrix[chiffre];
 		ajouterSac(p,1);
 		retirerMagasin(p,chiffre);
@@ -1104,7 +1104,7 @@ function espace(mot){
 		if(mot[i]==" " || mot[i]=="'"){
 			newMot+="_";
 		}
-		if (mot[i] == "é" ||mot[i] == "è" ||mot[i] == "ê"){
+		else if (mot[i] == "é" ||mot[i] == "è" ||mot[i] == "ê"){
 			newMot+= "e";
 		}
 		else if (mot[i] == "à"){
