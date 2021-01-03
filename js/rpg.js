@@ -1105,16 +1105,16 @@ function espace(mot){
 			newMot+="_";
 		}
 		if (mot[i] == "é" ||mot[i] == "è" ||mot[i] == "ê"){
-			mot[i] = "e";
+			newMot+= "e";
 		}
 		else if (mot[i] == "à"){
-			mot[i] = "a";
+			newMot+= "a";
 		}
 		else if (mot[i] == "ç"){
-			mot[i] = "c";
+			newMot+= "c";
 		}
 		else if (mot[i] == "ù" || mot[i]=="û"){
-			mot[i] = "u";
+			newMot+= "u";
 		}
 		else{
 			newMot+=mot[i];
