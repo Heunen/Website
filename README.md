@@ -89,6 +89,10 @@ Dans cette instance le joueur a, lors de l'appel de instanceForet, la possibilit
 Si le joueur a accepté la quête du villageois en plus du bouton retour à l'entrée de la forêt, il peut aller couper du bois.
 Lors de l'appel de la fonction couperDuBois, la fonction nombreAleatoire est appelée en fonction de son résultat le joueur recevra une notification disant qu'il a coupé du bois et reçoit du bois, l'autre possibilité est qu'il rencontre un monstre sauvage et un combat est lancé.
 
+Instance Pont :
+
+La fonction instancePont sert à afficher un dialogue à l'arrivée sur le pont. Le bouton "Montrer votre laissez-passer'' est disponible. Celui-ci appelle la fonction laissezPasser qui vérifie si un laissez-passer est dans l'inventaire du joueur et s'il y en un, lance l'instance camp. Sinon indique qu'il ne peut passer et le renvoie vers le village.  
+
 Instance camp :
 
 Le camp est divisé en 2 fonctions :
@@ -162,19 +166,19 @@ La fonction afficherEnnemi affiche la liste d'ennemis qu'on à pour la partie. I
 La fonction supprimer permet de supprimer l'ennemi choisi. Elle à comme a paramètre l'index de l'ennemi à supprimer et l'enlève du tableau avec un splice. Elle appelle ensuite la fonction afficherEnnemi pour mettre à jour la liste.
 
 Fonction d'inventaire :
-L'inventaire est tableau assiotatif dans lequel est stocké les divers objets récupérés lors de l'aventure.
-Pour cela lles fonctions ajouterSac et retirerSac on était crée afin de pouvoir ajouter et supprimer des objets.
-La fonction ajouterSac reçoit comme paramètre le nom de l'objet a ajouter et le nombre de fois que le jour l'a.
-La fonction retirerSac elle reçoit un seul paramètre, le nom de l'objet, et renvoie un boolean si l'objet a bien été retiré ou pas. Si le joueur n'a pas cet objet false est renvoyé.
-Si après le retrair d'un objet celui n'est plus en aucun exemplaire dans le sac la fonction retirerSac suprrime cet objet du sac.
-L'inventaire peut être affiché plus ou moins partout dans l'aventure. Lorsqu'on l'affiche, la fonction afficher l'inventaire est appelée si l'inventaire est déjà affiché il ne se passe rien, sinon cela l'affiche.
-Un boutton permettant de retirer l'affichage de l'inventaire est crée aussi.
-L'inventaire est affiché dans un <table> et chaque objet à sa <td>. La <td> associée à chaque objet a pour id le nom de l'objet et comme contenu le nombre de fois que l'objet et dans l'inventaire. Afin de pouvoir gérer via le css l'affichage de ses objets en image facilement. 
+L'inventaire est un tableau associatif dans lequel sont stockés les divers objets récupérés lors de l'aventure.
+Pour cela les fonctions ajouterSac et retirerSac on été créées afin de pouvoir ajouter et supprimer des objets.
+La fonction ajouterSac reçoit comme paramètre le nom de l'objet à ajouter et le nombre de fois que le joueur l'a.
+La fonction retirerSac reçoit un seul paramètre, le nom de l'objet, et renvoie un boolean si l'objet a bien (ou pas) été retiré. Si le joueur n'a pas cet objet, false est renvoyé.
+Si après le retrait d'un objet, celui n'est plus en aucun exemplaire dans le sac, la fonction retirerSac suprrime le nom de cet objet du sac.
+L'inventaire peut être affiché plus ou moins partout pendant l'aventure. Lorsqu'on l'affiche, la fonction afficherInventaire est appelée si l'inventaire est déjà affiché il ne se passe rien.
+Un bouton permettant de retirer l'affichage de l'inventaire est créé aussi.
+L'inventaire est affiché dans un <table> et chaque objet à sa <td>. La <td> associée à chaque objet a pour id le nom de l'objet et comme contenu le nombre de fois que l'objet est dans l'inventaire. Afin de pouvoir gérer via le css l'affichage de ces objets en image facilement. 
 
-Fonction d'instancation :
-Il y a deux fonction d'instancation. La seconde appelant la première en rajoutant un bouton afficher l'inventaire dans l'article html que la fonction va génerer
-La fonction articleHtml prends comme paramètre le nom de l'instance et le second paramètre le texte html a ajouter.
-Ce que fait cette fonction est simple, elle génère du code html. Elle crée une <div> avec comme id le nom de l'instance	et dans cette <div> deux articles un article qui a pour id le nom de l'instance + Text (exemple foretText) et un second article qui a pour id le nom de l'instance + Image (propriété que nous aurons pas utilisé dans ce projet finalement).
-Ces deux fonction sont utiles pour permettre de mettre des règles css en fonction de l'instance auquel le joueur se situe et de modifier facilement le html.
-la fonction articleHtmlSac est utilisée pour pouvoir rajouter un bouton afficher l'inventaire partout où il le faut. A chaque appel de cet fonction on attribut à la variable affiche la valeur false pour être sur que l'inventaire s'affiche correctement.
+Fonction d'instanciation :
+Il y a deux fonctions d'instanciation. La seconde appelant la première en rajoutant un bouton afficher l'inventaire dans l'article html que la fonction va générer
+La fonction articleHtml prend comme paramètre le nom de l'instance et le second paramètre le texte html à ajouter.
+Ce que fait cette fonction est simple, elle génère du code html. Elle crée une <div> avec comme id le nom de l'instance	et dans cette <div> deux articles. Un article qui a pour id le nom de l'instance + Text (exemple foretText) et un second article qui a pour id le nom de l'instance + Image (propriété que nous n'aurons pas utilisée dans ce projet finalement).
+Ces deux fonctions sont utiles pour permettre de mettre des règles css en fonction de l'instance dans laquelle le joueur se situe et de modifier facilement le html.
+La fonction articleHtmlSac est utilisée pour pouvoir rajouter un bouton afficher l'inventaire partout où il le faut. A chaque appel de cet fonction on attribue à la variable afficher la valeur false pour être sûr que l'inventaire s'affiche correctement.
 
