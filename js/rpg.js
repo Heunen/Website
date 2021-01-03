@@ -365,8 +365,8 @@ function aubergeAction(msg,nombre){
 let aParleAuMaireDuVillage=0;	
 let	queteBois=0;									   
 function instanceVillage(){     
-  let texte="Bienvenue au village Ephec est afiché en toute lettre sur un panneau. Vous voilà au centre de ce petit village isolé de tout, la plupart des bâtiments sont délabrés;
-  texte+="commme si tout était abandonnés. Sur la grand place deux batiments se distinguent par leur état encore partiellement intact : le Magasin, et la Mairie. ";
+  let texte="\"Bienvenue au village Ephec\" est afiché en toute lettre sur un panneau. Vous voilà au centre de ce petit village isolé de tout, la plupart des bâtiments sont délabrés";
+  texte+="commme si tout était abandonné. Sur la grand place deux batiments se distinguent de par leur état encore partiellement intact : le Magasin, et la Mairie. ";
   texte+="<br> <button onClick='dialogueMaireDuVillage()'>Aller parler au maire du village</button>";
   texte+="<button onClick='dialogueVillageois()'>Aller parler à un villageois</button>";
   texte+="<button onClick='seDeplacerVillage()'>Se déplacer</button>";
