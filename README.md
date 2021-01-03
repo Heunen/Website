@@ -5,20 +5,20 @@ Projet de groupe.
 
 Introduction :
 
-Pour ce projet, nous avons fait un jeu vidéo de style rpg (roleplay game). En arrivant sur la page d'acceuil, vous serez amené à créer votre propre personnage à l'aide d'un formulaire et vous pouvez aussi naviguer vers un autre "onglet" pour ajouter des ennemis personnalisés qui pourront apparaitre au cours de votre aventure, cette page de personnalisation d'ennemis ne sera plus accessible au lancement de la partie.
-Une fois votre personnage créé, vous pourrez commencer la partie. Pour avoir plus simple et ne pas devoir refaire toute l'histoire pour aller à chaque évênement, vous avez la possiblité d'utiliser des commandes de "triche" pour accéder à certains endroits et à certaines actions qui ne seraient pas disponnibles en début de partie normalement.
+Pour ce projet, nous avons fait un jeu vidéo de style rpg (roleplay game). En arrivant sur la page d'accueil, vous serez amené à créer votre propre personnage à l'aide d'un formulaire et vous pouvez aussi naviguer vers un autre "onglet" pour ajouter des ennemis personnalisés qui pourront apparaitre au cours de votre aventure, cette page de personnalisation d'ennemis ne sera plus accessible au lancement de la partie. Une fois votre personnage créé, vous pourrez commencer la partie. Pour avoir plus simple et ne pas devoir refaire toute l'histoire pour aller à chaque évênement.
 Dans la partie, du texte s'affichera à l'écran, celui-ci vous donnera des informations et/ou des dialogues avec les personnages du jeu. Vous pourrez alors avancer dans l'histoire avec des boutons et à certains endroits faire des choix qui auront une influence sur la fin de votre partie (il y a 6 fins differentes).
 Les combats sont aussi joués avec des boutons et fonctionnent avec un système de tour par tour. Lors de votre tour, vous pouvez soit attaquer un ennemi, utiliser votre attaque spéciale (à un temps de recharge) ou utiliser une potion pour regagner de la vie.
 
 Particularité du fonctionement du code :
 
-Pour vous parler de la partie plus technique du jeu, nous avons décidés de vous expliquer ici, sans rentrer dans les détails des différents codes de notre js, comment nous avons procéder pour mettre en place notre jeu.
-Notre code js fonctionne principalement par appel de fonction. C'est à dire que techniquement toutes les fonctions sont "reliés" et permettent d'invoquer d'autres fonctions à l'aide de bouton généré dans la page html. 
-Nous avons décidé de séparer les "lieux" en différentes instances. Chaque lieu correspond à une instance de lieu qui correspond a une fonction dans le js. Quand nous entrons dans un lieu sur le jeu, nous appelons dans le js la fonction correspondante. 
-Lorsque le joueur arrive dans un lieu, il a disponibilité plusieurs boutons en fonction de son avancée dans le scénario. Chaque bouton appele des fonctions dite de "sous-instances".
-C'est à dire que ses fonctions correspondent à des actions possibles seulement dans le lieu de l'instance en cours.
-Nous avons un troisième type de fonction dans le code, ce sont les fonctions utilitaires, qui ne corespondent à aucune instance précise, et qui peuvent être appelé soit par nos fonctions d'instance ou de sous-instances soit par des boutons. Globalement ce sont des fonctions conçues pour réaliser une action qui va être réutilisée dans différentes instances (par exemple : la fonction combat [détaillée plus loin], la fonction nombreAleatoire qui crée un nombre aléatoire entre 0 et 10, ...).
-Etant donné que notre site web change dynamiquement en fonction des fonctions appelés. Nous avons crée une fonction qui permet, lors de l'appel de celle-ci, génerer dans la page html un article dont l'ID correspont à l'instance auquel on se situe. Ainsi chaque instances, et ses sous-instances correspondantes, pourrons recevoir les mêmes règles css.
+Pour vous parler de la partie plus technique du jeu, nous l'expliquons ici sans rentrer dans les détails les différents codes de notre js et comment nous avons procédé pour mettre en place notre jeu.
+Notre code js fonctionne principalement par appel de fonctions. C'est à dire que techniquement toutes les fonctions sont "reliées" et permettent d'en invoquer d'autres à l'aide de boutons générés dans la page html. 
+Nous avons décidé de séparer les "lieux géographiques" du jeu en différentes instances. Chaque lieu correspond à une instance qui réfère à une fonction dans le js. Quand nous entrons dans un lieu sur le jeu, nous appelons dans le js la fonction correspondante. 
+Et lorsque le joueur arrive dans un lieu, il a à disponibilité un ou plusieurs boutons en fonction de son avancée dans le scénario. Chaque bouton appele des fonctions dites de "sous-instances".
+C'est-à-dire que ces fonctions correspondent à des actions possibles seulement dans le lieu de l'instance en cours.
+Nous avons un autre type de fonctions dans le code, les fonctions utilitaires, qui ne correspondent à aucune instance précise, et qui peuvent être appelées, soit par nos fonctions d'instances ou de sous-instances, soit par des boutons.
+Globalement ce sont des fonctions conçues pour réaliser une action qui peut être réutilisée dans différentes instances (par exemple : la fonction combat [détaillée plus loin], la fonction nombreAleatoire qui crée un nombre aléatoire entre 0 et 10, ...).
+Etant donné que notre site web change dynamiquement en fonction des fonctions appelées. Nous avons créé une fonction qui permet, lors de l'appel de celle-ci, de générer dans la page html un article dont l'ID correspond à l'instance où on se situe. Ainsi chaque instance et chaque sous-instance correspondante, aura les mêmes règles css.
 
 
 Fil rouge : 
