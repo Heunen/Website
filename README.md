@@ -50,18 +50,18 @@ L'instance auberge est une instance divisée en 3 boutons. Ces boutons ont pour 
 
 Instance Village :
 
-l'instace village est divisée en 3 fonctions principales :
+L'instance village est divisée en 3 fonctions principales :
 
 La première, instanceVillage, est utilisée pour l'arrivée dans le village, deux options sont possibles parler au maire du villageois ou a un villageois.
 
-Lorsqu'on appele la fonction dialogueMaireDuVillage, la toute première fois un dialogue s'affiche et il offre au joueur un tablard se qui change la varialbe global aParleAuMaireDuVillage en lui affectant la valeur 1. Si on rappelle la fonction dialogeMaireDuVillage on vérifie si le joueur lui a déja parlé à l'aide la variable global précèdement dites, et un dialogue en conséquance s'affiche. Si le joueur dispose de l'objet : trophée d'arène, alors un autre dialogue s'affiche et le joueur reçoit l'objet : Laissez passer.
+Lorsqu'on appele la fonction dialogueMaireDuVillage, la toute première fois un dialogue s'affiche et il offre au joueur un tablard ce qui change la variable globale aParleAuMaireDuVillage en lui affectant la valeur 1. Si on rappelle la fonction dialogeMaireDuVillage on vérifie si le joueur lui a déja parlé à l'aide la variable globale précèdement dites, et un dialogue en conséquance s'affiche. Si le joueur dispose de l'objet : trophée d'arène, alors un autre dialogue s'affiche et le joueur reçoit l'objet : Laissez passer.
 
-Lorsque qu'on appelle la fonction dialogueVillageois, ici il y a 4 dialogues différents possible : 
-1) Si le joueur n'avez pas encore parlé au maire du village, il n'y a qu'un simple dialogue
-2) Après avoir parlé au maire du village le villageois va quémander de l'aide, le joueur peut accepter via un boutton. Si le joueur accepte la quete, il reçoit une hache, et la variable globale queteBois change en conséquence.
-3) Si le joueur a accepter la quete un dialogue est affiché et un boutton propose de remmettre 30 bois. Si le joueur clic sur le bouton et qu'il dispode de 30 bois la fonction dialogueVillageois est réinvoqué et la variable globale queteBois change de valeur, sinon le joueur reçoit un alert disant qu'il ne dispose pas de 30 bois.
+Lorsque qu'on appelle la fonction dialogueVillageois, ici il y a 4 dialogues différents possibles : 
+1) Si le joueur n'a pas encore parlé au maire du village, il n'y a qu'un simple dialogue
+2) Après avoir parlé au maire du village le villageois va quémander de l'aide, le joueur peut accepter via un bouton. Si le joueur accepte la quête, il reçoit une hache, et la variable globale queteBois change en conséquence.
+3) Si le joueur a accepté la quête un dialogue est affiché et un bouton propose de remettre 30 bois. Si le joueur clique sur le bouton et qu'il dispose de 30 bois la fonction dialogueVillageois est réinvoquée et la variable globale queteBois change de valeur, sinon le joueur reçoit un alert disant qu'il ne dispose pas de 30 bois.
 Lors de la validation de la quête le joueur reçoit aussi 30 pièces d'argent et un ticket d'arène.
-4) Si le joueur a finit la quête, un dialogue le remerciant s'affiche.
+4) Si le joueur a fini la quête, un dialogue le remerciant s'affiche.
 
 Instance arène :
 
@@ -77,16 +77,18 @@ Une fois les 3 combats finis, on indique que l'arène est finie et on ajoute 45 
 
 Instance Magasin :
 
-Dans cette instance, le joueur peut cliquer sur un bouton pour parler au marchand. Le marchand propose différent objets que le joueur peut acheter.
-La fonction ListeMagasin permet d'afficher la liste de tout les objets disponible et leur prix sous forme de boutton qui lorsque le joueur clique dessus lancer la fonction magasinAcheter.
-La fonction magasinAcheter test si le joueur a assez de pièce. Si le joueur n'a pas assez de pièces pour un item, un texte s'affiche disant que le joueur ne dispose pas d'assez d'argent, et un boutton propose au joueur de revenir dans la boutique. Sinon si le joueur dispose assez d'argent on retire le prix de l'objet au porte-feuille du joueur et on retire au magasin un exemplaire de l'objet acheté, s'il n'y a plus d'objet de la même sort, lors du prochain appel de la fonction magasin celui-ci ne proposa plus cet objet en question.
-De plus lors d'un achat d'objet réussi, le jeu appel la fonction Stat qui va modifier les statistiques du joueur selon l'achat et supprimer dans l'inventaire du joueur les objets inutiles (Lors de l'achat de l'armure en fer, si le joueur a une armure en cuir celle-ci est supprimée).
-L'arme proposée dans le magasin est une amélioration de l'arme de base du joueur. En fonction de la classe que le joueur a selectionné début de l'aventure l'arme aura un nom différent.
+Dans cette instance, le joueur peut cliquer sur un bouton pour parler au marchand. Le marchand propose différents objets que le joueur peut acheter.
+La fonction ListeMagasin permet d'afficher la liste de tous les objets disponibles et leur prix sous forme de bouton qui, lorsque le joueur clique dessus, lance la fonction magasinAcheter.
+La fonction magasinAcheter teste si le joueur a assez de pièce. Si le joueur n'a pas assez de pièces pour un item, un texte s'affiche disant que le joueur ne dispose pas d'assez d'argent, et un bouton propose au joueur de revenir dans la boutique. Si le joueur dispose assez d'argent on retire le prix de l'objet au portefeuille du joueur et on retire au magasin un exemplaire de l'objet acheté, s'il n'y a plus d'objets de la même sorte, lors du prochain appel de la fonction magasin celui-ci ne proposa plus cet objet en question.
+De plus lors d'un achat d'objet réussi, le jeu appelle la fonction Stat qui va modifier les statistiques du joueur selon l'achat et supprimer dans l'inventaire du joueur les objets inutiles (lors de l'achat de l'armure en fer, si le joueur a une armure en cuir celle-ci est supprimée).
+L'arme proposée dans le magasin est une amélioration de l'arme de base du joueur. En fonction de la classe que le joueur a sélectionnée début de l'aventure l'arme aura un nom différent.
 
 Instance Foret : 
-Dans cette instance le joueur a lors de l'appel de instanceForet la possiblité de cliquer sur se balader. S'il part se balader un texte s'affiche en conséquence.
+
+Dans cette instance le joueur a, lors de l'appel de instanceForet, la possibilité de cliquer sur :"se balader". S'il part se balader un texte s'affiche en conséquence.
 Si le joueur a accepté la quête du villageois en plus du bouton retour à l'entrée de la forêt, il peut aller couper du bois.
 Lors de l'appel de la fonction couperDuBois, la fonction nombreAleatoire est appelée en fonction de son résultat le joueur recevra une notification disant qu'il a coupé du bois et reçoit du bois, l'autre possibilité est qu'il rencontre un monstre sauvage et un combat est lancé.
+
 Instance camp :
 
 Le camp est divisé en 2 fonctions :
