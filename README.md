@@ -160,3 +160,21 @@ La fonction ajouterEnnemi ajoute l'objet ennemi dans le tableau d'ennemis. Avant
 La fonction afficherEnnemi affiche la liste d'ennemis qu'on à pour la partie. Il y a au début de la liste les 6 ennemis du base du jeu et ensuite ceux qui ont été ajoutés manuellement. Ceux ajoutés peuvent être supprimés en cliquant sur le bouton supprimer qui s'affiche à coté d'eux dans la liste.
 
 La fonction supprimer permet de supprimer l'ennemi choisi. Elle à comme a paramètre l'index de l'ennemi à supprimer et l'enlève du tableau avec un splice. Elle appelle ensuite la fonction afficherEnnemi pour mettre à jour la liste.
+
+Fonction d'inventaire :
+L'inventaire est tableau assiotatif dans lequel est stocké les divers objets récupérés lors de l'aventure.
+Pour cela lles fonctions ajouterSac et retirerSac on était crée afin de pouvoir ajouter et supprimer des objets.
+La fonction ajouterSac reçoit comme paramètre le nom de l'objet a ajouter et le nombre de fois que le jour l'a.
+La fonction retirerSac elle reçoit un seul paramètre, le nom de l'objet, et renvoie un boolean si l'objet a bien été retiré ou pas. Si le joueur n'a pas cet objet false est renvoyé.
+Si après le retrair d'un objet celui n'est plus en aucun exemplaire dans le sac la fonction retirerSac suprrime cet objet du sac.
+L'inventaire peut être affiché plus ou moins partout dans l'aventure. Lorsqu'on l'affiche, la fonction afficher l'inventaire est appelée si l'inventaire est déjà affiché il ne se passe rien, sinon cela l'affiche.
+Un boutton permettant de retirer l'affichage de l'inventaire est crée aussi.
+L'inventaire est affiché dans un <table> et chaque objet à sa <td>. La <td> associée à chaque objet a pour id le nom de l'objet et comme contenu le nombre de fois que l'objet et dans l'inventaire. Afin de pouvoir gérer via le css l'affichage de ses objets en image facilement. 
+
+Fonction d'instancation :
+Il y a deux fonction d'instancation. La seconde appelant la première en rajoutant un bouton afficher l'inventaire dans l'article html que la fonction va génerer
+La fonction articleHtml prends comme paramètre le nom de l'instance et le second paramètre le texte html a ajouter.
+Ce que fait cette fonction est simple, elle génère du code html. Elle crée une <div> avec comme id le nom de l'instance	et dans cette <div> deux articles un article qui a pour id le nom de l'instance + Text (exemple foretText) et un second article qui a pour id le nom de l'instance + Image (propriété que nous aurons pas utilisé dans ce projet finalement).
+Ces deux fonction sont utiles pour permettre de mettre des règles css en fonction de l'instance auquel le joueur se situe et de modifier facilement le html.
+la fonction articleHtmlSac est utilisée pour pouvoir rajouter un bouton afficher l'inventaire partout où il le faut. A chaque appel de cet fonction on attribut à la variable affiche la valeur false pour être sur que l'inventaire s'affiche correctement.
+
