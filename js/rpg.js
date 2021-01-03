@@ -127,6 +127,7 @@ function instanceIntro(){
   texte+="<br> <button onClick='introHist()'>Lancer l'aventure</button>";
   articleHtml(nomDeInstance,texte);
 }
+//lance l'aventure
 function introHist(){
     let texte="<!--Introduction à l'histoire-->"+
         "<section>"+
@@ -137,6 +138,8 @@ function introHist(){
     articleHtml("intro",texte);
 }
 
+//TOUTES LES FONCTIONS CI-DESSOUS CORRESPONDENT AU DIALOGUE D'INTRODUCTION
+//
 function introDia(){
     let texte=
         "<section>"+
@@ -316,6 +319,8 @@ function introDiaFin(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                      //INSTANCE Auberge
+
+//instance de l'auberge
 function instanceAuberge(){
     let texte=
         "<section>"+
@@ -330,20 +335,23 @@ function instanceAuberge(){
     articleHtmlSac("auberge",texte)
 }
 
+// regène 50 points de vie
 function aubergeBoire(){
 	let texte="Vous prenez une grande choppe d'hydromel pour vous rassasier !";
 	aubergeAction(texte,50);
 }
-
+// regène 75 points de vie
 function aubergeManger(){
 	let texte="Miam, un petit ragoût de lapin. Meilleur que celui de votre feu grand-mère.";
 	aubergeAction(texte,75);
 }
-
+// regène 100 points de vie
 function aubergeDormir(){
 	let texte="Vous passez la nuit à l'auberge.";
 	aubergeAction(texte,100);
 }
+// Applique le nombre de point de vue a regenerer. Affiche en fonction des points de vie finaux, si le joueur est totalement requinqué ou non.
+// Le message correspond à l'action effectué.
 function aubergeAction(msg,nombre){
 	let texte=msg;
 	let fullHp="";
@@ -364,8 +372,10 @@ function aubergeAction(msg,nombre){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                      //INSTANCE Village
 												   
-let aParleAuMaireDuVillage=0;	
-let	queteBois=0;									   
+let aParleAuMaireDuVillage=0;	// pour savoir si le joueur a déjà parler ou non au maire du village
+let	queteBois=0; //avancement de la quete
+
+// instance du village
 function instanceVillage(){     
   let texte="\"Bienvenue au village Ephec\" est afiché en toute lettre sur un panneau. Vous voilà au centre de ce petit village isolé de tout, la plupart des bâtiments sont délabrés";
   texte+="commme si tout était abandonné. Sur la grand place deux batiments se distinguent de par leur état encore partiellement intact : le Magasin, et la Mairie. ";
@@ -377,6 +387,7 @@ function instanceVillage(){
   
 }
 
+//function de tout les dialogues possibles avec le maire du village
 function dialogueMaireDuVillage(){
 	let dialogue = "";
 	if(sac["trophée d'arène"]){
@@ -401,6 +412,7 @@ function dialogueMaireDuVillage(){
 	 
 	aParleAuMaireDuVillage=1;
 }
+//Reception du laisser passer
 function dialogueMaireDuVillagePassePartout(){
 	let texte = "Merci à vous, je sais que vous ne nous décevrez pas !<br><br><button onClick='instanceVillage()'>Retour au Village</button>";
 	articleHtmlSac("village",texte);
@@ -409,6 +421,7 @@ function dialogueMaireDuVillagePassePartout(){
 	ajouterSac("laissez passer",1);
 }
 
+////function de tout les dialogues possibles avec le villageois
 function dialogueVillageois(){
 	let dialogue="";
 	let texte="";
@@ -434,6 +447,7 @@ function dialogueVillageois(){
 	 articleHtmlSac("village",texte);	
 
 }
+//ajoute la hache de bucheron dans le sac/inveantaire rappelle la fonction dialogueVillageois pour réactualiser le texte sans passer par un bouton.
 function recevoirHache(){
 	let msg="Vous avez reçu une hâche dans votre inventaire, utilisez la dans la forêt et veuillez récuperer 30 bouts de bois";
 	alert(msg);
@@ -441,7 +455,7 @@ function recevoirHache(){
 	queteBois=1;
 	dialogueVillageois();
 }
-
+//vérifie si le joueur peut effectivemnt rendre 30 le cas échéant retire 30 bois de l'inventaire, donne 30 pièces d'or au joueur et le ticket d'arène
 function rendreLeBois(){
 	if(sac.bois>=30){
 		queteBois=2;
@@ -509,8 +523,12 @@ function instanceAreneCombat(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                       //INSTANCE Magasin
-let magasin={"potion":99,"armure en cuir":1,"armure en fer":1};
-let magasinPrix=[6,2,15,20];
+
+let magasin={"potion":99,"armure en cuir":1,"armure en fer":1}; // Liste des objets et de leurs quantités disponibles dans le magasin
+let magasinPrix=[6,2,15,20]; // prix en lien avec les objets du magasin (notons qu'il y a bien 4 prix pour objets. Le 4eme et dernier objet et ajouté lors de la création d'un personnage
+ 			     // en fonction de la classe de celui-ci
+
+//insntance du magasin
 function instanceMagasin(){
 		let texte="Vous entrez dans le seul batiment qui semble ouvert sur la place du village. Vous pouvez apercevoir quelques objet dont vous ne"
 				 +" percevez pas l'utilité. Au fond de la pièce se trouve un vieil homme barbu qui vous offre son plus beau sourire edenté";
@@ -520,12 +538,13 @@ function instanceMagasin(){
   articleHtmlSac("magasin",texte);	
 	
 }
- 
+//dialogue avec le marchand 
 function dialogueMarchand(){
 	let dialogue="Que voulez-vous donc acheter dans ma modeste boutique aventurier ?";
 	let texte=dialogue + "<br><button onClick='listeMagasin()'>Consulter les objets proposés.</button>";
 	articleHtmlSac("magasin",texte);	
 }
+//crée du texte avec le texte et ajoute un bouton pour chaque item disponibles dans le magasin avec leurs prix.
 function listeMagasin(){
 	let texte="Voici toutes mes possessions qui pourraient vous interesser aventurier !<br>";
 	let compteur=0;
@@ -543,7 +562,7 @@ function listeMagasin(){
 *	dans la variable magasin.
 *	Affiche ensuite en appelant la fonction articleHtmlSac si l'objet a bien été acheté et un boutton qui appelle la fonction stat lorsqu'on appuit dessus.	
 * @param {string} p - le nom de l'objet a acheter
-* @param {number} chiffre - le prix de l'objet
+* @param {number} chiffre - l'index du prix correspondant à l'objet a acheter dans le tableau magasinPrix
 *
 * @example - magasinAcheter("potion",6);
 */
@@ -561,6 +580,9 @@ function magasinAcheter(p,chiffre){
 	let texte=msg+ "<br><button onClick='stat()'>Ok</button>";
 	articleHtmlSac("magasin",texte);
 }
+//retirer un exemplaire de  l'item p. La variable chiffre est l'index dans le tableau magasinPrix qui correspont au prix de l'objet en question.
+// si l'objet n'a plus d'exemplaire après le retrait de celui-ci, supprime l'objet du magasin et son prix du magasinPrix pour éviter tout mauvais raccord par après.
+// le prix de l'objet et supprimé via la fonction nvxTab
 function retirerMagasin(p,chiffre){
 		if(magasin[p]==1){
 			delete magasin[p];
@@ -570,6 +592,7 @@ function retirerMagasin(p,chiffre){
 			magasin[p]--;
 		}
 }
+//supprime dans un tableau la valur stocké à l'index chiffre. 
 function nvxTab(chiffre){
 	let tab=[];
 	for(let i=0;i<magasinPrix.length;i++){
@@ -580,6 +603,9 @@ function nvxTab(chiffre){
 	}
 	return tab;
 }
+//change les stats du personnage en fonction des items acheté, et supprime amure en cuir de l'inventaire si l'armure en fer est achetée.
+//est appelé dans magasin acheté par le bouton ok
+//appel la fonction listeMagasin à la fin pour recharger le magasin.
 function stat(){
 	for(let p in equipement){
 		if(p in sac){
@@ -598,6 +624,7 @@ function stat(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Foret
+//instance foret
 function instanceForet(){
 	let texte="Après avoir arpenté une petite route délabrée vous arrivez dans une petite clairière où débute une grande fôret de séquoias";
 		texte+="<br><button onClick='seBalader()'>Se balader dans la forêt</button>";
@@ -605,6 +632,7 @@ function instanceForet(){
   
   articleHtmlSac("foret",texte);
 }
+//se balader dans la foret, si le joueur a une hache, propose d'aller couper du bois.
 function seBalader(){
 	let chiffre;
 	let dialogue="";
@@ -616,7 +644,7 @@ function seBalader(){
 	texte+=dialogue + "<button onClick='instanceForet()'>Retour à l'entrée de la forêt</button>";	
 	articleHtmlSac("foret",texte);	
 }	
-
+//lance un chiffre au hasard et en fonction du résultat le joueur combat un monstre ou recoit du bois. Le nombre de bois reçu est variable.
 function couperDuBois(){
 	let chiffre;
 	if(nombreAleatoire()<7){
@@ -639,6 +667,8 @@ function couperDuBois(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
                                                          //INSTANCE Pont	
+
+//instance du pont
 function instancePont(){
 	let dialogue="";
 	let texte="";
@@ -649,7 +679,7 @@ function instancePont(){
   
   articleHtmlSac("pont",texte);
 }
-
+//vérifie si le joueur a le laisser passer, si oui l'instance camp est appelée sinon on lui propose gentillement de rentrer au village.
 function laissezPasser(){
 	if(sac["laissez passer"]==1){
 		instanceCamp(0);
@@ -1053,8 +1083,9 @@ function choixEnnemi(type){
 	                                                     //function Inventaire	
 														 
 
-
-var sac={};
+//variable qui stock tout les objets que le joueur a.
+var sac={}; 
+//verifie si l'inventaire est en train d'être affiché ou non.
 let affiche=false;
 /* Fonction qui prend en paramètre l'objet que l'on doit mettre dans le sac, et le nombre de fois
 contenu est un string, nombre un integer
@@ -1104,6 +1135,7 @@ function afficherSac(){
 		document.getElementById(instanceEnCours+'Text').innerHTML+=texte;
 	} 
 }
+// function pour retirer l'affichage de l'inventaire.
 function deAfficherSac(){
 	affiche=false;
 	document.getElementById("tableInventaire").outerHTML="";
