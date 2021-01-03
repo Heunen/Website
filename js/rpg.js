@@ -34,6 +34,8 @@ let horloge = [];
 potion, hache de bûcheron, ticket d'arène, trophée d'arène, laisser passer, arbalète du chasseur, dague du voleur, baguette du sorceleur,
 epée du gladiateur, armure en cuir, armure en fer, clé.
 */
+//stock les 4 types d'armes différents et leurs classes correspondantes.
+let equipement={"arbalète du chasseur":"Archer", "dague du voleur":"Voleur", "baguette du sorceleur":"Mage","epée du gladiateur":"Guerrier"}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 												//Function Creation Personnage
@@ -509,7 +511,6 @@ function instanceAreneCombat(){
                                                       //INSTANCE Magasin
 let magasin={"potion":99,"armure en cuir":1,"armure en fer":1};
 let magasinPrix=[6,2,15,20];
-let equipement={"arbalète du chasseur":"Archer", "dague du voleur":"Voleur", "baguette du sorceleur":"Mage","epée du gladiateur":"Guerrier"}
 function instanceMagasin(){
 		let texte="Vous entrez dans le seul batiment qui semble ouvert sur la place du village. Vous pouvez apercevoir quelques objet dont vous ne"
 				 +" percevez pas l'utilité. Au fond de la pièce se trouve un vieil homme barbu qui vous offre son plus beau sourire edenté";
@@ -535,6 +536,17 @@ function listeMagasin(){
 	texte+="<br><button onClick='instanceVillage()'>Retourner au Village</button>"
 	articleHtmlSac("magasin",texte);
 }
+
+/** @function magasinAcheter
+*	Fonction qui verifie si le joueur peut acheter un objet dans le magasin. Si oui le joueur se voit retirer le prix de l'objet de son porte-feuille (la variable argent).
+*	Si cet objet n'était plus qu'en un seul exemplaire, actualise la variable magasin et supprime l'objet en question du magasin, sinon la fonction retire 1 à la valeur de l'objet 
+*	dans la variable magasin.
+*	Affiche ensuite en appelant la fonction articleHtmlSac si l'objet a bien été acheté et un boutton qui appelle la fonction stat lorsqu'on appuit dessus.	
+* @param {string} p - le nom de l'objet a acheter
+* @param {number} chiffre - le prix de l'objet
+*
+* @example - magasinAcheter("potion",6);
+*/
 function magasinAcheter(p,chiffre){
 	let msg="";
 	if(argent>=magasinPrix[chiffre]){
@@ -1098,6 +1110,7 @@ function deAfficherSac(){
 	document.getElementById("fermerInventaire").outerHTML="";
 	
 }
+//fonction pour transformer un mot en id acceptable pour le css : transforme les ' ' en '_' et supprime les accents. Renvoie le nouveau string.
 function espace(mot){
 	let newMot="";
 	for(let i=0;i<mot.length;i++){
