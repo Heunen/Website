@@ -1017,7 +1017,11 @@ function attaqueSpeciale(cible){
 		alert("Vous avez fait " + degats + " de dégats, la vie de l'adversaire est passée à " + cible.vie);
 		compteurAttaqueSpeciale++;
 		tourEnnemi();
-	} else {rechargePouvoir--; alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.")};	
+	} else {
+		rechargePouvoir--; 
+		alert("Vous ne pouvez pas utiliser votre pouvoir tout de suite.\n Vous devez encore attendre " + (rechargePouvoir+1) + " tours.");
+		tourEnnemi();
+	}	
 	combat(false);
 }
 //Utilisation d'une potion pour ajouter 30 de vie
