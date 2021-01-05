@@ -751,7 +751,7 @@ function combatBoss(avancementHist){
 				compteurEnnemis++;
 				texte = "Vous avez asséné un coup fatal à Volsung. Tout le monde se tait et un silence de plomb tombe sur le camp."+
 								"<br> Vous vous approchez de Volsung. Les brigands ont les yeux rivés sur vous."+
-								"<br><button onClick='combatBoss(3)'>Vérifier si Volsung est mort</button> <button onClick='combatBoss(102)'>Planter votre arme dans le corps de Volsung</button>";
+								"<br><button onClick='combatBoss(3)'>Vérifier si Volsung est mort> <button onClick='combatBoss(102)'>Planter votre arme dans le corps de Volsung</button>";
 			}
 			else{ texte = "<h1>Vous êtes mort.</h1>";}
 			break;
