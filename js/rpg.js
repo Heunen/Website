@@ -578,7 +578,7 @@ function magasinAcheter(p,chiffre){
 		msg="Vous n'avez pas assez d'argent";
 	}
 	let texte=msg+ "<br><button onClick='stat()'>Ok</button>";
-	articleHtmlSac("magasin",texte);
+	articleHtml("magasin",texte);
 }
 //retirer un exemplaire de  l'item p. La variable chiffre est l'index dans le tableau magasinPrix qui correspont au prix de l'objet en question.
 // si l'objet n'a plus d'exemplaire après le retrait de celui-ci, supprime l'objet du magasin et son prix du magasinPrix pour éviter tout mauvais raccord par après.
