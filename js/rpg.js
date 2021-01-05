@@ -748,6 +748,7 @@ function combatBoss(avancementHist){
 								"<button onClick='utiliserPotionBoss()'>Boire une potion (rend 30 points de vie)</button>";
 			}
 			else if(boss.vie == 0 && personnage[5] != 0){
+				compteurEnnemis++;
 				texte = "Vous avez asséné un coup fatal à Volsung. Tout le monde se tait et un silence de plomb tombe sur le camp."+
 								"<br> Vous vous approchez de Volsung. Les brigands ont les yeux rivés sur vous."+
 								"<br><button onClick='combatBoss(3)'>Vérifier si Volsung est mort</button> <button onClick='combatBoss(102)'>Planter votre arme dans le corps de Volsung</button>";
@@ -985,6 +986,7 @@ function combat(premiereFois,endroit,type="aleatoire"){
 	else if(ennemiApparu.vie == 0 && personnage[5] != 0){
 		texte = "<h3>Vous avez battu votre adversaire !</h3><br> Vous pouvez accéder à la suite.<button onClick='"+sauvegardeEndroit+"()'>Suite</button>";
 		ennemiApparu.vie = 100;
+		compteurEnnemis++;
 	}
 	else{
 		texte = "<h1>Vous êtes mort !</h1>";
