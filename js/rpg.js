@@ -573,12 +573,13 @@ function magasinAcheter(p,chiffre){
 		ajouterSac(p,1);
 		retirerMagasin(p,chiffre);
 		msg="Vous avez bien acheté une "+p+". Vous avez encore "+argent+" pièces d'or.";
+		stat();
 	}
 	else{
 		msg="Vous n'avez pas assez d'argent";
 	}
-	let texte=msg+ "<br><button onClick='stat()'>Ok</button>";
-	articleHtml("magasin",texte);
+	let texte=msg+ "<br><button onClick='listeMagasin()'>Ok</button>";
+	articleHtmlSac("magasin",texte);
 }
 //retirer un exemplaire de  l'item p. La variable chiffre est l'index dans le tableau magasinPrix qui correspont au prix de l'objet en question.
 // si l'objet n'a plus d'exemplaire après le retrait de celui-ci, supprime l'objet du magasin et son prix du magasinPrix pour éviter tout mauvais raccord par après.
@@ -619,7 +620,7 @@ function stat(){
 		delete sac["armure en cuir"];
 		personnage[7]=200;
 	}
-	listeMagasin();
+	
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
